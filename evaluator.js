@@ -1,19 +1,26 @@
 // Global state
-let questions = [];
+let allQuestions = []; // All questions from CSV
+let questions = []; // Filtered questions based on selection
 let currentQuestionIndex = 0;
 let evaluations = {};
 let currentQuestionId = null;
+let selectedSubject = null;
 
 // Initialize
 document.addEventListener('DOMContentLoaded', () => {
     loadFromLocalStorage();
     setupEventListeners();
     updateExportButton();
-    // Automatically load the CSV file
+    // Load CSV and populate selection dropdowns
     loadCsvFile();
 });
 
 function setupEventListeners() {
+    // Selection page listeners
+    document.getElementById('subjectSelect').addEventListener('change', validateSelection);
+    document.getElementById('startEvaluatorBtn').addEventListener('click', startEvaluator);
+    
+    // Evaluator page listeners
     document.getElementById('exportYamlBtn').addEventListener('click', exportToYaml);
     document.getElementById('toggleCriteriaBtn').addEventListener('click', toggleCriteria);
     document.getElementById('closeCriteriaBtn').addEventListener('click', toggleCriteria);
@@ -76,26 +83,90 @@ function loadCsvFile() {
                 header: true,
                 skipEmptyLines: true,
                 complete: (results) => {
-                    questions = results.data.filter(q => q.question_id && q.question_id.trim() !== '');
-                    if (questions.length === 0) {
-                        document.getElementById('loadingMessage').innerHTML = '<p style="color: #e74c3c;">No valid questions found in CSV file.</p>';
+                    allQuestions = results.data.filter(q => q.question_id && q.question_id.trim() !== '');
+                    if (allQuestions.length === 0) {
+                        document.getElementById('selectionPage').innerHTML = '<p style="color: #e74c3c;">No valid questions found in CSV file.</p>';
                         return;
                     }
                     
-                    currentQuestionIndex = 0;
-                    document.getElementById('loadingMessage').style.display = 'none';
-                    document.getElementById('evaluatorInterface').style.display = 'block';
-                    displayQuestion(0);
-                    updateProgress();
+                    // Populate grade and subject dropdowns
+                    populateSelectionDropdowns();
                 },
                 error: (error) => {
-                    document.getElementById('loadingMessage').innerHTML = '<p style="color: #e74c3c;">Error parsing CSV: ' + error.message + '</p>';
+                    document.getElementById('selectionPage').innerHTML = '<p style="color: #e74c3c;">Error parsing CSV: ' + error.message + '</p>';
                 }
             });
         })
         .catch(error => {
-            document.getElementById('loadingMessage').innerHTML = '<p style="color: #e74c3c;">Error loading CSV file: ' + error.message + '</p>';
+            document.getElementById('selectionPage').innerHTML = '<p style="color: #e74c3c;">Error loading CSV file: ' + error.message + '</p>';
         });
+}
+
+function populateSelectionDropdowns() {
+    // Get unique subjects
+    const subjects = new Set();
+    
+    allQuestions.forEach(q => {
+        if (q.discipline && q.discipline.trim() !== '') {
+            subjects.add(q.discipline.trim());
+        }
+    });
+    
+    // Populate subject dropdown
+    const subjectSelect = document.getElementById('subjectSelect');
+    const sortedSubjects = Array.from(subjects).sort();
+    
+    sortedSubjects.forEach(subject => {
+        const option = document.createElement('option');
+        option.value = subject;
+        option.textContent = subject;
+        subjectSelect.appendChild(option);
+    });
+}
+
+function validateSelection() {
+    const subjectSelect = document.getElementById('subjectSelect');
+    const startBtn = document.getElementById('startEvaluatorBtn');
+    
+    if (subjectSelect.value) {
+        startBtn.disabled = false;
+    } else {
+        startBtn.disabled = true;
+    }
+}
+
+function startEvaluator() {
+    selectedSubject = document.getElementById('subjectSelect').value;
+    
+    if (!selectedSubject) {
+        alert('Please select a subject.');
+        return;
+    }
+    
+    // Filter questions based on subject only
+    questions = allQuestions.filter(q => {
+        const subjectMatch = q.discipline && q.discipline.trim() === selectedSubject;
+        return subjectMatch;
+    });
+    
+    if (questions.length === 0) {
+        alert(`No questions found for ${selectedSubject}.`);
+        return;
+    }
+    
+    // Hide selection page and show evaluator page
+    document.getElementById('selectionPage').style.display = 'none';
+    document.getElementById('evaluatorPage').style.display = 'block';
+    
+    // Update display with selected value
+    document.getElementById('selectedSubjectDisplay').textContent = selectedSubject;
+    
+    // Initialize evaluator
+    currentQuestionIndex = 0;
+    document.getElementById('loadingMessage').style.display = 'none';
+    document.getElementById('evaluatorInterface').style.display = 'block';
+    displayQuestion(0);
+    updateProgress();
 }
 
 

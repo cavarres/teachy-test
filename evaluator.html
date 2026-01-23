@@ -12,27 +12,49 @@
 </head>
 <body>
     <div class="container">
-        <header>
-            <h1>Question Evaluator</h1>
-            <div class="header-controls">
-                <button id="toggleCriteriaBtn" class="btn btn-secondary">Show Criteria</button>
-                <button id="exportYamlBtn" class="btn btn-primary" disabled>Export to YAML</button>
+        <!-- Selection Page -->
+        <div id="selectionPage" class="selection-page">
+            <div class="selection-card">
+                <h1>Question Evaluator</h1>
+                <p class="selection-subtitle">Please select the subject to begin evaluating questions.</p>
+                
+                <div class="selection-form">
+                    <div class="form-group">
+                        <label for="subjectSelect">Subject:</label>
+                        <select id="subjectSelect" class="form-control">
+                            <option value="">-- Select Subject --</option>
+                        </select>
+                    </div>
+                    
+                    <button id="startEvaluatorBtn" class="btn btn-primary btn-block" disabled>Next →</button>
+                </div>
             </div>
-        </header>
-
-        <div id="criteriaPanel" class="criteria-panel" style="display: none;">
-            <div class="criteria-header">
-                <h2>Evaluation Criteria Reference</h2>
-                <button id="closeCriteriaBtn" class="btn btn-small">Close</button>
-            </div>
-            <div class="criteria-content" id="criteriaContent"></div>
         </div>
 
-        <div id="loadingMessage" class="loading-message">
-            <p>Loading questions...</p>
-        </div>
+        <!-- Evaluator Interface -->
+        <div id="evaluatorPage" style="display: none;">
+            <header>
+                <h1>Question Evaluator</h1>
+                <div class="header-controls">
+                    <span class="selection-info">Subject: <strong id="selectedSubjectDisplay"></strong></span>
+                    <button id="toggleCriteriaBtn" class="btn btn-secondary">Show Criteria</button>
+                    <button id="exportYamlBtn" class="btn btn-primary" disabled>Export to YAML</button>
+                </div>
+            </header>
 
-        <div id="evaluatorInterface" class="evaluator-interface" style="display: none;">
+            <div id="criteriaPanel" class="criteria-panel" style="display: none;">
+                <div class="criteria-header">
+                    <h2>Evaluation Criteria Reference</h2>
+                    <button id="closeCriteriaBtn" class="btn btn-small">Close</button>
+                </div>
+                <div class="criteria-content" id="criteriaContent"></div>
+            </div>
+
+            <div id="loadingMessage" class="loading-message">
+                <p>Loading questions...</p>
+            </div>
+
+            <div id="evaluatorInterface" class="evaluator-interface" style="display: none;">
             <div class="question-navigation">
                 <button id="prevBtn" class="btn btn-nav">← Previous</button>
                 <div class="question-counter">
@@ -169,6 +191,7 @@
                     <div class="progress-bar" id="progressBar"></div>
                 </div>
             </div>
+        </div>
         </div>
     </div>
 
