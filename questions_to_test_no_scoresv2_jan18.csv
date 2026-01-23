@@ -1,0 +1,335 @@
+question_id,question_statement,question_solution,type,correct_answer,incorrect_alternative_1,incorrect_alternative_2,incorrect_alternative_3,incorrect_alternative_4,grade,difficulty,category,discipline,total_score,max_possible_score,percentage_score,quality_status,factual_accuracy,answer_correctness,wording_clarity,grammar_language,difficulty_alignment,grade_appropriateness,explanation_quality,completeness,alternative_quality,cognitive_demand,internal_consistency,identified_issues
+1,What does the denominator represent in a fraction like {{MATH}}\frac{3}{5}{{/MATH}} when thinking about parts of a natural number?,"In the fraction {{MATH}}\frac{3}{5}{{/MATH}}, the denominator (5) indicates the total number of equal parts into which the natural number (or a whole) is divided. It tells us how many pieces make up the whole. For example, if you have a pie, and you divide it into 5 equal slices, the denominator tells you there are 5 slices in total.",MCQ,The total number of equal parts in the whole.,The size of each individual part.,The number of parts being considered.,The remaining whole after taking parts.,,60,100,Fractions: Parts of Natural Numbers,Mathematics,,,,,,,,,,,,,,,,
+2,"A recipe requires {{MATH}}\frac{2}{3}{{/MATH}} cup of sugar. If you need to make three times the recipe, how much sugar do you need in total?","To find the total amount of sugar needed, you multiply the amount for one recipe by 3. \n 
+
+{{MATHBLOCK}}\frac{2}{3} \text{ cup} \times 3 = \frac{6}{3} \text{ cups} = 2 \text{ cups}{{/MATHBLOCK}}
+
+ \nYou would need 2 cups of sugar.",MCQ,{{MATH}}2{{/MATH}} cups,{{MATH}}1\frac{1}{3}{{/MATH}} cups,{{MATH}}\frac{2}{9}{{/MATH}} cups,{{MATH}}3\frac{2}{3}{{/MATH}} cups,,60,300,Fractions: Parts of Natural Numbers,Mathematics,,,,,,,,,,,,,,,,
+3,"Imagine a baker has 5 large cakes. If each cake is divided into equal slices, and a customer buys {{MATH}}\frac{1}{4}{{/MATH}} of each cake, what total fraction of all 5 cakes did the customer buy?","The customer bought {{MATH}}\frac{1}{4}{{/MATH}} of *each* of the 5 cakes. To find the total fraction of all cakes bought, we multiply the fraction per cake by the number of cakes.\n
+
+{{MATHBLOCK}}\frac{1}{4} \times 5 = \frac{5}{4}{{/MATHBLOCK}}
+
+\nThis means the customer bought {{MATH}}\frac{5}{4}{{/MATH}} of the total cakes, which is equivalent to 1 whole cake and {{MATH}}\frac{1}{4}{{/MATH}} of another cake.",Discursive,,,,,,60,500,Fractions: Parts of Natural Numbers,Mathematics,,,,,,,,,,,,,,,,
+4,A contractor is designing a play area in a park. The play area's shape is a composite figure formed by a rectangle and a semicircle attached to one of the rectangle's longer sides. The rectangle measures 10 meters in length and 6 meters in width. The semicircle's diameter matches the width of the rectangle. What is the total area of the play area?,"To find the total area of the play area, first calculate the area of the rectangular part and then the area of the semicircular part.
+
+1.  **Area of the rectangle:**
+    Length = 10 m
+    Width = 6 m
+    Area_rectangle = Length × Width = 10 m × 6 m = 60 {{MATH}} \text{m}^2 {{/MATH}}
+
+2.  **Area of the semicircle:**
+    The diameter of the semicircle is equal to the width of the rectangle, which is 6 m. Therefore, the radius (r) of the semicircle is half of the diameter.
+    Radius (r) = Diameter / 2 = 6 m / 2 = 3 m
+    The area of a full circle is {{MATH}} \pi r^2 {{/MATH}}, so the area of a semicircle is {{MATH}} \frac{1}{2} \pi r^2 {{/MATH}}.
+    Area_semicircle = {{MATH}} \frac{1}{2} \times \pi \times (3 \text{ m})^2 {{/MATH}}
+    Area_semicircle = {{MATH}} \frac{1}{2} \times \pi \times 9 \text{ m}^2 {{/MATH}}
+    Area_semicircle = {{MATH}} 4.5 \pi \text{ m}^2 {{/MATH}}
+    Using {{MATH}} \pi \approx 3.14 {{/MATH}}:
+    Area_semicircle = {{MATH}} 4.5 \times 3.14 \text{ m}^2 = 14.13 \text{ m}^2 {{/MATH}}
+
+3.  **Total Area:**
+    Total Area = Area_rectangle + Area_semicircle
+    Total Area = {{MATH}} 60 \text{ m}^2 + 14.13 \text{ m}^2 = 74.13 \text{ m}^2 {{/MATH}}
+
+Therefore, the total area of the play area is approximately {{MATH}} 74.13 \text{ m}^2 {{/MATH}}.",MCQ,{{MATH}} 74.13 \text{ m}^2 {{/MATH}},{{MATH}} 69.42 \text{ m}^2 {{/MATH}},{{MATH}} 88.26 \text{ m}^2 {{/MATH}},{{MATH}} 78.54 \text{ m}^2 {{/MATH}},,70,500,Area: Composite Figures,Mathematics,,,,,,,,,,,,,,,,
+5,A blueprint shows a design for a new window that consists of a rectangular base topped by an isosceles triangle. Identify the two fundamental geometric shapes that compose this window design.,"The window design is made up of a rectangle and an isosceles triangle. The rectangular base forms the bottom portion, and the isosceles triangle is positioned above it, sharing one of its sides with the top side of the rectangle.",Discursive,,,,,,70,300,Area: Composite Figures,Mathematics,,,,,,,,,,,,,,,,
+6,A landscaper is planning to cover a patio area shaped like a large rectangle with a smaller rectangular section removed from one corner. The larger rectangle has dimensions of 15 feet by 10 feet. The removed corner section measures 3 feet by 4 feet. Determine the exact area of the patio that needs to be covered.,"To determine the exact area of the patio, first calculate the area of the large rectangle, and then subtract the area of the removed smaller rectangular section.
+
+1.  **Area of the large rectangle:**
+    Length = 15 feet
+    Width = 10 feet
+    Area_large_rectangle = Length × Width = 15 ft × 10 ft = 150 {{MATH}} \text{ft}^2 {{/MATH}}
+
+2.  **Area of the removed section:**
+    Length = 4 feet
+    Width = 3 feet
+    Area_removed_section = Length × Width = 4 ft × 3 ft = 12 {{MATH}} \text{ft}^2 {{/MATH}}
+
+3.  **Exact area of the patio:**
+    Area_patio = Area_large_rectangle - Area_removed_section
+    Area_patio = {{MATH}} 150 \text{ ft}^2 - 12 \text{ ft}^2 = 138 \text{ ft}^2 {{/MATH}}
+
+Therefore, the exact area of the patio that needs to be covered is {{MATH}} 138 \text{ ft}^2 {{/MATH}}.",Discursive,,,,,,70,700,Area: Composite Figures,Mathematics,,,,,,,,,,,,,,,,
+7,A local movie theater requires that a child must be at least 13 years old to watch a PG-13 film without an adult. Which inequality correctly represents the age (a) a child must be to watch a PG-13 film alone?,"The phrase 'at least 13 years old' means that the child's age must be 13 or greater than 13. This is represented mathematically by the symbol ≥. Therefore, a ≥ 13 is the correct inequality.",MCQ,a ≥ 13,a < 13,a > 13,a ≤ 13,,70,700,Inequalities: Introduction,Mathematics,,,,,,,,,,,,,,,,
+8,"Consider the inequality 2x + 5 < 15. Determine which of the following values, if substituted for x, would make the inequality a true statement.","First, solve the inequality: 2x + 5 < 15. Subtract 5 from both sides: 2x < 10. Divide by 2: x < 5. This means any value of x that is strictly less than 5 will make the inequality true. Among the given options, 4 is the only value less than 5.",MCQ,4,6,5,7,,70,700,Inequalities: Introduction,Mathematics,,,,,,,,,,,,,,,,
+9,"A student states that if you multiply both sides of an inequality by a negative number, the inequality symbol must be reversed. Provide an example using numerical values to demonstrate why this rule is necessary to maintain the truth of the inequality.","Consider the true inequality 3 < 5. If we multiply both sides by a negative number, for example, -2, we get 3 * (-2) and 5 * (-2). This results in -6 and -10. If we do not reverse the inequality symbol, we would have -6 < -10, which is false. However, if we reverse the symbol, we get -6 > -10, which is true. This demonstrates that reversing the inequality symbol is necessary when multiplying (or dividing) by a negative number to ensure the resulting statement remains true.",Discursive,,,,,,70,700,Inequalities: Introduction,Mathematics,,,,,,,,,,,,,,,,
+10,"A mathematical function is defined by the rule {{MATH}} f(x) = 3x - 5 {{/MATH}}. If the input value, {{MATH}} x {{/MATH}}, is 4, what is the resulting output value, {{MATH}} f(x) {{/MATH}}?","To find the output, substitute the input value {{MATH}} x = 4 {{/MATH}} into the function rule: {{MATH}} f(4) = 3(4) - 5 {{/MATH}}. This simplifies to {{MATH}} f(4) = 12 - 5 {{/MATH}}, which equals 7. Therefore, the output value is 7.",MCQ,7,1,9,12,-1,90,300,Function: Inputs and Outputs,Mathematics,,,,,,,,,,,,,,,,
+11,"In the context of a mathematical function, what term describes the initial value or quantity that is fed into the function for processing?",The term that describes the initial value or quantity fed into a mathematical function for processing is the 'input'.,Discursive,,,,,,90,100,Function: Inputs and Outputs,Mathematics,,,,,,,,,,,,,,,,
+12,"A vending machine operates as a function where the input is the button pressed (A1, A2, B1, B2) and the output is the specific snack delivered. If pressing button A1 always delivers a bag of chips, and pressing button A2 always delivers a chocolate bar, explain how this scenario demonstrates the consistent nature of a mathematical function relating inputs to outputs.","This vending machine demonstrates the consistent nature of a mathematical function because each unique input (button press) always produces exactly one specific output (snack item). Pressing 'A1' consistently yields 'chips' and never 'chocolate', and 'A2' consistently yields 'chocolate'. This adherence to a single, predictable output for each distinct input is a fundamental characteristic of a function in mathematics, ensuring that the same input always leads to the same output.",Discursive,,,,,,90,500,Function: Inputs and Outputs,Mathematics,,,,,,,,,,,,,,,,
+13,"Consider the quadratic equation {{MATH}} 2x^2 - 5x + 3 = 0 {{/MATH}}. When applying Bhaskara's formula, what are the correct values for the coefficients *a*, *b*, and *c*?","Bhaskara's formula is used to solve quadratic equations of the form {{MATH}} ax^2 + bx + c = 0 {{/MATH}}. By comparing the given equation, {{MATH}} 2x^2 - 5x + 3 = 0 {{/MATH}}, with the standard form, we can identify the coefficients:
+
+*   The coefficient of {{MATH}} x^2 {{/MATH}} is *a*, so {{MATH}} a = 2 {{/MATH}}.
+*   The coefficient of *x* is *b*, so {{MATH}} b = -5 {{/MATH}}.
+*   The constant term is *c*, so {{MATH}} c = 3 {{/MATH}}.
+
+Therefore, the correct values are {{MATH}} a=2, b=-5, c=3 {{/MATH}}.",MCQ,"{{MATH}} a=2, b=-5, c=3 {{/MATH}}","{{MATH}} a=2, b=5, c=3 {{/MATH}}","{{MATH}} a=-2, b=-5, c=3 {{/MATH}}","{{MATH}} a=2, b=-5, c=-3 {{/MATH}}","{{MATH}} a=5, b=-2, c=3 {{/MATH}}",100,300,Quadratic Equation: Bhaskara,Mathematics,,,,,,,,,,,,,,,,
+14,"A projectile's height *h* (in meters) above the ground at time *t* (in seconds) is modeled by the quadratic equation {{MATH}} h(t) = -t^2 + 6t - 5 {{/MATH}}. At what time *t* does the projectile hit the ground, meaning its height *h(t)* is zero?","To find when the projectile hits the ground, we set {{MATH}} h(t) = 0 {{/MATH}}:
+
+{{MATHBLOCK}} -t^2 + 6t - 5 = 0 {{/MATHBLOCK}}
+
+We can multiply by -1 to make the leading coefficient positive, which simplifies calculations:
+
+{{MATHBLOCK}} t^2 - 6t + 5 = 0 {{/MATHBLOCK}}
+
+Using Bhaskara's formula {{MATH}} t = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a} {{/MATH}}, with {{MATH}} a=1, b=-6, c=5 {{/MATH}}:
+
+First, calculate the discriminant, {{MATH}} \Delta = b^2 - 4ac {{/MATH}}:
+
+{{MATHBLOCK}} \Delta = (-6)^2 - 4(1)(5) = 36 - 20 = 16 {{/MATHBLOCK}}
+
+Now, substitute the values into the formula for *t*:
+
+{{MATHBLOCK}} t = \frac{-(-6) \pm \sqrt{16}}{2(1)} = \frac{6 \pm 4}{2} {{/MATHBLOCK}}
+
+Two possible solutions for *t*:
+
+{{MATHBLOCK}} t_1 = \frac{6 + 4}{2} = \frac{10}{2} = 5 t_2 = \frac{6 - 4}{2} = \frac{2}{2} = 1 {{/MATHBLOCK}}
+
+Both times are positive, meaning the projectile hits the ground at 1 second and again at 5 seconds (after going up and coming back down). The question asks for 'at what time', implying all relevant times. Since it asks for 'time t', both are valid moments it hits the ground. However, in the context of typical multiple-choice answers, we often list the smallest non-negative time first or all possible times. Given the options, {{MATH}} t=1 {{/MATH}} and {{MATH}} t=5 {{/MATH}} are the solutions.
+
+The correct answer is {{MATH}} t=1 \text{ and } t=5 {{/MATH}} seconds.",MCQ,{{MATH}} t=1 \text{ and } t=5 {{/MATH}} seconds,{{MATH}} t=2 \text{ and } t=3 {{/MATH}} seconds,{{MATH}} t=0.5 \text{ and } t=4.5 {{/MATH}} seconds,{{MATH}} t=-1 \text{ and } t=-5 {{/MATH}} seconds,{{MATH}} t=1 \text{ and } t=6 {{/MATH}} seconds,100,500,Quadratic Equation: Bhaskara,Mathematics,,,,,,,,,,,,,,,,
+15,A rectangular garden has an area of 40 square feet. The length of the garden is 2 feet longer than twice its width. Determine the dimensions (length and width) of the garden in feet.,"Let *w* represent the width of the garden in feet.
+The length *l* is 1 foot longer than twice its width, so {{MATH}} l = 2w + 1 {{/MATH}}.
+
+The area of a rectangle is given by {{MATH}} A = l \times w {{/MATH}}.
+We are given that the area is 56 square feet, so:
+
+{{MATHBLOCK}} w(2w + 1) = 56 2w^2 + w = 56 2w^2 + w - 56 = 0 {{/MATHBLOCK}}
+
+This is a quadratic equation in the form {{MATH}} ax^2 + bx + c = 0 {{/MATH}}, where {{MATH}} a=2, b=1, c=-56 {{/MATH}}.
+We use Bhaskara's formula to solve for *w*: {{MATH}} w = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a} {{/MATH}}.
+
+First, calculate the discriminant {{MATH}} \Delta = b^2 - 4ac {{/MATH}}:
+
+{{MATHBLOCK}} \Delta = (1)^2 - 4(2)(-56) \Delta = 1 - (-448) \Delta = 1 + 448 = 449 {{/MATHBLOCK}}
+
+Now, substitute the values into the formula for *w*:
+
+{{MATHBLOCK}} w = \frac{-(1) \pm \sqrt{449}}{2(2)} w = \frac{-1 \pm 21.1896...}{4} {{/MATHBLOCK}}
+
+We will consider the approximate value for {{MATH}} \sqrt{449} \approx 21.19 {{/MATH}} for calculation, or recognize that {{MATH}} 449 {{/MATH}} is not a perfect square, suggesting integer solutions are not direct for width. Let's recheck the discriminant or assume there might be integer roots or specific instructions for rounding. In standard problems designed for exact solutions, the discriminant usually simplifies.
+
+Let's re-evaluate the problem. Sometimes, there might be a typo or a simplification opportunity. Let's try to factorize or use a different approach to ensure it's solvable with common methods.
+
+Let's recheck the calculation of {{MATH}} \Delta = 1^2 - 4(2)(-56) = 1 + 448 = 449 {{/MATH}}. It seems correct.
+
+However, a common practice in these types of problems (High School level) is to have perfect square discriminants for integer solutions. Let's assume there was a slight error in the problem description, or I need to provide the answer with the exact radical.
+
+Given the context of Bhaskara, providing the exact solution is key.
+
+{{MATHBLOCK}} w_1 = \frac{-1 + \sqrt{449}}{4} w_2 = \frac{-1 - \sqrt{449}}{4} {{/MATHBLOCK}}
+
+Since width cannot be negative, we take the positive solution:
+
+{{MATHBLOCK}} w = \frac{-1 + \sqrt{449}}{4} \text{ feet} {{/MATHBLOCK}}
+
+This is approximately {{MATH}} \frac{-1 + 21.1896}{4} \approx \frac{20.1896}{4} \approx 5.0474 {{/MATH}} feet.
+
+Now calculate the length *l*:
+
+{{MATHBLOCK}} l = 2w + 1 = 2\left(\frac{-1 + \sqrt{449}}{4}\right) + 1 l = \frac{-1 + \sqrt{449}}{2} + 1 l = \frac{-1 + \sqrt{449} + 2}{2} l = \frac{1 + \sqrt{449}}{2} \text{ feet} {{/MATHBLOCK}}
+
+This is approximately {{MATH}} \frac{1 + 21.1896}{2} \approx \frac{22.1896}{2} \approx 11.0948 {{/MATH}} feet.
+
+Let's assume a common scenario where the discriminant is a perfect square for simpler roots. If the problem implies practical integer dimensions, then the numbers used might be different. If the problem expects a solution using Bhaskara's formula directly, then the radical form is the most accurate.
+
+**Self-correction:** The instruction specifies 'practical application' and 'college entrance exam format'. Such exams typically have cleaner numbers or clearly state to leave answers in radical form or round. The original problem description might imply integer or simple fractional solutions. Let's adjust the numbers in the problem statement for cleaner results.
+
+Let's re-imagine the problem such that the discriminant is a perfect square.
+If Area = 40, Length = 2w+2
+{{MATH}} w(2w+2) = 40 \implies 2w^2 + 2w - 40 = 0 \implies w^2 + w - 20 = 0 {{/MATH}}
+Here, {{MATH}} \Delta = 1^2 - 4(1)(-20) = 1 + 80 = 81 {{/MATH}} (perfect square).
+{{MATH}} w = \frac{-1 \pm \sqrt{81}}{2} = \frac{-1 \pm 9}{2} {{/MATH}}.
+{{MATH}} w_1 = \frac{-1+9}{2} = \frac{8}{2} = 4 {{/MATH}}.
+{{MATH}} w_2 = \frac{-1-9}{2} = \frac{-10}{2} = -5 {{/MATH}} (discard negative).
+So, width = 4 feet. Length = {{MATH}} 2(4) + 2 = 8 + 2 = 10 {{/MATH}} feet.
+This gives a length of 10 feet and a width of 4 feet.
+
+Okay, I will change the original problem statement to yield integer solutions, as it's more typical for this level of practical application in college entrance exams unless explicitly asked for radical form.
+
+Revised problem: A rectangular garden has an area of 40 square feet. The length of the garden is 2 feet longer than twice its width. Determine the dimensions (length and width) of the garden in feet.
+
+Revised Solution:
+Let *w* represent the width of the garden in feet.
+The length *l* is 2 feet longer than twice its width, so {{MATH}} l = 2w + 2 {{/MATH}}.
+
+The area of a rectangle is given by {{MATH}} A = l \times w {{/MATH}}.
+We are given that the area is 40 square feet, so:
+
+{{MATHBLOCK}} w(2w + 2) = 40 2w^2 + 2w = 40 2w^2 + 2w - 40 = 0 {{/MATHBLOCK}}
+
+Divide the entire equation by 2 to simplify:
+
+{{MATHBLOCK}} w^2 + w - 20 = 0 {{/MATHBLOCK}}
+
+This is a quadratic equation in the form {{MATH}} ax^2 + bx + c = 0 {{/MATH}}, where {{MATH}} a=1, b=1, c=-20 {{/MATH}}.
+We use Bhaskara's formula to solve for *w*: {{MATH}} w = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a} {{/MATH}}.
+
+First, calculate the discriminant {{MATH}} \Delta = b^2 - 4ac {{/MATH}}:
+
+{{MATHBLOCK}} \Delta = (1)^2 - 4(1)(-20) \Delta = 1 - (-80) \Delta = 1 + 80 = 81 {{/MATHBLOCK}}
+
+Now, substitute the values into the formula for *w*:
+
+{{MATHBLOCK}} w = \frac{-(1) \pm \sqrt{81}}{2(1)} w = \frac{-1 \pm 9}{2} {{/MATHBLOCK}}
+
+Two possible solutions for *w*:
+
+{{MATHBLOCK}} w_1 = \frac{-1 + 9}{2} = \frac{8}{2} = 4 w_2 = \frac{-1 - 9}{2} = \frac{-10}{2} = -5 {{/MATHBLOCK}}
+
+Since the width of a garden cannot be negative, we discard {{MATH}} w_2 = -5 {{/MATH}}.
+So, the width of the garden is {{MATH}} w = 4 {{/MATH}} feet.
+
+Now, calculate the length *l* using the relationship {{MATH}} l = 2w + 2 {{/MATH}}:
+
+{{MATHBLOCK}} l = 2(4) + 2 l = 8 + 2 l = 10 {{/MATH}} {{/MATHBLOCK}}
+
+So, the length of the garden is 10 feet.
+
+The dimensions of the garden are 4 feet by 10 feet.",Discursive,,,,,,100,700,Quadratic Equation: Bhaskara,Mathematics,,,,,,,,,,,,,,,,
+16,"A person consumes a meal consisting primarily of protein, such as chicken breast. Which of the following organs is primarily responsible for initiating the chemical breakdown of this protein and preparing it for further digestion?","The stomach is the primary organ responsible for initiating the chemical digestion of proteins. It produces gastric juices containing pepsin, an enzyme that breaks down proteins into smaller polypeptides. This process requires an acidic environment, which the stomach provides.",MCQ,"Stomach, where pepsin begins breaking down proteins in an acidic environment.","Small intestine, where bile emulsifies fats for absorption.","Large intestine, where water is absorbed and waste is compacted.","Mouth, where amylase starts breaking down carbohydrates.",,60,700,Human Body: Digestive System,Science,,,,,,,,,,,,,,,,
+17,"Consider a bite of a whole-wheat cracker, which contains carbohydrates, fats, and some fiber. Describe the distinct roles the mouth and the stomach play in processing this cracker, specifically focusing on how they prepare the food for the next stages of digestion.","In the mouth, mechanical digestion begins as the teeth chew and grind the cracker into smaller pieces, increasing its surface area. Saliva, containing the enzyme amylase, starts the chemical digestion of carbohydrates in the cracker. This chewing also mixes the food with saliva, forming a bolus for easier swallowing. In the stomach, strong muscular contractions (mechanical digestion) churn and mix the bolus with gastric juices. The stomach's acidic environment helps to break down proteins (chemical digestion initiated by pepsin) and kills most bacteria. Although the cracker is primarily carbohydrate, the stomach's churning helps to further liquefy the food into chyme, regardless of nutrient type, making it ready for the small intestine, where most chemical digestion and absorption will occur.",Discursive,,,,,,60,500,Human Body: Digestive System,Science,,,,,,,,,,,,,,,,
+18,"When an individual experiences a condition that severely impairs the production of digestive enzymes in the pancreas, evaluate how this specific impairment would impact the overall digestion and absorption of various macronutrients (carbohydrates, proteins, and fats) within the Human Body's Digestive System.","Severe impairment of pancreatic enzyme production would significantly disrupt the digestion and absorption of all three macronutrients. The pancreas produces critical enzymes like pancreatic amylase for carbohydrates, trypsin and chymotrypsin for proteins, and lipase for fats. Without sufficient pancreatic amylase, complex carbohydrates would not be broken down into simpler sugars, leading to reduced carbohydrate absorption. Similarly, the lack of pancreatic proteases would prevent proteins from being further broken into smaller peptides and amino acids, hindering their absorption. Most dramatically, the absence of pancreatic lipase would severely limit fat digestion, as fats require lipase to be broken into fatty acids and glycerol, which are absorbable forms. This widespread maldigestion would result in nutrient deficiencies, weight loss, and gastrointestinal symptoms due to undigested food passing through the system.",Discursive,,,,,,60,900,Human Body: Digestive System,Science,,,,,,,,,,,,,,,,
+19,"In the Science of heat propagation, which method primarily involves the transfer of heat through the movement of fluids (liquids or gases)?","Convection is the process of heat transfer in fluids (liquids or gases) where heat is carried by the actual movement of the fluid itself. As the fluid is heated, it becomes less dense and rises, while cooler, denser fluid sinks, creating a convection current that distributes heat.",MCQ,Convection,Conduction,Radiation,Insulation,,70,300,Heat Propagation,Science,,,,,,,,,,,,,,,,
+20,"Consider a metal spoon placed in a hot cup of soup. Which primary method of heat propagation causes the handle of the spoon to become warm over time, even though it's not directly in the hot liquid?","Conduction is the transfer of heat through direct contact between particles. In the case of the metal spoon, the heat from the hot soup is transferred directly to the spoon, and then from particle to particle along the metal, making the handle warm.",MCQ,Conduction,Convection,Radiation,Evaporation,,70,300,Heat Propagation,Science,,,,,,,,,,,,,,,,
+21,Describe how heat propagates from the sun to Earth through empty space.,"Heat propagates from the sun to Earth primarily through a method called radiation. Unlike conduction or convection, radiation does not require a medium (like a solid, liquid, or gas) to transfer energy. Instead, it travels through electromagnetic waves, which can move through the vacuum of space. These waves carry thermal energy that is absorbed by Earth's surface and atmosphere.",Discursive,,,,,,70,300,Heat Propagation,Science,,,,,,,,,,,,,,,,
+22,"A town located in a sunny, coastal region with consistent strong winds is considering building a new power plant to meet its growing energy needs. To prioritize sustainability and long-term resource availability, what combination of energy generation methods would be most appropriate for this town?","The town's characteristics (sunny, coastal, strong winds) directly align with the optimal conditions for solar and wind energy generation. Both are renewable resources, meaning they replenish naturally and are sustainable for long-term use without depleting finite resources. Geothermal energy relies on heat from the Earth's interior, which isn't specifically mentioned as abundant for this coastal town. Coal and natural gas are fossil fuels, which are non-renewable and contribute to environmental issues, making them unsuitable for a town prioritizing sustainability. Nuclear power is non-renewable (uranium) and has different site requirements and waste considerations.",MCQ,"Solar and wind energy, as these are renewable and suit the local conditions.","Coal and natural gas, because they are readily available and cost-effective for power generation.","Nuclear and geothermal energy, utilizing underground heat and powerful atomic reactions.","Hydropower and biomass, due to their consistent output regardless of weather patterns.",,80,500,Energy Generation,Science,,,,,,,,,,,,,,,,
+23,Identify two distinct advantages of utilizing renewable energy sources for electricity generation compared to non-renewable sources.,"Two distinct advantages of utilizing renewable energy sources are: 1) They are naturally replenished, meaning they will not run out over human timescales, ensuring long-term energy security. 2) They typically produce significantly fewer greenhouse gas emissions and other pollutants during operation, leading to a reduced environmental impact and helping to combat climate change.",Discursive,,,,,,80,300,Energy Generation,Science,,,,,,,,,,,,,,,,
+24,Consider the trade-offs involved when a large city transitions from primarily coal-fired power plants to a diversified portfolio of renewable energy sources. Evaluate the primary economic and environmental challenges this transition might present.,"Transitioning a large city from coal to diversified renewable energy sources presents significant challenges. Economically, the initial capital investment for new renewable infrastructure (solar farms, wind turbines, grid upgrades) can be substantial. There may also be job losses in the coal industry, requiring retraining programs for affected workers. Furthermore, the intermittent nature of some renewables (like solar and wind) necessitates investment in energy storage solutions or advanced grid management, adding to costs and complexity. Environmentally, while the long-term benefits are clear, the manufacturing and installation of renewable energy components (e.g., solar panels, wind turbine blades) require resources and can have localized environmental impacts, such as land use changes or raw material extraction. Proper waste management for retired components also becomes a new environmental consideration.",Discursive,,,,,,80,700,Energy Generation,Science,,,,,,,,,,,,,,,,
+25,"A car accelerates uniformly from rest to {{MATH}} 30 \, \text{m/s} {{/MATH}} over a distance of {{MATH}} 150 \, \text{m} {{/MATH}}. What is the car's acceleration during this motion?","Given:
+Initial velocity {{MATH}} v_0 = 0 \, \text{m/s} {{/MATH}} (from rest)
+Final velocity {{MATH}} v = 30 \, \text{m/s} {{/MATH}}
+Displacement {{MATH}} \Delta x = 150 \, \text{m} {{/MATH}}
+
+We need to find the acceleration {{MATH}} a {{/MATH}}. The appropriate kinematic equation is:
+
+{{MATHBLOCK}} v^2 = v_0^2 + 2a\Delta x {{/MATHBLOCK}}
+
+Substitute the given values:
+
+{{MATHBLOCK}} (30 \, \text{m/s})^2 = (0 \, \text{m/s})^2 + 2a(150 \, \text{m}) 900 \, \text{m}^2/\text{s}^2 = 0 + 300a \, \text{m} a = \frac{900 \, \text{m}^2/\text{s}^2}{300 \, \text{m}} a = 3.0 \, \text{m/s}^2 {{/MATHBLOCK}}
+
+Therefore, the car's acceleration is {{MATH}} 3.0 \, \text{m/s}^2 {{/MATH}}.",MCQ,"{{MATH}} 3.0 \, \text{m/s}^2 {{/MATH}}","{{MATH}} 0.2 \, \text{m/s}^2 {{/MATH}}","{{MATH}} 6.0 \, \text{m/s}^2 {{/MATH}}","{{MATH}} 10.0 \, \text{m/s}^2 {{/MATH}}","{{MATH}} 15.0 \, \text{m/s}^2 {{/MATH}}",100,700,Kinematics: Uniformly Accelerated Motion,Physics,,,,,,,,,,,,,,,,
+26,"A sprinter running with an initial velocity of {{MATH}} 8.0 \, \text{m/s} {{/MATH}} decelerates uniformly to a stop in {{MATH}} 4.0 \, \text{s} {{/MATH}}. What is the total distance covered by the sprinter during this deceleration phase?","Given:
+Initial velocity {{MATH}} v_0 = 8.0 \, \text{m/s} {{/MATH}}
+Final velocity {{MATH}} v = 0 \, \text{m/s} {{/MATH}} (comes to a stop)
+Time {{MATH}} t = 4.0 \, \text{s} {{/MATH}}
+
+First, calculate the acceleration {{MATH}} a {{/MATH}} using the equation:
+
+{{MATHBLOCK}} v = v_0 + at 0 = 8.0 \, \text{m/s} + a(4.0 \, \text{s}) -8.0 \, \text{m/s} = a(4.0 \, \text{s}) a = \frac{-8.0 \, \text{m/s}}{4.0 \, \text{s}} a = -2.0 \, \text{m/s}^2 {{/MATHBLOCK}}
+
+Now, calculate the displacement {{MATH}} \Delta x {{/MATH}} using the equation:
+
+{{MATHBLOCK}} \Delta x = v_0t + \frac{1}{2}at^2 \Delta x = (8.0 \, \text{m/s})(4.0 \, \text{s}) + \frac{1}{2}(-2.0 \, \text{m/s}^2)(4.0 \, \text{s})^2 \Delta x = 32.0 \, \text{m} + \frac{1}{2}(-2.0 \, \text{m/s}^2)(16.0 \, \text{s}^2) \Delta x = 32.0 \, \text{m} - 16.0 \, \text{m} \Delta x = 16.0 \, \text{m} {{/MATHBLOCK}}
+
+Alternatively, one could use {{MATH}} \Delta x = \frac{1}{2}(v_0 + v)t {{/MATH}}:
+
+{{MATHBLOCK}} \Delta x = \frac{1}{2}(8.0 \, \text{m/s} + 0 \, \text{m/s})(4.0 \, \text{s}) \Delta x = \frac{1}{2}(8.0 \, \text{m/s})(4.0 \, \text{s}) \Delta x = 4.0 \, \text{m/s} \times 4.0 \, \text{s} \Delta x = 16.0 \, \text{m} {{/MATHBLOCK}}
+
+The total distance covered is {{MATH}} 16.0 \, \text{m} {{/MATH}}.",MCQ,"{{MATH}} 16.0 \, \text{m} {{/MATH}}","{{MATH}} 8.0 \, \text{m} {{/MATH}}","{{MATH}} 24.0 \, \text{m} {{/MATH}}","{{MATH}} 32.0 \, \text{m} {{/MATH}}","{{MATH}} 48.0 \, \text{m} {{/MATH}}",100,700,Kinematics: Uniformly Accelerated Motion,Physics,,,,,,,,,,,,,,,,
+27,"An object starts from rest and accelerates uniformly at {{MATH}} 5.0 \, \text{m/s}^2 {{/MATH}} for {{MATH}} 6.0 \, \text{s} {{/MATH}}. Immediately after this period, it decelerates uniformly at {{MATH}} 3.0 \, \text{m/s}^2 {{/MATH}} until it comes to a complete stop. Calculate the total distance traveled by the object.","This problem involves two distinct phases of uniformly accelerated motion.
+
+**Phase 1: Acceleration**
+Given:
+Initial velocity {{MATH}} v_{0,1} = 0 \, \text{m/s} {{/MATH}} (starts from rest)
+Acceleration {{MATH}} a_1 = 5.0 \, \text{m/s}^2 {{/MATH}}
+Time {{MATH}} t_1 = 6.0 \, \text{s} {{/MATH}}
+
+First, find the final velocity at the end of Phase 1, which will be the initial velocity for Phase 2:
+
+{{MATHBLOCK}} v_1 = v_{0,1} + a_1t_1 v_1 = 0 + (5.0 \, \text{m/s}^2)(6.0 \, \text{s}) v_1 = 30.0 \, \text{m/s} {{/MATHBLOCK}}
+
+Next, calculate the distance traveled during Phase 1:
+
+{{MATHBLOCK}} \Delta x_1 = v_{0,1}t_1 + \frac{1}{2}a_1t_1^2 \Delta x_1 = (0)(6.0 \, \text{s}) + \frac{1}{2}(5.0 \, \text{m/s}^2)(6.0 \, \text{s})^2 \Delta x_1 = 0 + \frac{1}{2}(5.0 \, \text{m/s}^2)(36.0 \, \text{s}^2) \Delta x_1 = 90.0 \, \text{m} {{/MATHBLOCK}}
+
+**Phase 2: Deceleration**
+Given:
+Initial velocity {{MATH}} v_{0,2} = v_1 = 30.0 \, \text{m/s} {{/MATH}}
+Final velocity {{MATH}} v_2 = 0 \, \text{m/s} {{/MATH}} (comes to a complete stop)
+Acceleration {{MATH}} a_2 = -3.0 \, \text{m/s}^2 {{/MATH}} (deceleration)
+
+We need to find the distance traveled during Phase 2. The appropriate kinematic equation is:
+
+{{MATHBLOCK}} v_2^2 = v_{0,2}^2 + 2a_2\Delta x_2 (0)^2 = (30.0 \, \text{m/s})^2 + 2(-3.0 \, \text{m/s}^2)\Delta x_2 0 = 900 \, \text{m}^2/\text{s}^2 - (6.0 \, \text{m/s}^2)\Delta x_2 (6.0 \, \text{m/s}^2)\Delta x_2 = 900 \, \text{m}^2/\text{s}^2 \Delta x_2 = \frac{900 \, \text{m}^2/\text{s}^2}{6.0 \, \text{m/s}^2} \Delta x_2 = 150.0 \, \text{m} {{/MATHBLOCK}}
+
+**Total Distance**
+Add the distances from both phases:
+
+{{MATHBLOCK}} \Delta x_{\text{total}} = \Delta x_1 + \Delta x_2 \Delta x_{\text{total}} = 90.0 \, \text{m} + 150.0 \, \text{m} \Delta x_{\text{total}} = 240.0 \, \text{m} {{/MATHBLOCK}}
+
+The total distance traveled by the object is {{MATH}} 240.0 \, \text{m} {{/MATH}}.",Discursive,,,,,,100,700,Kinematics: Uniformly Accelerated Motion,Physics,,,,,,,,,,,,,,,,
+28,"A simple electrical circuit includes a 12 V battery and a single resistor. If the current flowing through the circuit is 3 A, what is the resistance of the resistor?","To find the resistance, use Ohm's Law: {{MATH}} V = I \cdot R {{/MATH}}, where {{MATH}} V {{/MATH}} is voltage, {{MATH}} I {{/MATH}} is current, and {{MATH}} R {{/MATH}} is resistance. Rearranging the formula for resistance gives {{MATH}} R = V / I {{/MATH}}. Substituting the given values: {{MATH}} R = 12\text{ V} / 3\text{ A} = 4\text{ }\Omega {{/MATH}}. Therefore, the resistance of the resistor is 4 ohms.",MCQ,4 \Omega,0.25 \Omega,36 \Omega,9 \Omega,15 \Omega,110,300,Electricity: Electrical Circuits,Physics,,,,,,,,,,,,,,,,
+29,"In the context of Electricity and Electrical Circuits, what is the primary function of a switch in a circuit?","The primary function of a switch in an electrical circuit is to open or close the circuit, thereby controlling the flow of electrical current. When the switch is closed, it completes the circuit, allowing current to flow. When it is open, it breaks the circuit, stopping the current.",Discursive,,,,,,110,100,Electricity: Electrical Circuits,Physics,,,,,,,,,,,,,,,,
+30,"Consider a parallel electrical circuit containing two resistors: {{MATH}} R_1 = 6\text{ }\Omega {{/MATH}} and {{MATH}} R_2 = 12\text{ }\Omega {{/MATH}}. If a 24 V power source is connected across this parallel combination, determine the total current supplied by the power source.","First, calculate the equivalent resistance ({{MATH}} R_{eq} {{/MATH}}) for the two resistors in parallel. The formula for parallel resistors is {{MATH}} 1/R_{eq} = 1/R_1 + 1/R_2 {{/MATH}}.
+
+Substitute the given values:
+
+{{MATHBLOCK}} \frac{1}{R_{eq}} = \frac{1}{6\text{ }\Omega} + \frac{1}{12\text{ }\Omega} \\ \frac{1}{R_{eq}} = \frac{2}{12\text{ }\Omega} + \frac{1}{12\text{ }\Omega} \\ \frac{1}{R_{eq}} = \frac{3}{12\text{ }\Omega} \\ R_{eq} = \frac{12\text{ }\Omega}{3} \\ R_{eq} = 4\text{ }\Omega {{/MATHBLOCK}}
+
+Next, use Ohm's Law ({{MATH}} V = I \cdot R {{/MATH}}) to find the total current ({{MATH}} I {{/MATH}}) supplied by the power source. Rearrange the formula to {{MATH}} I = V / R_{eq} {{/MATH}}.
+
+Substitute the total voltage and equivalent resistance:
+
+{{MATHBLOCK}} I = \frac{24\text{ V}}{4\text{ }\Omega} \\ I = 6\text{ A} {{/MATHBLOCK}}
+
+The total current supplied by the power source is 6 A.",Discursive,,,,,,110,500,Electricity: Electrical Circuits,Physics,,,,,,,,,,,,,,,,
+31,"A {{MATH}} 2.0 \text{ kg} {{/MATH}} object is initially at rest on a frictionless horizontal surface. A constant horizontal force of {{MATH}} 10.0 \text{ N} {{/MATH}} is applied to the object. What is the magnitude of the object's acceleration due to this applied force, according to Newton's Laws?","To find the acceleration, we use Newton's Second Law, which states that force equals mass times acceleration ({{MATH}} F = ma {{/MATH}}). Given the force {{MATH}} F = 10.0 \text{ N} {{/MATH}} and mass {{MATH}} m = 2.0 \text{ kg} {{/MATH}}.
+
+Rearranging the formula to solve for acceleration: {{MATH}} a = \frac{F}{m} {{/MATH}}.
+
+Substituting the given values: {{MATH}} a = \frac{10.0 \text{ N}}{2.0 \text{ kg}} = 5.0 \text{ m/s}^2 {{/MATH}}.
+
+The magnitude of the object's acceleration is {{MATH}} 5.0 \text{ m/s}^2 {{/MATH}}.",MCQ,{{MATH}} 5.0 \text{ m/s}^2 {{/MATH}},{{MATH}} 0.2 \text{ m/s}^2 {{/MATH}},{{MATH}} 20.0 \text{ m/s}^2 {{/MATH}},{{MATH}} 10.0 \text{ m/s}^2 {{/MATH}},{{MATH}} 2.0 \text{ m/s}^2 {{/MATH}},90,300,Newton's Laws: Dynamics Problems,Physics,,,,,,,,,,,,,,,,
+32,"A {{MATH}} 5.0 \text{ kg} {{/MATH}} block slides across a horizontal surface with a constant acceleration of {{MATH}} 3.0 \text{ m/s}^2 {{/MATH}}. If the coefficient of kinetic friction between the block and the surface is {{MATH}} 0.2 {{/MATH}}, what is the magnitude of the applied force acting on the block?","First, calculate the force of kinetic friction ({{MATH}} F_k {{/MATH}}). The normal force ({{MATH}} F_N {{/MATH}}) on a horizontal surface equals the gravitational force ({{MATH}} mg {{/MATH}}). Assuming {{MATH}} g = 9.8 \text{ m/s}^2 {{/MATH}}.
+
+{{MATH}} F_N = mg = (5.0 \text{ kg})(9.8 \text{ m/s}^2) = 49.0 \text{ N} {{/MATH}}
+
+{{MATH}} F_k = \mu_k F_N = (0.2)(49.0 \text{ N}) = 9.8 \text{ N} {{/MATH}}
+
+Next, use Newton's Second Law ({{MATH}} \Sigma F = ma {{/MATH}}). The net force acting on the block is the applied force ({{MATH}} F_{\text{applied}} {{/MATH}}) minus the kinetic friction force ({{MATH}} F_k {{/MATH}}).
+
+{{MATH}} F_{\text{applied}} - F_k = ma {{/MATH}}
+
+{{MATH}} F_{\text{applied}} = ma + F_k {{/MATH}}
+
+Substitute the values: {{MATH}} F_{\text{applied}} = (5.0 \text{ kg})(3.0 \text{ m/s}^2) + 9.8 \text{ N} {{/MATH}}
+
+{{MATH}} F_{\text{applied}} = 15.0 \text{ N} + 9.8 \text{ N} = 24.8 \text{ N} {{/MATH}}",MCQ,{{MATH}} 24.8 \text{ N} {{/MATH}},{{MATH}} 15.0 \text{ N} {{/MATH}},{{MATH}} 9.8 \text{ N} {{/MATH}},{{MATH}} 4.8 \text{ N} {{/MATH}},{{MATH}} 58.8 \text{ N} {{/MATH}},90,500,Newton's Laws: Dynamics Problems,Physics,,,,,,,,,,,,,,,,
+33,"A car with a mass of {{MATH}} 1200 \text{ kg} {{/MATH}} is traveling at {{MATH}} 20 \text{ m/s} {{/MATH}} when the driver applies the brakes, bringing the car to a complete stop over a distance of {{MATH}} 50 \text{ m} {{/MATH}}. Determine the magnitude of the average braking force acting on the car.","First, calculate the acceleration of the car using kinematic equations. We know the initial velocity ({{MATH}} v_0 = 20 \text{ m/s} {{/MATH}}), final velocity ({{MATH}} v = 0 \text{ m/s} {{/MATH}}), and displacement ({{MATH}} \Delta x = 50 \text{ m} {{/MATH}}). We use the equation:
+
+{{MATHBLOCK}} v^2 = v_0^2 + 2a\Delta x\\ 0^2 = (20 \text{ m/s})^2 + 2a(50 \text{ m})\\ 0 = 400 \text{ m}^2/\text{s}^2 + 100a \text{ m}\\ -100a = 400 \text{ m}^2/\text{s}^2\\ a = -4.0 \text{ m/s}^2 {{/MATHBLOCK}}
+
+The negative sign indicates deceleration. The magnitude of the acceleration is {{MATH}} 4.0 \text{ m/s}^2 {{/MATH}}.
+
+Next, apply Newton's Second Law ({{MATH}} F = ma {{/MATH}}) to find the average braking force. The mass of the car is {{MATH}} m = 1200 \text{ kg} {{/MATH}}.
+
+{{MATHBLOCK}} F = ma\\ F = (1200 \text{ kg})(4.0 \text{ m/s}^2)\\ F = 4800 \text{ N} {{/MATHBLOCK}}
+
+The magnitude of the average braking force is {{MATH}} 4800 \text{ N} {{/MATH}}.",Discursive,,,,,,90,700,Newton's Laws: Dynamics Problems,Physics,,,,,,,,,,,,,,,,
+34,"Consider the sentence: 'The team, including Sarah and (pronoun), decided to present their findings to the school board.' Which pronoun correctly completes the sentence, maintaining proper subject and object pronoun usage in English Language Arts?","The correct pronoun is 'me'. In this sentence, 'Sarah and (pronoun)' form part of a prepositional phrase ('including Sarah and me'). The object of a preposition always requires an object pronoun. Since 'Sarah' is a noun acting as an object, the pronoun paired with it must also be an object pronoun ('me'). If we remove 'Sarah and', the sentence would be 'The team, including me, decided...', which clearly shows 'me' as the correct object pronoun.",MCQ,me,I,myself,we,,70,700,Pronouns: Object and Subject,English Language Arts,,,,,,,,,,,,,,,,
+35,"Analyze the following sentence: 'Between my brother and I, we always manage to finish our chores before dinner.' Identify the error in pronoun usage, specifically concerning subject and object pronouns within the context of English Language Arts, and propose a correction.","The error lies in the use of the pronoun 'I'. The phrase 'Between my brother and I' is a prepositional phrase, and 'between' is a preposition. Objects of prepositions must always be object pronouns. Therefore, 'I' (a subject pronoun) should be replaced with 'me' (an object pronoun). The corrected sentence would be: 'Between my brother and me, we always manage to finish our chores before dinner.'",Discursive,,,,,,70,700,Pronouns: Object and Subject,English Language Arts,,,,,,,,,,,,,,,,
+36,"Consider the sentence: 'The principal asked who was responsible for organizing the charity event, and both her and him immediately raised their hands.' Evaluate the use of pronouns 'her' and 'him' in this context, explaining whether they are correctly applied as subject or object pronouns according to English Language Arts grammar rules.","The pronouns 'her' and 'him' are used incorrectly in this sentence. In the clause 'both her and him immediately raised their hands,' the pronouns are acting as the subjects of the verb 'raised'. As subjects, they should be in the subject case, not the object case. Therefore, 'her' should be 'she' and 'him' should be 'he'. The corrected part of the sentence would be: 'both she and he immediately raised their hands.' The original sentence incorrectly uses object pronouns where subject pronouns are required.",Discursive,,,,,,70,700,Pronouns: Object and Subject,English Language Arts,,,,,,,,,,,,,,,,
+37,Which of the following elements primarily helps a reader identify the central idea of an informational text?,"The central idea of an informational text is often directly stated or strongly implied in the main thesis statement or topic sentences, which frequently appear in the introduction or conclusion. Readers should look for these key sentences to understand the author's primary message.",MCQ,The main thesis statement or topic sentences,The number of paragraphs in the essay,The footnotes at the bottom of the page,The publication date of the source,The author's personal biography,90,100,Reading and Text Comprehension,English Language Arts,,,,,,,,,,,,,,,,
+38,"When a reader encounters an unfamiliar technical term within a science article, which strategy is most effective for understanding its meaning in the context of Reading and Text Comprehension?","Using context clues involves looking at the surrounding words, sentences, and paragraphs to infer the meaning of an unknown word. This is a fundamental strategy for text comprehension, especially with specialized vocabulary.",MCQ,Analyzing the surrounding sentences for context clues,Skipping the word and continuing to read,Looking up the word in a general dictionary immediately,Asking a classmate for the definition,Assuming the word has no significant meaning,90,300,Reading and Text Comprehension,English Language Arts,,,,,,,,,,,,,,,,
+39,A student is reading an editorial arguing for a change in local school policy. Identify two specific textual features or strategies the student should focus on to evaluate the author's argument effectively within the scope of Reading and Text Comprehension.,"To effectively evaluate an author's argument, a student should focus on identifying the author's main claim and examining the evidence provided to support that claim. Additionally, recognizing any counterarguments and how the author addresses them, as well as considering the author's tone and potential biases, are crucial for a thorough comprehension and evaluation.",Discursive,,,,,,90,500,Reading and Text Comprehension,English Language Arts,,,,,,,,,,,,,,,,
+40,The English Revolution involved significant conflict between the Crown and Parliament over governmental authority. Which action primarily contributed to Parliament's growing opposition to King Charles I's rule?,"King Charles I often bypassed Parliament by imposing taxes without their consent, such as 'ship money,' which increased parliamentary resistance and became a major cause of the English Revolution.",MCQ,King Charles I levied taxes without parliamentary approval.,King Charles I married a foreign princess who was Catholic.,King Charles I attempted to expand English territories in the Americas.,King Charles I introduced new religious ceremonies disliked by Puritan groups.,,80,500,English Revolution,History,,,,,,,,,,,,,,,,
+41,Identify one significant long-term consequence of the English Revolution for the balance of power between the monarch and Parliament in England.,"One significant long-term consequence of the English Revolution was the permanent shift in the balance of power, establishing Parliament's authority over the monarch. The monarch could no longer rule without Parliament's consent, particularly regarding taxation and law-making, which laid foundations for a constitutional monarchy.",Discursive,,,,,,80,300,English Revolution,History,,,,,,,,,,,,,,,,
+42,Consider the impact of Oliver Cromwell's leadership during and after the English Revolution. How did his Protectorate affect the political and social landscape of England?,"Oliver Cromwell's Protectorate, following the English Revolution, significantly altered England's political and social landscape. Politically, it established a republican government under a Lord Protector, marking a departure from monarchy and experimenting with a written constitution (Instrument of Government). Socially, Cromwell's Puritanical policies led to strict moral codes, closing theaters and restricting traditional celebrations, which impacted daily life and cultural expression. This period, though brief, demonstrated a move towards greater parliamentary power and left a complex legacy regarding religious freedom and governmental structure.",Discursive,,,,,,80,700,English Revolution,History,,,,,,,,,,,,,,,,
+43,The naval arms race between Great Britain and Germany in the years leading up to World War I was primarily driven by which strategic objective?,"Great Britain, relying on its naval dominance for imperial control and trade protection, perceived Germany's rapid shipbuilding, particularly dreadnoughts, as a direct threat to its national security and global power. Germany, seeking to establish itself as a major world power and challenge British hegemony, aimed to build a fleet capable of confronting the Royal Navy. This competition escalated tensions and reinforced alliances, as each nation viewed the other's naval expansion with deep suspicion and as a fundamental challenge to their respective strategic interests.",MCQ,To secure global trade routes and maintain imperial power for Great Britain against Germany's rising ambitions.,To establish a combined naval blockade against emergent Russian expansion in the Baltic Sea.,"To project military strength into colonial territories in Africa and Asia, avoiding direct European conflict.",To develop advanced submarine warfare capabilities to counter French coastal defenses.,To protect their respective fishing fleets from foreign encroachment in the North Sea.,110,700,World War I: Background,History,,,,,,,,,,,,,,,,
+44,"Consider the impact of the Moroccan Crises (1905, 1911) on pre-World War I European diplomacy. How did these incidents contribute to the broader alliance system leading to the conflict?","The Moroccan Crises solidified the Anglo-French Entente and pushed Great Britain closer to France, transforming their informal understanding into a more concrete commitment against perceived German aggression. Germany's attempts to challenge French influence in Morocco and test the Entente's strength backfired, inadvertently strengthening the alliance between Britain and France and deepening Germany's isolation, while simultaneously reinforcing its alliance with Austria-Hungary. This hardening of alliances made future conflicts more likely to involve multiple powers.",MCQ,They strengthened the existing Anglo-French alliance and heightened Germany's sense of encirclement by rival powers.,They led to a series of international peace conferences that successfully defused tensions between the major powers.,They convinced Germany to abandon its naval expansion program in favor of strengthening its land army.,"They resulted in a new tripartite agreement between France, Germany, and Russia to divide African colonial territories.","They prompted the dissolution of the Triple Alliance, as Italy reoriented its foreign policy towards Great Britain.",110,700,World War I: Background,History,,,,,,,,,,,,,,,,
+45,"Evaluate how the assassination of Archduke Franz Ferdinand in 1914, while a direct trigger, became a catalyst for a continent-wide conflict rather than an isolated incident, specifically considering the pre-existing web of alliances and national interests.","The assassination of Archduke Franz Ferdinand in Sarajevo served as the immediate spark for World War I due to the complex and rigid system of alliances already in place. Austria-Hungary, seeing an opportunity to assert dominance in the Balkans and crush Serbian nationalism, issued an ultimatum to Serbia, backed by Germany's 'blank check' of unconditional support. Russia, bound by Pan-Slavic sentiment and a treaty with Serbia, mobilized its forces in support of Serbia. This Russian mobilization, in turn, triggered Germany's Schlieffen Plan, which required a rapid invasion of France through neutral Belgium before Russia could fully mobilize. This action drew Great Britain into the conflict, due to its treaty obligations to protect Belgian neutrality and its concerns over German hegemony in Europe. France was also allied with Russia and therefore entered the war. Thus, a regional conflict escalated rapidly because the major European powers were already entangled in a web of defensive treaties and had strategic national interests (e.g., Germany's desire for global power, Russia's desire for influence in the Balkans, Britain's maintenance of naval supremacy) that made them willing to honor their alliances and commit to war rather than pursue de-escalation.",Discursive,,,,,,110,900,World War I: Background,History,,,,,,,,,,,,,,,,
+46,"During a rapid bicep curl, the primary event leading to the shortening of the muscle fiber involves which of the following molecular interactions within the sarcomere?","The sliding filament theory describes how muscle contraction occurs. Myosin heads attach to actin filaments, form cross-bridges, and pull the actin filaments toward the center of the sarcomere. This sliding motion shortens the sarcomere and, consequently, the entire muscle fiber, resulting in muscle contraction.",MCQ,Actin filaments sliding past myosin filaments.,Myosin heads detaching permanently from actin filaments.,Tropomyosin molecules binding directly to calcium ions.,Sarcoplasmic reticulum actively releasing ATP.,Z-discs elongating during the contraction phase.,110,300,Human Body: Muscular System,Biology,,,,,,,,,,,,,,,,
+47,Identify a distinct characteristic that differentiates skeletal muscle tissue from cardiac muscle tissue in the human body.,"Skeletal muscle tissue is primarily under voluntary control, meaning its contractions can be consciously initiated. In contrast, cardiac muscle tissue functions involuntarily, contracting rhythmically without conscious thought.",Discursive,,,,,,110,100,Human Body: Muscular System,Biology,,,,,,,,,,,,,,,,
+48,A sprinter experiences muscle fatigue and cramping during the final stretch of a race. Explain how a temporary disruption in ATP supply contributes to the inability of their leg muscles to maintain forceful contractions within the Human Body's Muscular System.,"Inadequate ATP supply directly impairs the muscle contraction cycle. ATP is essential for myosin heads to detach from actin filaments after forming a cross-bridge and for the active transport of calcium ions back into the sarcoplasmic reticulum. Without sufficient ATP, myosin heads remain bound to actin (leading to rigor), and calcium ions persist in the sarcoplasm, preventing muscle relaxation and subsequent re-contraction, which manifests as fatigue and cramping.",Discursive,,,,,,110,500,Human Body: Muscular System,Biology,,,,,,,,,,,,,,,,
+49,"A developing country in a tropical region is seeking to expand its renewable energy infrastructure. Given its climate and geographical features, which energy source offers the most consistent and immediate potential for large-scale electricity generation without significant land footprint or dependence on variable weather patterns?","Geothermal energy utilizes heat from the Earth's interior, providing a constant and reliable power source independent of daily weather or seasonal changes. Unlike solar or wind, it does not require extensive land for panels or turbines to produce significant baseload power. Hydropower requires specific river systems and often large reservoirs, leading to a significant land footprint and potential environmental impacts beyond just energy generation. Biomass, while renewable, often requires substantial agricultural land for feedstock production and can have complex sustainability issues.",MCQ,"Geothermal energy, due to its stable output and minimal land requirements compared to other options.","Solar photovoltaic farms, as tropical regions receive abundant sunlight year-round.","Hydropower projects, leveraging potential rainfall for consistent river flow.","Biomass power plants, utilizing abundant agricultural waste and fast-growing crops.",,100,500,Energy Sources: Renewable Energies,Geography,,,,,,,,,,,,,,,,
+50,Many European nations with extensive coastlines are investing heavily in offshore wind farms as part of their renewable energy strategies. What is the primary geographical advantage of offshore wind over onshore wind installations in these regions?,"Offshore locations typically experience stronger and more consistent wind speeds compared to land-based sites due to fewer obstructions and less topographical interference. This allows offshore turbines to generate more electricity over time. While land availability, noise, and visual impact are factors, the main benefit for energy generation is the superior wind resource.",MCQ,Higher and more consistent wind speeds available over open water.,Lower initial construction costs compared to land-based infrastructure.,Reduced environmental impact on marine ecosystems and wildlife.,Greater public acceptance due to their distance from populated areas.,,100,500,Energy Sources: Renewable Energies,Geography,,,,,,,,,,,,,,,,
+51,"A small island nation in the Pacific Ocean, characterized by limited land area and significant vulnerability to sea-level rise, is planning to transition entirely to renewable energy. Identify two specific renewable energy sources that would be most suitable for this nation, considering its geographical constraints and environmental concerns related to climate change, and provide a practical reason for each choice.","Two suitable renewable energy sources for a small island nation are:
+
+1.  **Ocean Thermal Energy Conversion (OTEC)**: Many Pacific island nations are surrounded by deep ocean waters with significant temperature differences between surface and deep layers. OTEC can provide continuous, baseload power without requiring large land areas, making it ideal for islands with limited space. It also uses a resource readily available in their immediate geographic context.
+
+2.  **Solar Photovoltaic (PV) with Battery Storage**: Island nations typically experience abundant sunshine year-round. While solar PV alone is intermittent, coupling it with battery storage allows for consistent power supply, overcoming the limitation of land scarcity by utilizing rooftops, small open spaces, or even floating solar installations. This capitalizes on a pervasive natural resource and addresses the need for energy security.",Discursive,,,,,,100,500,Energy Sources: Renewable Energies,Geography,,,,,,,,,,,,,,,,
+52,"A student observes that wearing a particular brand of athletic shoes seems to improve their running speed during practice sessions. Based on this observation, the student concludes that these shoes inherently make all athletes faster. Which characteristic of scientific thinking is most directly overlooked in this conclusion?","The student's conclusion is based on a personal observation without a controlled comparison. Scientific thinking requires isolating variables to determine causality. Without comparing performance with other shoes under similar conditions, and accounting for other factors, the student cannot definitively attribute improved speed solely to the shoes. This highlights the need for empirical evidence from controlled experiments to establish a causal link, rather than relying on anecdotal correlation.",MCQ,The necessity of controlled experimentation to isolate variables.,The importance of peer review for validating research findings.,The subjective nature of individual athletic performance.,The historical development of shoe manufacturing technologies.,The role of theoretical models in predicting outcomes.,90,700,Scientific Thinking vs. Common Sense,Philosophy,,,,,,,,,,,,,,,,
+53,Consider the common belief that 'cold weather causes colds.' A philosopher of science would likely challenge this statement by pointing out a crucial difference between a correlation and a causal relationship. Elaborate on why simply observing a correlation is insufficient for establishing causation in the context of scientific inquiry.,"Scientific thinking emphasizes the distinction between correlation and causation. While common sense might readily link two events that occur together (like cold weather and colds), scientific inquiry demands more rigorous evidence to establish a causal relationship. A correlation merely indicates that two variables tend to change together, but it does not specify if one causes the other, or if a third, unobserved factor is influencing both. For instance, cold weather might lead people to spend more time indoors, increasing exposure to viruses, which are the actual cause of colds. Therefore, to establish causation, scientific thinking requires controlled experiments or observational studies that can isolate the presumed cause, rule out confounding variables, and demonstrate a consistent mechanism, which simple correlation alone cannot achieve.",Discursive,,,,,,90,900,Scientific Thinking vs. Common Sense,Philosophy,,,,,,,,,,,,,,,,
+54,"Many people believe that 'an apple a day keeps the doctor away' based on generations of anecdotal evidence. From the perspective of scientific thinking in philosophy, identify one fundamental limitation of relying solely on such common-sense anecdotal evidence to establish the health benefits of apples.","A fundamental limitation of relying solely on anecdotal evidence, such as 'an apple a day keeps the doctor away,' from a scientific thinking perspective, is the lack of systematic observation and control over variables. Anecdotes are individual, uncontrolled observations that do not account for other factors that might influence health (e.g., diet, lifestyle, genetics). They cannot rule out biases (like selective memory) or alternative explanations for observed outcomes. Scientific thinking requires controlled studies with larger populations, clear methodologies, and statistical analysis to establish reliable cause-and-effect relationships or generalizable patterns, which isolated personal stories cannot provide.",Discursive,,,,,,90,500,Scientific Thinking vs. Common Sense,Philosophy,,,,,,,,,,,,,,,,
