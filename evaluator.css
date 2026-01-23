@@ -6,7 +6,7 @@
 
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-    background-color: #F9FBFD;
+    background: #F9FBFD;
     color: #2c3e50;
     line-height: 1.6;
 }
@@ -21,12 +21,12 @@ header {
     background: white;
     padding: 12px 20px;
     border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    box-shadow: 0px 2px 4px 0px #1335540A;
     margin-bottom: 12px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border: 1px solid #e8ecef;
+    border: 1px solid #D2DEFF;
 }
 
 header h1 {
@@ -48,7 +48,8 @@ header h1 {
     padding: 60px 20px;
     background: white;
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-shadow: 0px 2px 4px 0px #1335540A;
+    border: 1px solid #D2DEFF;
 }
 
 .loading-message p {
@@ -66,11 +67,11 @@ header h1 {
     background: white;
     padding: 10px 15px;
     border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    box-shadow: 0px 2px 4px 0px #1335540A;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border: 1px solid #e8ecef;
+    border: 1px solid #D2DEFF;
     margin-bottom: 15px;
 }
 
@@ -100,12 +101,20 @@ header h1 {
     }
 }
 
-.question-panel, .evaluation-panel {
+.question-panel {
+    background: #F9FBFD;
+    padding: 14px;
+    border-radius: 8px;
+    box-shadow: 0px 2px 4px 0px #1335540A;
+    border: 1px solid #D2DEFF;
+}
+
+.evaluation-panel {
     background: white;
     padding: 14px;
     border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-    border: 1px solid #e8ecef;
+    box-shadow: 0px 2px 4px 0px #1335540A;
+    border: 1px solid #D2DEFF;
 }
 
 .question-panel h2, .evaluation-panel h2 {
@@ -188,16 +197,12 @@ header h1 {
     border-radius: 4px;
 }
 
-.mcq-option.correct {
-    border-color: #008F87;
-    background: #E0F7F5;
-    border-width: 2px;
+.mcq-option.correct strong {
+    color: #008F87;
 }
 
-.mcq-option.incorrect {
-    border-color: #D32F2F;
-    background: #FFEBEE;
-    border-width: 2px;
+.mcq-option.incorrect strong {
+    color: #D32F2F;
 }
 
 .evaluation-section {
@@ -303,11 +308,12 @@ textarea.form-control {
 }
 
 .evaluation-summary {
-    background: #F9FBFD;
+    background: white;
     padding: 12px;
     border-radius: 6px;
     margin-bottom: 12px;
-    border: 1px solid #e8ecef;
+    border: 1px solid #D2DEFF;
+    box-shadow: 0px 2px 4px 0px #1335540A;
 }
 
 .score-display {
@@ -351,7 +357,7 @@ textarea.form-control {
 
 .btn:hover {
     transform: translateY(-1px);
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    box-shadow: 0px 6px 10px 0px #5880F11A;
 }
 
 .btn:active {
@@ -486,11 +492,11 @@ textarea.form-control {
     background: white;
     padding: 12px 15px;
     border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    box-shadow: 0px 2px 4px 0px #1335540A;
     text-align: center;
     font-size: 12px;
     color: #495057;
-    border: 1px solid #e8ecef;
+    border: 1px solid #D2DEFF;
     margin-top: 15px;
 }
 
@@ -520,10 +526,11 @@ textarea.form-control {
 .criteria-panel {
     background: white;
     border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    box-shadow: 0px 2px 4px 0px #1335540A;
     margin-bottom: 20px;
     max-height: 600px;
     overflow-y: auto;
+    border: 1px solid #D2DEFF;
 }
 
 .criteria-header {
@@ -614,10 +621,10 @@ textarea.form-control {
     background: white;
     padding: 40px;
     border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    box-shadow: 0px 2px 4px 0px #1335540A;
     max-width: 500px;
     width: 100%;
-    border: 1px solid #e8ecef;
+    border: 1px solid #D2DEFF;
 }
 
 .selection-card h1 {
