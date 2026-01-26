@@ -19,16 +19,28 @@ const mimeTypes = {
     '.svg': 'image/svg+xml',
     '.csv': 'text/csv',
     '.yaml': 'text/yaml',
-    '.yml': 'text/yaml'
+    '.yml': 'text/yaml',
+    '.md': 'text/markdown'
 };
 
 const server = http.createServer((req, res) => {
     console.log(`${req.method} ${req.url}`);
 
-    let filePath = '.' + req.url;
-    if (filePath === './') {
-        filePath = './evaluator.html';
+    // Use absolute path based on server.js location
+    const serverDir = __dirname;
+    let filePath = path.join(serverDir, req.url);
+    
+    // Handle root path
+    if (req.url === '/' || req.url === '') {
+        filePath = path.join(serverDir, 'evaluator.html');
     }
+    
+    // Handle list-evaluator route
+    if (req.url === '/list-evaluator' || req.url === '/list-evaluator/') {
+        filePath = path.join(serverDir, 'list-evaluator.html');
+    }
+    
+    console.log(`Serving file: ${filePath}`);
 
     const extname = String(path.extname(filePath)).toLowerCase();
     const contentType = mimeTypes[extname] || 'application/octet-stream';

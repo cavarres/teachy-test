@@ -5,6 +5,7 @@ let currentQuestionIndex = 0;
 let evaluations = {};
 let currentQuestionId = null;
 let selectedSubject = null;
+let userName = null;
 
 // Initialize
 document.addEventListener('DOMContentLoaded', () => {
@@ -17,13 +18,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function setupEventListeners() {
     // Selection page listeners
+    document.getElementById('userNameInput').addEventListener('input', validateSelection);
     document.getElementById('subjectSelect').addEventListener('change', validateSelection);
     document.getElementById('startEvaluatorBtn').addEventListener('click', startEvaluator);
     
     // Evaluator page listeners
-    document.getElementById('exportYamlBtn').addEventListener('click', exportToYaml);
-    document.getElementById('toggleCriteriaBtn').addEventListener('click', toggleCriteria);
-    document.getElementById('closeCriteriaBtn').addEventListener('click', toggleCriteria);
+    document.getElementById('exportCsvBtn').addEventListener('click', exportToCsv);
     document.getElementById('prevBtn').addEventListener('click', () => navigateQuestion(-1));
     document.getElementById('nextBtn').addEventListener('click', () => navigateQuestion(1));
     document.getElementById('jumpToBtn').addEventListener('click', jumpToQuestion);
@@ -66,8 +66,24 @@ function setupEventListeners() {
     // Auto-update score on reasoning change
     document.getElementById('reasoning').addEventListener('input', updateScore);
 
-    // Load criteria content
-    loadCriteriaContent();
+    // Info icon click handlers
+    document.addEventListener('click', (e) => {
+        if (e.target.classList.contains('info-icon')) {
+            const criterion = e.target.getAttribute('data-criterion');
+            showInfoModal(criterion);
+        }
+    });
+    
+    // Close modal handlers
+    document.getElementById('closeInfoModal').addEventListener('click', closeInfoModal);
+    document.getElementById('infoModal').addEventListener('click', (e) => {
+        if (e.target.id === 'infoModal') {
+            closeInfoModal();
+        }
+    });
+    
+    // Keyboard shortcuts for scoring
+    document.addEventListener('keydown', handleKeyboardInput);
 }
 
 function loadCsvFile() {
@@ -116,6 +132,13 @@ function populateSelectionDropdowns() {
     const subjectSelect = document.getElementById('subjectSelect');
     const sortedSubjects = Array.from(subjects).sort();
     
+    // Add "All Subjects" option first
+    const allOption = document.createElement('option');
+    allOption.value = 'ALL';
+    allOption.textContent = 'All Subjects';
+    subjectSelect.appendChild(allOption);
+    
+    // Add individual subjects
     sortedSubjects.forEach(subject => {
         const option = document.createElement('option');
         option.value = subject;
@@ -125,10 +148,11 @@ function populateSelectionDropdowns() {
 }
 
 function validateSelection() {
+    const userNameInput = document.getElementById('userNameInput');
     const subjectSelect = document.getElementById('subjectSelect');
     const startBtn = document.getElementById('startEvaluatorBtn');
     
-    if (subjectSelect.value) {
+    if (userNameInput.value.trim() && subjectSelect.value) {
         startBtn.disabled = false;
     } else {
         startBtn.disabled = true;
@@ -136,21 +160,31 @@ function validateSelection() {
 }
 
 function startEvaluator() {
+    userName = document.getElementById('userNameInput').value.trim();
     selectedSubject = document.getElementById('subjectSelect').value;
     
-    if (!selectedSubject) {
-        alert('Please select a subject.');
+    if (!userName) {
+        alert('Please enter your name.');
         return;
     }
     
-    // Filter questions based on subject only
-    questions = allQuestions.filter(q => {
-        const subjectMatch = q.discipline && q.discipline.trim() === selectedSubject;
-        return subjectMatch;
-    });
+    if (!selectedSubject) {
+        alert('Please select a subject or "All Subjects".');
+        return;
+    }
+    
+    // Filter questions based on subject or show all
+    if (selectedSubject === 'ALL') {
+        questions = allQuestions;
+    } else {
+        questions = allQuestions.filter(q => {
+            const subjectMatch = q.discipline && q.discipline.trim() === selectedSubject;
+            return subjectMatch;
+        });
+    }
     
     if (questions.length === 0) {
-        alert(`No questions found for ${selectedSubject}.`);
+        alert(`No questions found for ${selectedSubject === 'ALL' ? 'All Subjects' : selectedSubject}.`);
         return;
     }
     
@@ -159,7 +193,7 @@ function startEvaluator() {
     document.getElementById('evaluatorPage').style.display = 'block';
     
     // Update display with selected value
-    document.getElementById('selectedSubjectDisplay').textContent = selectedSubject;
+    document.getElementById('selectedSubjectDisplay').textContent = selectedSubject === 'ALL' ? 'All Subjects' : selectedSubject;
     
     // Initialize evaluator
     currentQuestionIndex = 0;
@@ -237,13 +271,14 @@ function displayQuestion(index) {
 
     // Show/hide evaluation fields based on question type
     document.getElementById('mcqQualityGroup').style.display = isMCQ ? 'block' : 'none';
-    document.getElementById('explanationQualityGroup').style.display = isMCQ ? 'none' : 'block';
+    document.getElementById('openEndedQualityGroup').style.display = isMCQ ? 'none' : 'block';
 
     // Clear all button states first
     clearButtonState('completeness');
     clearButtonState('factualCorrectness');
+    clearButtonState('promptQuality');
     clearButtonState('mcqQuality');
-    clearButtonState('explanationQuality');
+    clearButtonState('openEndedQuality');
     clearButtonState('cognitiveDemand');
     document.getElementById('reasoning').value = '';
 
@@ -324,16 +359,22 @@ function loadEvaluation(questionId) {
     setButtonState('factualCorrectness', evaluation.factual_correctness || '');
     
     // Set score buttons
+    if (evaluation.prompt_quality !== undefined && evaluation.prompt_quality !== null) {
+        setButtonState('promptQuality', evaluation.prompt_quality.toString());
+    } else {
+        clearButtonState('promptQuality');
+    }
+    
     if (evaluation.mcq_quality !== undefined && evaluation.mcq_quality !== null) {
         setButtonState('mcqQuality', evaluation.mcq_quality.toString());
     } else {
         clearButtonState('mcqQuality');
     }
     
-    if (evaluation.explanation_quality !== undefined && evaluation.explanation_quality !== null) {
-        setButtonState('explanationQuality', evaluation.explanation_quality.toString());
+    if (evaluation.open_ended_quality !== undefined && evaluation.open_ended_quality !== null) {
+        setButtonState('openEndedQuality', evaluation.open_ended_quality.toString());
     } else {
-        clearButtonState('explanationQuality');
+        clearButtonState('openEndedQuality');
     }
     
     if (evaluation.cognitive_demand !== undefined && evaluation.cognitive_demand !== null) {
@@ -372,8 +413,9 @@ function saveEvaluation() {
     
     const completeness = getButtonValue('completeness');
     const factualCorrectness = getButtonValue('factualCorrectness');
+    const promptQuality = getButtonValue('promptQuality');
     const mcqQuality = getButtonValue('mcqQuality');
-    const explanationQuality = getButtonValue('explanationQuality');
+    const openEndedQuality = getButtonValue('openEndedQuality');
     const cognitiveDemand = getButtonValue('cognitiveDemand');
     const reasoning = document.getElementById('reasoning').value;
     
@@ -384,10 +426,11 @@ function saveEvaluation() {
     
     // Check Phase 2 fields based on question type
     const isMCQ = questions[currentQuestionIndex]?.type === 'MCQ';
+    if (!promptQuality) missingFields.push('Prompt Quality');
     if (isMCQ && !mcqQuality) {
         missingFields.push('MCQ Quality');
-    } else if (!isMCQ && !explanationQuality) {
-        missingFields.push('Explanation Quality');
+    } else if (!isMCQ && !openEndedQuality) {
+        missingFields.push('Open-ended Quality');
     }
     if (!cognitiveDemand) missingFields.push('Cognitive Demand');
     
@@ -401,30 +444,23 @@ function saveEvaluation() {
     if (completeness === 'FAIL' || factualCorrectness === 'FAIL') {
         totalScore = 0;
     } else {
-        const mcqQ = mcqQuality !== '' ? parseInt(mcqQuality) : null;
-        const expQ = explanationQuality !== '' ? parseInt(explanationQuality) : null;
-        const cogD = cognitiveDemand !== '' ? parseInt(cognitiveDemand) : null;
+        const promptQ = promptQuality !== '' ? parseInt(promptQuality) : 0;
+        const mcqQ = mcqQuality !== '' ? parseInt(mcqQuality) : 0;
+        const openQ = openEndedQuality !== '' ? parseInt(openEndedQuality) : 0;
+        const cogD = cognitiveDemand !== '' ? parseInt(cognitiveDemand) : 0;
         
-        // Calculate total score: MCQ Quality (0-6) + Cognitive Demand (0-4) OR Explanation Quality (0-6) + Cognitive Demand (0-4)
-        if (mcqQ !== null && cogD !== null) {
-            totalScore = mcqQ + cogD;
-        } else if (expQ !== null && cogD !== null) {
-            totalScore = expQ + cogD;
-        } else if (mcqQ !== null) {
-            totalScore = mcqQ;
-        } else if (expQ !== null) {
-            totalScore = expQ;
-        } else if (cogD !== null) {
-            totalScore = cogD;
-        }
+        // Calculate total score: Prompt Quality (0-2) + MCQ/Open-ended Quality (0-2) + Cognitive Demand (0-2) = max 6
+        totalScore = promptQ + (isMCQ ? mcqQ : openQ) + cogD;
     }
     
     const evaluation = {
         question_id: currentQuestionId,
+        evaluator_name: userName,
         completeness: completeness || null,
         factual_correctness: factualCorrectness || null,
+        prompt_quality: promptQuality !== '' ? parseInt(promptQuality) : null,
         mcq_quality: mcqQuality !== '' ? parseInt(mcqQuality) : null,
-        explanation_quality: explanationQuality !== '' ? parseInt(explanationQuality) : null,
+        open_ended_quality: openEndedQuality !== '' ? parseInt(openEndedQuality) : null,
         cognitive_demand: cognitiveDemand !== '' ? parseInt(cognitiveDemand) : null,
         total_score: totalScore,
         reasoning: reasoning || null,
@@ -461,8 +497,9 @@ function getButtonValue(field) {
 function updateScore() {
     const completeness = getButtonValue('completeness');
     const factualCorrectness = getButtonValue('factualCorrectness');
+    const promptQuality = getButtonValue('promptQuality');
     const mcqQuality = getButtonValue('mcqQuality');
-    const explanationQuality = getButtonValue('explanationQuality');
+    const openEndedQuality = getButtonValue('openEndedQuality');
     const cognitiveDemand = getButtonValue('cognitiveDemand');
     
     let totalScore = 0;
@@ -472,22 +509,14 @@ function updateScore() {
         totalScore = 0;
         status = '';
     } else if (completeness === 'PASS' && factualCorrectness === 'PASS') {
-        const mcqQ = mcqQuality !== '' ? parseInt(mcqQuality) : null;
-        const expQ = explanationQuality !== '' ? parseInt(explanationQuality) : null;
-        const cogD = cognitiveDemand !== '' ? parseInt(cognitiveDemand) : null;
+        const promptQ = promptQuality !== '' ? parseInt(promptQuality) : 0;
+        const isMCQ = questions[currentQuestionIndex]?.type === 'MCQ';
+        const mcqQ = mcqQuality !== '' ? parseInt(mcqQuality) : 0;
+        const openQ = openEndedQuality !== '' ? parseInt(openEndedQuality) : 0;
+        const cogD = cognitiveDemand !== '' ? parseInt(cognitiveDemand) : 0;
         
-        // Calculate total score: MCQ Quality (0-6) + Cognitive Demand (0-4) OR Explanation Quality (0-6) + Cognitive Demand (0-4)
-        if (mcqQ !== null && cogD !== null) {
-            totalScore = mcqQ + cogD;
-        } else if (expQ !== null && cogD !== null) {
-            totalScore = expQ + cogD;
-        } else if (mcqQ !== null) {
-            totalScore = mcqQ; // Only MCQ quality set
-        } else if (expQ !== null) {
-            totalScore = expQ; // Only explanation quality set
-        } else if (cogD !== null) {
-            totalScore = cogD; // Only cognitive demand set
-        }
+        // Calculate total score: Prompt Quality (0-2) + MCQ/Open-ended Quality (0-2) + Cognitive Demand (0-2) = max 6
+        totalScore = promptQ + (isMCQ ? mcqQ : openQ) + cogD;
         
         status = 'Ready for evaluation';
     } else {
@@ -525,18 +554,14 @@ function updateProgress() {
 
 function updateExportButton() {
     const hasEvaluations = Object.keys(evaluations).length > 0;
-    document.getElementById('exportYamlBtn').disabled = !hasEvaluations;
+    document.getElementById('exportCsvBtn').disabled = !hasEvaluations;
 }
 
-function exportToYaml() {
+function exportToCsv() {
     if (Object.keys(evaluations).length === 0) {
         alert('No evaluations to export.');
         return;
     }
-    
-    const yamlData = {
-        evaluations: {}
-    };
     
     // Sort by question_id
     const sortedIds = Object.keys(evaluations).sort((a, b) => {
@@ -545,22 +570,50 @@ function exportToYaml() {
         return aNum - bNum;
     });
     
+    // Define CSV headers
+    const headers = [
+        'question_id',
+        'evaluator_name',
+        'completeness',
+        'factual_correctness',
+        'prompt_quality',
+        'mcq_quality',
+        'open_ended_quality',
+        'cognitive_demand',
+        'total_score',
+        'reasoning',
+        'evaluated_at'
+    ];
+    
+    // Create CSV rows
+    const rows = [headers.join(',')];
+    
     sortedIds.forEach(id => {
-        yamlData.evaluations[id] = evaluations[id];
+        const eval = evaluations[id];
+        const row = [
+            eval.question_id || '',
+            eval.evaluator_name || '',
+            eval.completeness || '',
+            eval.factual_correctness || '',
+            eval.prompt_quality !== null && eval.prompt_quality !== undefined ? eval.prompt_quality : '',
+            eval.mcq_quality !== null && eval.mcq_quality !== undefined ? eval.mcq_quality : '',
+            eval.open_ended_quality !== null && eval.open_ended_quality !== undefined ? eval.open_ended_quality : '',
+            eval.cognitive_demand !== null && eval.cognitive_demand !== undefined ? eval.cognitive_demand : '',
+            eval.total_score !== null && eval.total_score !== undefined ? eval.total_score : '',
+            eval.reasoning ? `"${eval.reasoning.replace(/"/g, '""')}"` : '',
+            eval.evaluated_at || ''
+        ];
+        rows.push(row.join(','));
     });
     
-    const yamlString = jsyaml.dump(yamlData, {
-        indent: 2,
-        lineWidth: -1,
-        noRefs: true
-    });
+    const csvString = rows.join('\n');
     
     // Create download
-    const blob = new Blob([yamlString], { type: 'text/yaml' });
+    const blob = new Blob([csvString], { type: 'text/csv;charset=utf-8;' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `evaluations_${new Date().toISOString().split('T')[0]}.yaml`;
+    a.download = `evaluations_${userName || 'user'}_${new Date().toISOString().split('T')[0]}.csv`;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
@@ -571,6 +624,9 @@ function saveToLocalStorage() {
     try {
         localStorage.setItem('questionEvaluations', JSON.stringify(evaluations));
         localStorage.setItem('questionEvaluationsIndex', currentQuestionIndex.toString());
+        if (userName) {
+            localStorage.setItem('evaluatorUserName', userName);
+        }
     } catch (e) {
         console.warn('Could not save to localStorage:', e);
     }
@@ -586,174 +642,246 @@ function loadFromLocalStorage() {
         if (savedIndex) {
             currentQuestionIndex = parseInt(savedIndex);
         }
+        const savedUserName = localStorage.getItem('evaluatorUserName');
+        if (savedUserName) {
+            userName = savedUserName;
+            document.getElementById('userNameInput').value = savedUserName;
+        }
     } catch (e) {
         console.warn('Could not load from localStorage:', e);
     }
 }
 
-function toggleCriteria() {
-    const panel = document.getElementById('criteriaPanel');
-    const btn = document.getElementById('toggleCriteriaBtn');
-    const isVisible = panel.style.display !== 'none';
+function handleKeyboardInput(e) {
+    // Only handle if evaluator page is visible
+    const evaluatorPage = document.getElementById('evaluatorPage');
+    if (!evaluatorPage || evaluatorPage.style.display === 'none') {
+        return;
+    }
     
-    if (isVisible) {
-        panel.style.display = 'none';
-        btn.textContent = 'Show Criteria';
+    // Don't handle if user is typing in an input field
+    const activeElement = document.activeElement;
+    if (activeElement && (activeElement.tagName === 'INPUT' || activeElement.tagName === 'TEXTAREA')) {
+        return;
+    }
+    
+    // Only handle 0, 1, 2 keys
+    const key = e.key;
+    if (key !== '0' && key !== '1' && key !== '2') {
+        return;
+    }
+    
+    // Prevent default behavior
+    e.preventDefault();
+    
+    // Get current question type
+    const isMCQ = questions[currentQuestionIndex]?.type === 'MCQ';
+    
+    // Determine which field to set based on what's missing
+    const completeness = getButtonValue('completeness');
+    const factualCorrectness = getButtonValue('factualCorrectness');
+    const promptQuality = getButtonValue('promptQuality');
+    const mcqQuality = getButtonValue('mcqQuality');
+    const openEndedQuality = getButtonValue('openEndedQuality');
+    const cognitiveDemand = getButtonValue('cognitiveDemand');
+    
+    // Determine target field and value
+    let targetField = null;
+    let targetValue = null;
+    
+    if (!completeness) {
+        // Completeness Check (Pass/Fail): 0 = FAIL, 1 = PASS
+        targetField = 'completeness';
+        if (key === '0') {
+            targetValue = 'FAIL';
+        } else if (key === '1') {
+            targetValue = 'PASS';
+        } else {
+            return; // 2 is not valid for Pass/Fail
+        }
+    } else if (!factualCorrectness) {
+        // Factual Correctness Check (Pass/Fail): 0 = FAIL, 1 = PASS
+        targetField = 'factualCorrectness';
+        if (key === '0') {
+            targetValue = 'FAIL';
+        } else if (key === '1') {
+            targetValue = 'PASS';
+        } else {
+            return; // 2 is not valid for Pass/Fail
+        }
+    } else if (!promptQuality) {
+        // Prompt Quality (0-2)
+        targetField = 'promptQuality';
+        targetValue = key;
+    } else if (isMCQ && !mcqQuality) {
+        // MCQ Quality (0-2)
+        targetField = 'mcqQuality';
+        targetValue = key;
+    } else if (!isMCQ && !openEndedQuality) {
+        // Open-ended Quality (0-2)
+        targetField = 'openEndedQuality';
+        targetValue = key;
+    } else if (!cognitiveDemand) {
+        // Cognitive Demand (0-2)
+        targetField = 'cognitiveDemand';
+        targetValue = key;
     } else {
-        panel.style.display = 'block';
-        btn.textContent = 'Hide Criteria';
+        // All fields filled, don't do anything
+        return;
+    }
+    
+    // Set the button state
+    if (targetField && targetValue !== null) {
+        setButtonState(targetField, targetValue);
+        updateScore();
     }
 }
 
-function loadCriteriaContent() {
-    const criteriaContent = document.getElementById('criteriaContent');
+function showInfoModal(criterion) {
+    const modal = document.getElementById('infoModal');
+    const title = document.getElementById('infoModalTitle');
+    const body = document.getElementById('infoModalBody');
     
-    // Load criteria from the markdown file via fetch
-    fetch('__question eval_new.md')
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Could not load criteria file');
-            }
-            return response.text();
-        })
-        .then(text => {
-            // Convert markdown to HTML (simple conversion)
-            const html = convertMarkdownToHtml(text);
-            criteriaContent.innerHTML = html;
-        })
-        .catch(error => {
-            // If file not found, use embedded criteria
-            criteriaContent.innerHTML = getEmbeddedCriteria();
-        });
+    const content = getCriterionInfo(criterion);
+    title.textContent = content.title;
+    body.innerHTML = content.html;
+    
+    modal.style.display = 'flex';
 }
 
-function convertMarkdownToHtml(markdown) {
-    let html = markdown;
-    
-    // Remove the SYSTEM_PROMPT and HUMAN_PROMPT_TEMPLATE wrapper
-    html = html.replace(/SYSTEM_PROMPT\s*=\s*"""/g, '');
-    html = html.replace(/HUMAN_PROMPT_TEMPLATE\s*=\s*"""/g, '');
-    html = html.replace(/"""$/gm, '');
-    
-    // Convert headers
-    html = html.replace(/^### (.*$)/gim, '<h4>$1</h4>');
-    html = html.replace(/^## (.*$)/gim, '<h3>$1</h3>');
-    html = html.replace(/^# (.*$)/gim, '<h2>$1</h2>');
-    
-    // Convert bold
-    html = html.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-    
-    // Convert code/backticks
-    html = html.replace(/`(.*?)`/g, '<code>$1</code>');
-    
-    // Convert lists
-    html = html.replace(/^\- (.*$)/gim, '<li>$1</li>');
-    html = html.replace(/(<li>.*<\/li>)/s, '<ul>$1</ul>');
-    
-    // Convert horizontal rules
-    html = html.replace(/^---$/gim, '<hr>');
-    
-    // Convert line breaks
-    html = html.replace(/\n\n/g, '</p><p>');
-    html = '<p>' + html + '</p>';
-    
-    // Clean up empty paragraphs
-    html = html.replace(/<p>\s*<\/p>/g, '');
-    html = html.replace(/<p>(<h[2-4]>)/g, '$1');
-    html = html.replace(/(<\/h[2-4]>)<\/p>/g, '$1');
-    html = html.replace(/<p>(<ul>)/g, '$1');
-    html = html.replace(/(<\/ul>)<\/p>/g, '$1');
-    
-    return html;
+function closeInfoModal() {
+    document.getElementById('infoModal').style.display = 'none';
 }
 
-function getEmbeddedCriteria() {
-    return `
-        <h3>PHASE 1: GATE-KEEPING CRITERIA</h3>
-        
-        <h4>1. COMPLETENESS CHECK (Pass/Fail)</h4>
-        <p><strong>Question:</strong> Is the question package complete with all required components?</p>
-        <p><strong>Required components:</strong></p>
-        <ul>
-            <li>Question statement (prompt)</li>
-            <li>Answer key</li>
-            <li>Explanation/solution</li>
-            <li><strong>For MCQ:</strong> Exactly 4-5 answer options total (including one correct answer and 3-4 distractors)</li>
-            <li><strong>For Open-ended:</strong> Model answer or scoring rubric with clear expectations</li>
-        </ul>
-        <p><strong>FAIL if any of these are true:</strong></p>
-        <ul>
-            <li>Missing any required component listed above</li>
-            <li>Truncated or incomplete content</li>
-            <li>Broken formatting or LaTeX rendering errors</li>
-            <li>Placeholders present (e.g., "[insert image]", "[explanation here]", "TBD")</li>
-            <li>MCQ has wrong number of options (not 4-5 total)</li>
-            <li>Open-ended lacks any guidance for what constitutes a good answer</li>
-        </ul>
-        <p><strong>Result:</strong> <code>PASS</code> or <code>FAIL</code></p>
-        <p><strong>If FAIL, the question cannot proceed. Evaluation stops here. Question immediately gets a 0.</strong></p>
-        
-        <hr>
-        
-        <h4>2. FACTUAL CORRECTNESS CHECK (Pass/Fail)</h4>
-        <p><strong>Question:</strong> Is the question factually and conceptually correct, and is the answer key correct?</p>
-        <p><strong>FAIL if any of these are true:</strong></p>
-        <ul>
-            <li>Contains factual errors, incorrect concepts, or false information</li>
-            <li>Answer key is wrong or misleading</li>
-            <li>Logical contradictions or impossible scenarios</li>
-            <li>Multiple defensible correct answers exist (unless intentionally designed as such)</li>
-        </ul>
-        <p><strong>Result:</strong> <code>PASS</code> or <code>FAIL</code></p>
-        <p><strong>If FAIL, the question cannot proceed. Evaluation stops here. Question immediately gets a 0.</strong></p>
-        
-        <hr>
-        
-        <h3>PHASE 2: QUALITY ASSESSMENT</h3>
-        <p>Questions that pass Phase 1 are now evaluated for quality.</p>
-        <p><strong>Note:</strong> Both MCQ and open-ended questions are scored out of <strong>10 points maximum</strong> to ensure standardization across question types.</p>
-        
-        <hr>
-        
-        <h4>3. MCQ QUALITY (0-6) [MCQ only]</h4>
-        <p>This criterion evaluates distractor quality and explanation quality for MCQ questions. <strong>Be very strict—only award high scores when distractors are excellent and explanations are pedagogically valuable.</strong></p>
-        <p><strong>Evaluate:</strong> How good are the distractors AND how well are they explained?</p>
-        <ul>
-            <li><strong>0-1:</strong> Distractors are obviously wrong, nonsensical, use "all/none of the above" cop-outs, vary wildly in plausibility, OR no explanations provided</li>
-            <li><strong>2-3:</strong> Distractors are plausible but <strong>generic</strong>—they don't represent specific, documented misconceptions. OR explanations are present but superficial.</li>
-            <li><strong>4-5:</strong> Distractors represent <strong>specific misconceptions</strong> and are reasonably balanced, AND explanations identify why the correct answer is correct and attempt to name misconceptions</li>
-            <li><strong>6:</strong> <strong>Excellence.</strong> Each distractor represents a <strong>specific, well-documented misconception</strong> that is balanced in plausibility. Explanations clearly state why the correct answer is correct with strong reasoning, AND <strong>explicitly name the specific misconception or error pattern</strong> each distractor represents.</li>
-        </ul>
-        
-        <hr>
-        
-        <h4>4. EXPLANATION QUALITY (0-6) [Open-ended only]</h4>
-        <p>Does the model answer or rubric provide clear, actionable guidance for what a good response includes? <strong>Be very strict—only award high scores when the guidance is comprehensive and pedagogically valuable.</strong></p>
-        <ul>
-            <li><strong>0-1:</strong> No model answer or rubric provided, OR guidance is too vague to be actionable</li>
-            <li><strong>2-3:</strong> Provides some guidance but incomplete—e.g., lists expected elements but no indication of quality levels</li>
-            <li><strong>4-5:</strong> Provides a reasonably detailed model answer or rubric with clear expectations and some indication of quality levels</li>
-            <li><strong>6:</strong> <strong>Excellence.</strong> Provides a <strong>comprehensive, detailed model answer</strong> showing exactly what "good" performance looks like with full reasoning, OR a <strong>complete rubric with specific criteria, clear quality levels, and objective scoring guidance</strong></li>
-        </ul>
-        
-        <hr>
-        
-        <h4>5. COGNITIVE DEMAND APPROPRIATENESS (0-4)</h4>
-        <p><strong>Question:</strong> Is this question correctly categorized for the assigned grade and difficulty?</p>
-        <p><strong>Evaluation Process:</strong></p>
-        <p><strong>Step 1:</strong> Identify the Bloom's Taxonomy level (Remember, Understand, Apply, Analyze, Evaluate, Create)</p>
-        <p><strong>Step 2:</strong> Map Bloom's level to expected difficulty:</p>
-        <ul>
-            <li><strong>Remember/Understand</strong> → Low difficulty (100-300)</li>
-            <li><strong>Apply/Analyze</strong> → Medium difficulty (400-600)</li>
-            <li><strong>Evaluate/Create</strong> → High difficulty (700-900)</li>
-        </ul>
-        <p><strong>Step 3:</strong> Evaluate alignment:</p>
-        <ul>
-            <li><strong>0-1:</strong> Bloom's level and assigned difficulty are severely mismatched (off by 2+ categories)</li>
-            <li><strong>2-3:</strong> Bloom's level and assigned difficulty are moderately mismatched (off by 1 category)</li>
-            <li><strong>4:</strong> Bloom's level aligns with assigned difficulty range (within the correct category or at most at the boundary)</li>
-        </ul>
-    `;
+function getCriterionInfo(criterion) {
+    const info = {
+        promptQuality: {
+            title: 'Prompt Quality (0-2)',
+            html: `
+                <h4>0: Does not meet criterion</h4>
+                <ul>
+                    <li>Prompt is vague, ambiguous, or misleading</li>
+                    <li>Does not specify expected depth or scope (e.g., asks to "explain" without clarifying if one benefit vs. full explanation vs. comparison is expected)</li>
+                    <li>Multiple valid interpretations possible that would yield different responses</li>
+                    <li>Critical context missing that students need to answer</li>
+                    <li>Question stem is confusing or poorly worded</li>
+                </ul>
+                
+                <h4>1: Partially meets criterion</h4>
+                <ul>
+                    <li>Prompt is generally clear but could be more precise</li>
+                    <li>Some ambiguity about expected depth or scope remains</li>
+                    <li>Minor wording issues that don't fundamentally undermine understanding</li>
+                    <li>Most students would understand what's being asked but might be unsure about detail level expected</li>
+                </ul>
+                
+                <h4>2: Fully meets criterion (excellence)</h4>
+                <ul>
+                    <li>Prompt is clear, specific, and unambiguous</li>
+                    <li>Expected depth and scope are well-defined (e.g., "identify one benefit," "compare and contrast," "provide a detailed explanation")</li>
+                    <li>Question stem is precisely worded with appropriate academic language for the grade level</li>
+                    <li>Students know exactly what is being asked and what type of response is expected</li>
+                    <li>All necessary context is provided without being overly verbose</li>
+                </ul>
+            `
+        },
+        mcqQuality: {
+            title: 'MCQ Quality (0-2)',
+            html: `
+                <p><strong>Evaluate:</strong> How good are the distractors AND how well are they explained?</p>
+                
+                <h4>0: Does not meet criterion</h4>
+                <ul>
+                    <li>Distractors are obviously wrong, nonsensical, or use "all/none of the above" cop-outs</li>
+                    <li>Distractors vary wildly in plausibility</li>
+                    <li>No explanations provided, OR explanations are incorrect</li>
+                    <li>Explanations only address correct answer without discussing distractors</li>
+                </ul>
+                
+                <h4>1: Partially meets criterion</h4>
+                <ul>
+                    <li>Distractors are plausible but <strong>generic</strong>—don't represent specific, documented misconceptions</li>
+                    <li>Explanations are present but superficial (just state "this is wrong" without naming specific misconceptions)</li>
+                    <li>Distractors may be somewhat unbalanced in plausibility</li>
+                    <li>The question is functional but lacks pedagogical depth</li>
+                </ul>
+                
+                <h4>2: Fully meets criterion (excellence)</h4>
+                <ul>
+                    <li>Each distractor represents a <strong>specific, well-documented misconception</strong> that is balanced in plausibility</li>
+                    <li>Explanations clearly state why the correct answer is correct with strong reasoning</li>
+                    <li>Explanations <strong>explicitly name the specific misconception or error pattern</strong> each distractor represents</li>
+                    <li>A student choosing any wrong answer reveals a diagnosable, specific gap in understanding</li>
+                </ul>
+            `
+        },
+        openEndedQuality: {
+            title: 'Open-ended Quality (0-2)',
+            html: `
+                <p><strong>Evaluate:</strong> Quality of model answer or scoring rubric</p>
+                
+                <h4>0: Does not meet criterion</h4>
+                <ul>
+                    <li>No model answer or rubric provided</li>
+                    <li>Guidance is too vague to be actionable (e.g., "explain photosynthesis" with no success criteria or expected elements)</li>
+                    <li>Criteria are unclear or inconsistent</li>
+                </ul>
+                
+                <h4>1: Partially meets criterion</h4>
+                <ul>
+                    <li>Provides some guidance but incomplete</li>
+                    <li>Lists expected elements but no indication of quality levels</li>
+                    <li>Provides a model answer but criteria for partial credit are unclear</li>
+                    <li>Basic guidance present but lacks depth</li>
+                </ul>
+                
+                <h4>2: Fully meets criterion (excellence)</h4>
+                <ul>
+                    <li>Provides a <strong>comprehensive, detailed model answer</strong> showing exactly what "good" performance looks like with full reasoning</li>
+                    <li>OR provides a <strong>complete rubric with specific criteria, clear quality levels, and objective scoring guidance</strong></li>
+                    <li>Makes assessment consistent and fair across evaluators</li>
+                </ul>
+            `
+        },
+        cognitiveDemand: {
+            title: 'Cognitive Demand Appropriateness (0-2)',
+            html: `
+                <p><strong>Question:</strong> Is this question correctly categorized for the assigned grade and difficulty?</p>
+                
+                <p><strong>Evaluation Process:</strong></p>
+                <p><strong>Step 1:</strong> Identify the Bloom's Taxonomy level (Remember, Understand, Apply, Analyze, Evaluate, Create)</p>
+                <p><strong>Step 2:</strong> Map Bloom's level to expected difficulty:</p>
+                <ul>
+                    <li><strong>Remember/Understand</strong> → Low difficulty (100-300)</li>
+                    <li><strong>Apply/Analyze</strong> → Medium difficulty (400-600)</li>
+                    <li><strong>Evaluate/Create</strong> → High difficulty (700-900)</li>
+                </ul>
+                
+                <h4>0: Does not meet criterion</h4>
+                <ul>
+                    <li>Bloom's level and assigned difficulty are severely mismatched (off by 2+ categories)</li>
+                    <li>Cognitive demand clearly inappropriate for target grade level (e.g., abstract reasoning for 2nd grade, trivial recall for high school)</li>
+                </ul>
+                
+                <h4>1: Partially meets criterion</h4>
+                <ul>
+                    <li>Bloom's level and assigned difficulty are moderately mismatched (off by 1 category)</li>
+                    <li>Vocabulary is somewhat too advanced/simple for grade</li>
+                    <li>Assumes prerequisites slightly atypical for the grade level</li>
+                </ul>
+                
+                <h4>2: Fully meets criterion (excellence)</h4>
+                <ul>
+                    <li>Bloom's level aligns with assigned difficulty range (within the correct category or at most at the boundary)</li>
+                    <li>Vocabulary and complexity appropriate for target grade level</li>
+                    <li>Prerequisites are typical and reasonable for the grade</li>
+                    <li>Do not penalize questions for being "too simple" or "too complex" within their assigned difficulty range—trust that the difficulty assignment is intentional</li>
+                </ul>
+            `
+        }
+    };
+    
+    return info[criterion] || { title: 'Information', html: '<p>No information available for this criterion.</p>' };
 }
+
 

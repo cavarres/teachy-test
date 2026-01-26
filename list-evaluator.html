@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List Evaluator - Teachy</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="evaluator.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>List Evaluator</h1>
+            <div class="header-controls">
+                <select id="listSelector" class="form-control" style="width: 300px; margin-right: 10px;">
+                    <option value="">Select a list...</option>
+                </select>
+                <button id="exportYamlBtn" class="btn btn-primary" disabled>Export to YAML</button>
+                <button id="toggleCriteriaBtn" class="btn btn-secondary">Show Criteria</button>
+            </div>
+        </header>
+
+        <div id="loadingMessage" class="loading-message">
+            <p>Loading questions...</p>
+        </div>
+
+        <div id="evaluatorInterface" class="evaluator-interface" style="display: none;">
+            <!-- Criteria Panel -->
+            <div id="criteriaPanel" class="criteria-panel" style="display: none;">
+                <div class="criteria-header">
+                    <h2>Evaluation Criteria</h2>
+                    <button id="closeCriteriaBtn" class="btn btn-secondary">Close</button>
+                </div>
+                <div class="criteria-content" id="criteriaContent"></div>
+            </div>
+
+            <!-- List Summary -->
+            <div class="list-summary-panel">
+                <div class="summary-stats">
+                    <div class="stat-item">
+                        <strong>Questions:</strong> <span id="listTotalQuestions">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <strong>Total points:</strong> <span id="listTotalPoints">0</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question Navigation -->
+            <div class="question-navigation">
+                <button id="prevBtn" class="btn btn-nav">← Previous</button>
+                <div class="question-counter">
+                    <span id="questionCounter">Question 1 of 1</span>
+                </div>
+                <button id="nextBtn" class="btn btn-nav">Next →</button>
+            </div>
+
+            <div class="main-content">
+                <!-- Left Panel: Questions List -->
+                <div class="question-panel">
+                    <div class="question-header">
+                        <h2>Questions in List</h2>
+                    </div>
+                    <div class="questions-list-container">
+                        <div id="questionsList" class="questions-list"></div>
+                    </div>
+                </div>
+
+                <!-- Right Panel: Evaluation Criteria -->
+                <div class="evaluation-panel">
+                    <h2>List Evaluation</h2>
+                    
+                    <div class="evaluation-section">
+                        <h3>Category 1: Pedagogical Fundamentals</h3>
+                        
+                        <div class="form-group">
+                            <label>
+                                1. Grade-Level Appropriateness (0-2)
+                                <span class="info-icon" data-criterion="gradeLevel">ℹ️</span>
+                            </label>
+                            <div class="criteria-hint">Is the entire list consistently appropriate for the target grade level in vocabulary, complexity, and cognitive expectations?</div>
+                            <div class="score-button-group">
+                                <button type="button" class="btn-score" data-value="0" data-field="gradeLevel">0</button>
+                                <button type="button" class="btn-score" data-value="1" data-field="gradeLevel">1</button>
+                                <button type="button" class="btn-score" data-value="2" data-field="gradeLevel">2</button>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>
+                                2. Teacher Input Alignment (0-2)
+                                <span class="info-icon" data-criterion="teacherInput">ℹ️</span>
+                            </label>
+                            <div class="criteria-hint">Does the list accurately reflect what the teacher requested and any provided materials?</div>
+                            <div class="score-button-group">
+                                <button type="button" class="btn-score" data-value="0" data-field="teacherInput">0</button>
+                                <button type="button" class="btn-score" data-value="1" data-field="teacherInput">1</button>
+                                <button type="button" class="btn-score" data-value="2" data-field="teacherInput">2</button>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>
+                                3. Difficulty Progression (0-2)
+                                <span class="info-icon" data-criterion="difficultyProgression">ℹ️</span>
+                            </label>
+                            <div class="criteria-hint">Does the list progress from easier questions at the beginning to harder questions at the end?</div>
+                            <div class="score-button-group">
+                                <button type="button" class="btn-score" data-value="0" data-field="difficultyProgression">0</button>
+                                <button type="button" class="btn-score" data-value="1" data-field="difficultyProgression">1</button>
+                                <button type="button" class="btn-score" data-value="2" data-field="difficultyProgression">2</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="evaluation-section">
+                        <h3>Category 2: Content Quality</h3>
+                        
+                        <div class="form-group">
+                            <label>
+                                4. Uniqueness & Diversity (0-2)
+                                <span class="info-icon" data-criterion="uniqueness">ℹ️</span>
+                            </label>
+                            <div class="criteria-hint">Are all questions distinct, non-repetitive, and varied in their approach?</div>
+                            <div class="score-button-group">
+                                <button type="button" class="btn-score" data-value="0" data-field="uniqueness">0</button>
+                                <button type="button" class="btn-score" data-value="1" data-field="uniqueness">1</button>
+                                <button type="button" class="btn-score" data-value="2" data-field="uniqueness">2</button>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>
+                                5. Topic Coverage (0-2)
+                                <span class="info-icon" data-criterion="topicCoverage">ℹ️</span>
+                            </label>
+                            <div class="criteria-hint">Does the list comprehensively cover the relevant content domain as specified by the teacher?</div>
+                            <div class="score-button-group">
+                                <button type="button" class="btn-score" data-value="0" data-field="topicCoverage">0</button>
+                                <button type="button" class="btn-score" data-value="1" data-field="topicCoverage">1</button>
+                                <button type="button" class="btn-score" data-value="2" data-field="topicCoverage">2</button>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>
+                                6. Cognitive Level Diversity (0-2)
+                                <span class="info-icon" data-criterion="cognitiveDiversity">ℹ️</span>
+                            </label>
+                            <div class="criteria-hint">Does the list include appropriate variety across different thinking levels?</div>
+                            <div class="score-button-group">
+                                <button type="button" class="btn-score" data-value="0" data-field="cognitiveDiversity">0</button>
+                                <button type="button" class="btn-score" data-value="1" data-field="cognitiveDiversity">1</button>
+                                <button type="button" class="btn-score" data-value="2" data-field="cognitiveDiversity">2</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="evaluation-section">
+                        <h3>Category 3: Assessment Design</h3>
+                        
+                        <div class="form-group">
+                            <label>
+                                7. Question Type Balance (0-2)
+                                <span class="info-icon" data-criterion="questionTypeBalance">ℹ️</span>
+                            </label>
+                            <div class="criteria-hint">Is the mix of question types appropriate for the assessment goals?</div>
+                            <div class="score-button-group">
+                                <button type="button" class="btn-score" data-value="0" data-field="questionTypeBalance">0</button>
+                                <button type="button" class="btn-score" data-value="1" data-field="questionTypeBalance">1</button>
+                                <button type="button" class="btn-score" data-value="2" data-field="questionTypeBalance">2</button>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>
+                                8. Answer Leakage Prevention (0-2)
+                                <span class="info-icon" data-criterion="answerLeakage">ℹ️</span>
+                            </label>
+                            <div class="criteria-hint">Does the list avoid questions that inadvertently reveal answers to other questions?</div>
+                            <div class="score-button-group">
+                                <button type="button" class="btn-score" data-value="0" data-field="answerLeakage">0</button>
+                                <button type="button" class="btn-score" data-value="1" data-field="answerLeakage">1</button>
+                                <button type="button" class="btn-score" data-value="2" data-field="answerLeakage">2</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="evaluation-section">
+                        <h3>Additional Information</h3>
+                        
+                        <div class="form-group">
+                            <label for="summary">Overall Summary:</label>
+                            <textarea id="summary" class="form-control" rows="4" placeholder="Overall assessment of the question list as a complete assessment..."></textarea>
+                        </div>
+                    </div>
+
+                    <div class="evaluation-summary">
+                        <div class="score-display">
+                            <strong>Total Score:</strong> <span id="totalScore">0</span> / 16
+                        </div>
+                        <div class="score-display">
+                            <strong>Percentage:</strong> <span id="percentageScore">0</span>%
+                        </div>
+                        <div class="status-display" id="statusDisplay"></div>
+                    </div>
+
+                    <button id="saveEvaluationBtn" class="btn btn-primary btn-block">Save Evaluation</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Info Tooltip Modal -->
+    <div id="infoModal" class="info-modal" style="display: none;">
+        <div class="info-modal-content">
+            <div class="info-modal-header">
+                <h3 id="infoModalTitle">Scoring Guide</h3>
+                <button class="info-modal-close" id="closeInfoModal">&times;</button>
+            </div>
+            <div class="info-modal-body" id="infoModalBody"></div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
+    <script src="list-evaluator.js"></script>
+</body>
+</html>

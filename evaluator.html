@@ -16,9 +16,14 @@
         <div id="selectionPage" class="selection-page">
             <div class="selection-card">
                 <h1>Question Evaluator</h1>
-                <p class="selection-subtitle">Please select the subject to begin evaluating questions.</p>
+                <p class="selection-subtitle">Please enter your name and select the subject to begin evaluating questions.</p>
                 
                 <div class="selection-form">
+                    <div class="form-group">
+                        <label for="userNameInput">Your Name:</label>
+                        <input type="text" id="userNameInput" class="form-control" placeholder="Enter your name" required>
+                    </div>
+                    
                     <div class="form-group">
                         <label for="subjectSelect">Subject:</label>
                         <select id="subjectSelect" class="form-control">
@@ -37,18 +42,10 @@
                 <h1>Question Evaluator</h1>
                 <div class="header-controls">
                     <span class="selection-info">Subject: <strong id="selectedSubjectDisplay"></strong></span>
-                    <button id="toggleCriteriaBtn" class="btn btn-secondary">Show Criteria</button>
-                    <button id="exportYamlBtn" class="btn btn-primary" disabled>Export to YAML</button>
+                    <button id="exportCsvBtn" class="btn btn-primary" disabled>Export to CSV</button>
                 </div>
             </header>
 
-            <div id="criteriaPanel" class="criteria-panel" style="display: none;">
-                <div class="criteria-header">
-                    <h2>Evaluation Criteria Reference</h2>
-                    <button id="closeCriteriaBtn" class="btn btn-small">Close</button>
-                </div>
-                <div class="criteria-content" id="criteriaContent"></div>
-            </div>
 
             <div id="loadingMessage" class="loading-message">
                 <p>Loading questions...</p>
@@ -103,7 +100,7 @@
                         <h3>Phase 1: Gate-Keeping Criteria</h3>
                         
                         <div class="form-group">
-                            <label>Completeness Check:</label>
+                            <label>Completeness Check</label>
                             <div class="criteria-hint">Is the question package complete? Required: statement, answer key, explanation. For MCQ: 4-5 options. For Open-ended: model answer/rubric. FAIL if missing components, truncated content, broken formatting, or placeholders.</div>
                             <div class="button-group">
                                 <button type="button" class="btn-toggle" data-value="PASS" data-field="completeness">PASS</button>
@@ -112,7 +109,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label>Factual Correctness Check:</label>
+                            <label>Factual Correctness Check</label>
                             <div class="criteria-hint">Is the question factually and conceptually correct? FAIL if contains errors, wrong answer key, logical contradictions, or multiple defensible correct answers.</div>
                             <div class="button-group">
                                 <button type="button" class="btn-toggle" data-value="PASS" data-field="factualCorrectness">PASS</button>
@@ -124,43 +121,55 @@
                     <div class="evaluation-section" id="phase2Section">
                         <h3>Phase 2: Quality Assessment</h3>
                         
+                        <div class="form-group">
+                            <label>
+                                Prompt Quality (0-2)
+                                <span class="info-icon" data-criterion="promptQuality">ℹ️</span>
+                            </label>
+                            <div class="criteria-hint">Is the question prompt well-crafted, clear, and appropriately scoped?</div>
+                            <div class="score-button-group">
+                                <button type="button" class="btn-score" data-value="0" data-field="promptQuality">0</button>
+                                <button type="button" class="btn-score" data-value="1" data-field="promptQuality">1</button>
+                                <button type="button" class="btn-score" data-value="2" data-field="promptQuality">2</button>
+                            </div>
+                        </div>
+
                         <div id="mcqQualityGroup" class="form-group" style="display: none;">
-                            <label>MCQ Quality (0-6):</label>
-                            <div class="criteria-hint">0-1: Obviously wrong distractors, no explanations. 2-3: Plausible but generic distractors, superficial explanations. 4-5: Specific misconceptions, good explanations. 6: Excellence - well-documented misconceptions, explicit naming of error patterns.</div>
+                            <label>
+                                MCQ Quality (0-2) [MCQ only]
+                                <span class="info-icon" data-criterion="mcqQuality">ℹ️</span>
+                            </label>
+                            <div class="criteria-hint">How good are the distractors AND how well are they explained?</div>
                             <div class="score-button-group">
                                 <button type="button" class="btn-score" data-value="0" data-field="mcqQuality">0</button>
                                 <button type="button" class="btn-score" data-value="1" data-field="mcqQuality">1</button>
                                 <button type="button" class="btn-score" data-value="2" data-field="mcqQuality">2</button>
-                                <button type="button" class="btn-score" data-value="3" data-field="mcqQuality">3</button>
-                                <button type="button" class="btn-score" data-value="4" data-field="mcqQuality">4</button>
-                                <button type="button" class="btn-score" data-value="5" data-field="mcqQuality">5</button>
-                                <button type="button" class="btn-score" data-value="6" data-field="mcqQuality">6</button>
                             </div>
                         </div>
 
-                        <div id="explanationQualityGroup" class="form-group" style="display: none;">
-                            <label>Explanation Quality (0-6):</label>
-                            <div class="criteria-hint">0-1: No model answer/rubric or too vague. 2-3: Some guidance but incomplete, unclear quality levels. 4-5: Detailed model answer/rubric with clear expectations. 6: Excellence - comprehensive model answer or complete rubric with specific criteria and objective scoring.</div>
+                        <div id="openEndedQualityGroup" class="form-group" style="display: none;">
+                            <label>
+                                Open-ended Quality (0-2) [Open-ended only]
+                                <span class="info-icon" data-criterion="openEndedQuality">ℹ️</span>
+                            </label>
+                            <div class="criteria-hint">Does the model answer or rubric provide clear, actionable guidance?</div>
                             <div class="score-button-group">
-                                <button type="button" class="btn-score" data-value="0" data-field="explanationQuality">0</button>
-                                <button type="button" class="btn-score" data-value="1" data-field="explanationQuality">1</button>
-                                <button type="button" class="btn-score" data-value="2" data-field="explanationQuality">2</button>
-                                <button type="button" class="btn-score" data-value="3" data-field="explanationQuality">3</button>
-                                <button type="button" class="btn-score" data-value="4" data-field="explanationQuality">4</button>
-                                <button type="button" class="btn-score" data-value="5" data-field="explanationQuality">5</button>
-                                <button type="button" class="btn-score" data-value="6" data-field="explanationQuality">6</button>
+                                <button type="button" class="btn-score" data-value="0" data-field="openEndedQuality">0</button>
+                                <button type="button" class="btn-score" data-value="1" data-field="openEndedQuality">1</button>
+                                <button type="button" class="btn-score" data-value="2" data-field="openEndedQuality">2</button>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label>Cognitive Demand Appropriateness (0-4):</label>
-                            <div class="criteria-hint">0-1: Severely mismatched (Remember at 700+ or Evaluate at 200-). 2-3: Moderately mismatched (off by 1 category). 4: Aligned - Bloom's level matches difficulty range (Remember/Understand→100-300, Apply/Analyze→400-600, Evaluate/Create→700-900).</div>
+                            <label>
+                                Cognitive Demand Appropriateness (0-2)
+                                <span class="info-icon" data-criterion="cognitiveDemand">ℹ️</span>
+                            </label>
+                            <div class="criteria-hint">Is this question correctly categorized for the assigned grade and difficulty?</div>
                             <div class="score-button-group">
                                 <button type="button" class="btn-score" data-value="0" data-field="cognitiveDemand">0</button>
                                 <button type="button" class="btn-score" data-value="1" data-field="cognitiveDemand">1</button>
                                 <button type="button" class="btn-score" data-value="2" data-field="cognitiveDemand">2</button>
-                                <button type="button" class="btn-score" data-value="3" data-field="cognitiveDemand">3</button>
-                                <button type="button" class="btn-score" data-value="4" data-field="cognitiveDemand">4</button>
                             </div>
                         </div>
                     </div>
@@ -176,7 +185,7 @@
 
                     <div class="evaluation-summary">
                         <div class="score-display">
-                            <strong>Total Score:</strong> <span id="totalScore">0</span> / 10
+                            <strong>Total Score:</strong> <span id="totalScore">0</span> / 6
                         </div>
                         <div class="status-display" id="statusDisplay"></div>
                     </div>
@@ -195,10 +204,20 @@
         </div>
     </div>
 
+    <!-- Info Tooltip Modal -->
+    <div id="infoModal" class="info-modal" style="display: none;">
+        <div class="info-modal-content">
+            <div class="info-modal-header">
+                <h3 id="infoModalTitle">Scoring Guide</h3>
+                <button class="info-modal-close" id="closeInfoModal">&times;</button>
+            </div>
+            <div class="info-modal-body" id="infoModalBody"></div>
+        </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
     <script src="evaluator.js"></script>
 </body>
 </html>
