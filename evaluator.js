@@ -1,25 +1,43 @@
 // Global state
-let allQuestions = []; // All questions from CSV
+let allQuestions = []; // All questions from JSON
 let questions = []; // Filtered questions based on selection
 let currentQuestionIndex = 0;
 let evaluations = {};
 let currentQuestionId = null;
 let selectedSubject = null;
+let selectedLanguage = null;
 let userName = null;
+
+// Discipline name mapping (Portuguese -> English) for normalization
+const DISCIPLINE_TRANSLATIONS_REVERSE = {
+    "Matemática": "Mathematics",
+    "Ciências": "Science",
+    "Física": "Physics",
+    "História": "History",
+    "Geografia": "Geography",
+    "Biologia": "Biology",
+    "Inglês": "English Language Arts",
+    "Filosofia": "Philosophy",
+    "Educação Física": "Physical Education",
+    "Artes": "Arts",
+    "Português": "Portuguese",
+    "Espanhol": "Spanish"
+};
 
 // Initialize
 document.addEventListener('DOMContentLoaded', () => {
     loadFromLocalStorage();
     setupEventListeners();
     updateExportButton();
-    // Load CSV and populate selection dropdowns
-    loadCsvFile();
+    // Load JSON and populate selection dropdowns
+    loadJsonFile();
 });
 
 function setupEventListeners() {
     // Selection page listeners
     document.getElementById('userNameInput').addEventListener('input', validateSelection);
     document.getElementById('subjectSelect').addEventListener('change', validateSelection);
+    document.getElementById('languageSelect').addEventListener('change', validateSelection);
     document.getElementById('startEvaluatorBtn').addEventListener('click', startEvaluator);
     
     // Evaluator page listeners
@@ -86,35 +104,55 @@ function setupEventListeners() {
     document.addEventListener('keydown', handleKeyboardInput);
 }
 
-function loadCsvFile() {
-    fetch('questions_to_test_no_scoresv2_jan18.csv')
+function loadJsonFile() {
+    fetch('individual_questions_to_test_Jan26.json')
         .then(response => {
             if (!response.ok) {
-                throw new Error('Could not load CSV file');
+                throw new Error('Could not load JSON file');
             }
-            return response.text();
+            return response.json();
         })
-        .then(csvText => {
-            Papa.parse(csvText, {
-                header: true,
-                skipEmptyLines: true,
-                complete: (results) => {
-                    allQuestions = results.data.filter(q => q.question_id && q.question_id.trim() !== '');
-                    if (allQuestions.length === 0) {
-                        document.getElementById('selectionPage').innerHTML = '<p style="color: #e74c3c;">No valid questions found in CSV file.</p>';
-                        return;
-                    }
-                    
-                    // Populate grade and subject dropdowns
-                    populateSelectionDropdowns();
-                },
-                error: (error) => {
-                    document.getElementById('selectionPage').innerHTML = '<p style="color: #e74c3c;">Error parsing CSV: ' + error.message + '</p>';
-                }
-            });
+        .then(jsonData => {
+            // Transform JSON questions to match expected format
+            allQuestions = (jsonData.questions || []).map((q, index) => {
+                // Get original discipline name
+                const originalDiscipline = q.disciplineName || q.request_context?.discipline || '';
+                // Normalize to English discipline name
+                const normalizedDiscipline = DISCIPLINE_TRANSLATIONS_REVERSE[originalDiscipline] || originalDiscipline;
+                
+                // Map JSON fields to expected format
+                const mappedQuestion = {
+                    question_id: `q_${index + 1}`, // Generate question_id if not present
+                    question_statement: q.question_statement || '',
+                    question_solution: q.question_solution || '',
+                    discipline: normalizedDiscipline, // Use normalized English name
+                    discipline_original: originalDiscipline, // Keep original for display if needed
+                    category: q.categoryName || q.request_context?.category || '',
+                    grade: q.grade || q.request_context?.grade || '',
+                    difficulty: q.difficulty || q.difficulty_level || '',
+                    type: q.type === 'multiple_choice' ? 'MCQ' : (q.type || 'discursive'),
+                    locale: q.request_context?.locale || '',
+                    language: q.request_context?.locale === 'pt_BR' ? 'Portuguese' : (q.request_context?.locale === 'en_US' ? 'English' : ''),
+                    // Handle answer and alternatives
+                    correct_answer: q.answer || '',
+                    incorrect_alternative_1: q.incorrect_alternatives && q.incorrect_alternatives[0] ? q.incorrect_alternatives[0] : '',
+                    incorrect_alternative_2: q.incorrect_alternatives && q.incorrect_alternatives[1] ? q.incorrect_alternatives[1] : '',
+                    incorrect_alternative_3: q.incorrect_alternatives && q.incorrect_alternatives[2] ? q.incorrect_alternatives[2] : '',
+                    incorrect_alternative_4: q.incorrect_alternatives && q.incorrect_alternatives[3] ? q.incorrect_alternatives[3] : ''
+                };
+                return mappedQuestion;
+            }).filter(q => q.question_statement && q.question_statement.trim() !== '');
+            
+            if (allQuestions.length === 0) {
+                document.getElementById('selectionPage').innerHTML = '<p style="color: #e74c3c;">No valid questions found in JSON file.</p>';
+                return;
+            }
+            
+            // Populate grade and subject dropdowns
+            populateSelectionDropdowns();
         })
         .catch(error => {
-            document.getElementById('selectionPage').innerHTML = '<p style="color: #e74c3c;">Error loading CSV file: ' + error.message + '</p>';
+            document.getElementById('selectionPage').innerHTML = '<p style="color: #e74c3c;">Error loading JSON file: ' + error.message + '</p>';
         });
 }
 
@@ -150,9 +188,10 @@ function populateSelectionDropdowns() {
 function validateSelection() {
     const userNameInput = document.getElementById('userNameInput');
     const subjectSelect = document.getElementById('subjectSelect');
+    const languageSelect = document.getElementById('languageSelect');
     const startBtn = document.getElementById('startEvaluatorBtn');
     
-    if (userNameInput.value.trim() && subjectSelect.value) {
+    if (userNameInput.value.trim() && subjectSelect.value && languageSelect.value) {
         startBtn.disabled = false;
     } else {
         startBtn.disabled = true;
@@ -162,6 +201,7 @@ function validateSelection() {
 function startEvaluator() {
     userName = document.getElementById('userNameInput').value.trim();
     selectedSubject = document.getElementById('subjectSelect').value;
+    const selectedLanguage = document.getElementById('languageSelect').value;
     
     if (!userName) {
         alert('Please enter your name.');
@@ -173,18 +213,40 @@ function startEvaluator() {
         return;
     }
     
+    if (!selectedLanguage) {
+        alert('Please select a language.');
+        return;
+    }
+    
     // Filter questions based on subject or show all
+    let filteredQuestions = [];
     if (selectedSubject === 'ALL') {
-        questions = allQuestions;
+        filteredQuestions = allQuestions;
     } else {
-        questions = allQuestions.filter(q => {
+        filteredQuestions = allQuestions.filter(q => {
             const subjectMatch = q.discipline && q.discipline.trim() === selectedSubject;
             return subjectMatch;
         });
     }
     
+    // Filter by language (locale)
+    if (selectedLanguage === 'BOTH') {
+        questions = filteredQuestions; // Show all questions for the selected discipline regardless of locale
+    } else {
+        questions = filteredQuestions.filter(q => {
+            // Filter by locale, not by language field
+            const locale = (q.locale || '').trim();
+            if (selectedLanguage === 'English') {
+                return locale === 'en_US';
+            } else if (selectedLanguage === 'Portuguese') {
+                return locale === 'pt_BR';
+            }
+            return false;
+        });
+    }
+    
     if (questions.length === 0) {
-        alert(`No questions found for ${selectedSubject === 'ALL' ? 'All Subjects' : selectedSubject}.`);
+        alert(`No questions found for ${selectedSubject === 'ALL' ? 'All Subjects' : selectedSubject} in ${selectedLanguage === 'BOTH' ? 'both languages' : selectedLanguage}.`);
         return;
     }
     
@@ -192,8 +254,9 @@ function startEvaluator() {
     document.getElementById('selectionPage').style.display = 'none';
     document.getElementById('evaluatorPage').style.display = 'block';
     
-    // Update display with selected value
+    // Update display with selected values
     document.getElementById('selectedSubjectDisplay').textContent = selectedSubject === 'ALL' ? 'All Subjects' : selectedSubject;
+    document.getElementById('selectedLanguageDisplay').textContent = selectedLanguage === 'BOTH' ? 'Both' : selectedLanguage;
     
     // Initialize evaluator
     currentQuestionIndex = 0;
@@ -213,11 +276,38 @@ function displayQuestion(index) {
 
     // Update question info
     document.getElementById('questionId').textContent = question.question_id;
-    document.getElementById('questionType').textContent = question.type || 'N/A';
-    document.getElementById('questionGrade').textContent = formatGrade(question.grade);
-    document.getElementById('questionDifficulty').textContent = question.difficulty || 'N/A';
-    document.getElementById('questionCategory').textContent = question.category || 'N/A';
-    document.getElementById('questionDiscipline').textContent = question.discipline || 'N/A';
+    
+    // Set discipline and category (primary row - bigger)
+    const disciplineEl = document.getElementById('questionDiscipline');
+    disciplineEl.textContent = question.discipline || 'N/A';
+    
+    const categoryEl = document.getElementById('questionCategory');
+    categoryEl.textContent = question.category || 'N/A';
+    
+    // Set grade, difficulty, and type (secondary row - smaller)
+    const gradeEl = document.getElementById('questionGrade');
+    gradeEl.textContent = formatGrade(question.grade);
+    
+    const difficultyEl = document.getElementById('questionDifficulty');
+    const difficultyValue = question.difficulty || 'N/A';
+    difficultyEl.textContent = difficultyValue;
+    // Add data attribute for color coding
+    if (difficultyValue !== 'N/A') {
+        const difficultyNum = parseInt(difficultyValue);
+        if (!isNaN(difficultyNum)) {
+            // Numeric difficulty: use the number as-is for data attribute
+            difficultyEl.setAttribute('data-difficulty', difficultyValue);
+        } else {
+            // Text difficulty: use lowercase for matching
+            difficultyEl.setAttribute('data-difficulty', difficultyValue.toLowerCase());
+        }
+    } else {
+        difficultyEl.removeAttribute('data-difficulty');
+    }
+    
+    const typeEl = document.getElementById('questionType');
+    typeEl.textContent = question.type || 'N/A';
+    
     document.getElementById('questionCounter').textContent = `Question ${index + 1} of ${questions.length}`;
 
     // Display question statement with LaTeX
@@ -293,14 +383,14 @@ function displayQuestion(index) {
 function convertMathTags(text) {
     if (!text) return '';
     
+    // Convert {{MATHBLOCK}}...{{/MATHBLOCK}} to block math (handle multiline with [\s\S])
+    text = text.replace(/\{\{MATHBLOCK\}\}([\s\S]*?)\{\{\/MATHBLOCK\}\}/g, (match, content) => {
+        return `\\[${content.trim()}\\]`;
+    });
+    
     // Convert {{MATH}}...{{/MATH}} to inline math
     text = text.replace(/\{\{MATH\}\}(.*?)\{\{\/MATH\}\}/g, (match, content) => {
         return `\\(${content.trim()}\\)`;
-    });
-    
-    // Convert {{MATHBLOCK}}...{{/MATHBLOCK}} to block math
-    text = text.replace(/\{\{MATHBLOCK\}\}(.*?)\{\{\/MATHBLOCK\}\}/g, (match, content) => {
-        return `\\[${content.trim()}\\]`;
     });
     
     // Preserve line breaks

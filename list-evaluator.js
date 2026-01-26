@@ -9,6 +9,22 @@ let listContext = {};
 let evaluation = null;
 let listId = null;
 
+// Discipline name mapping (Portuguese -> English) for normalization
+const DISCIPLINE_TRANSLATIONS_REVERSE = {
+    "Matemática": "Mathematics",
+    "Ciências": "Science",
+    "Física": "Physics",
+    "História": "History",
+    "Geografia": "Geography",
+    "Biologia": "Biology",
+    "Inglês": "English Language Arts",
+    "Filosofia": "Philosophy",
+    "Educação Física": "Physical Education",
+    "Artes": "Arts",
+    "Português": "Portuguese",
+    "Espanhol": "Spanish"
+};
+
 // Criteria definitions (same as before)
 const criteria = {
     gradeLevel: {
@@ -97,7 +113,7 @@ const criteria = {
 document.addEventListener('DOMContentLoaded', () => {
     setupEventListeners();
     updateExportButton();
-    loadCsvFile();
+    loadJsonFile();
 });
 
 function setupEventListeners() {
@@ -149,44 +165,64 @@ function setupEventListeners() {
     loadCriteriaContent();
 }
 
-function loadCsvFile() {
+function loadJsonFile() {
     const urlParams = new URLSearchParams(window.location.search);
-    const csvFile = urlParams.get('csv') || 'questions_to_test_no_scoresv2_jan18.csv';
+    const jsonFile = urlParams.get('json') || 'individual_questions_to_test_Jan26.json';
     
-    fetch(csvFile)
+    fetch(jsonFile)
         .then(response => {
             if (!response.ok) {
-                throw new Error('Could not load CSV file');
+                throw new Error('Could not load JSON file');
             }
-            return response.text();
+            return response.json();
         })
-        .then(csvText => {
-            Papa.parse(csvText, {
-                header: true,
-                skipEmptyLines: true,
-                complete: (results) => {
-                    allQuestions = results.data.filter(q => q.question_id && q.question_id.trim() !== '');
-                    if (allQuestions.length === 0) {
-                        document.getElementById('loadingMessage').innerHTML = '<p style="color: #e74c3c;">No valid questions found in CSV file.</p>';
-                        return;
-                    }
-                    
-                    // Group questions by discipline and grade
-                    groupQuestionsByDisciplineAndGrade();
-                    
-                    // Populate list selector
-                    populateListSelector();
-                    
-                    document.getElementById('loadingMessage').style.display = 'none';
-                    document.getElementById('evaluatorInterface').style.display = 'block';
-                },
-                error: (error) => {
-                    document.getElementById('loadingMessage').innerHTML = '<p style="color: #e74c3c;">Error parsing CSV: ' + error.message + '</p>';
-                }
-            });
+        .then(jsonData => {
+            // Transform JSON questions to match expected format
+            allQuestions = (jsonData.questions || []).map((q, index) => {
+                // Get original discipline name
+                const originalDiscipline = q.disciplineName || q.request_context?.discipline || '';
+                // Normalize to English discipline name
+                const normalizedDiscipline = DISCIPLINE_TRANSLATIONS_REVERSE[originalDiscipline] || originalDiscipline;
+                
+                // Map JSON fields to expected format
+                const mappedQuestion = {
+                    question_id: `q_${index + 1}`, // Generate question_id if not present
+                    question_statement: q.question_statement || '',
+                    question_solution: q.question_solution || '',
+                    discipline: normalizedDiscipline, // Use normalized English name
+                    discipline_original: originalDiscipline, // Keep original for display if needed
+                    category: q.categoryName || q.request_context?.category || '',
+                    grade: q.grade || q.request_context?.grade || '',
+                    difficulty: q.difficulty || q.difficulty_level || '',
+                    type: q.type === 'multiple_choice' ? 'MCQ' : (q.type || 'discursive'),
+                    locale: q.request_context?.locale || '',
+                    language: q.request_context?.locale === 'pt_BR' ? 'Portuguese' : (q.request_context?.locale === 'en_US' ? 'English' : ''),
+                    // Handle answer and alternatives
+                    correct_answer: q.answer || '',
+                    incorrect_alternative_1: q.incorrect_alternatives && q.incorrect_alternatives[0] ? q.incorrect_alternatives[0] : '',
+                    incorrect_alternative_2: q.incorrect_alternatives && q.incorrect_alternatives[1] ? q.incorrect_alternatives[1] : '',
+                    incorrect_alternative_3: q.incorrect_alternatives && q.incorrect_alternatives[2] ? q.incorrect_alternatives[2] : '',
+                    incorrect_alternative_4: q.incorrect_alternatives && q.incorrect_alternatives[3] ? q.incorrect_alternatives[3] : ''
+                };
+                return mappedQuestion;
+            }).filter(q => q.question_statement && q.question_statement.trim() !== '');
+            
+            if (allQuestions.length === 0) {
+                document.getElementById('loadingMessage').innerHTML = '<p style="color: #e74c3c;">No valid questions found in JSON file.</p>';
+                return;
+            }
+            
+            // Group questions by discipline and grade
+            groupQuestionsByDisciplineAndGrade();
+            
+            // Populate list selector
+            populateListSelector();
+            
+            document.getElementById('loadingMessage').style.display = 'none';
+            document.getElementById('evaluatorInterface').style.display = 'block';
         })
         .catch(error => {
-            document.getElementById('loadingMessage').innerHTML = '<p style="color: #e74c3c;">Error loading CSV file: ' + error.message + '</p>';
+            document.getElementById('loadingMessage').innerHTML = '<p style="color: #e74c3c;">Error loading JSON file: ' + error.message + '</p>';
         });
 }
 
@@ -443,12 +479,17 @@ function navigateQuestion(direction) {
 
 function convertMathTags(text) {
     if (!text) return '';
+    
+    // Convert {{MATHBLOCK}}...{{/MATHBLOCK}} to block math (handle multiline with [\s\S])
+    text = text.replace(/\{\{MATHBLOCK\}\}([\s\S]*?)\{\{\/MATHBLOCK\}\}/g, (match, content) => {
+        return `\\[${content.trim()}\\]`;
+    });
+    
+    // Convert {{MATH}}...{{/MATH}} to inline math
     text = text.replace(/\{\{MATH\}\}(.*?)\{\{\/MATH\}\}/g, (match, content) => {
         return `\\(${content.trim()}\\)`;
     });
-    text = text.replace(/\{\{MATHBLOCK\}\}(.*?)\{\{\/MATHBLOCK\}\}/g, (match, content) => {
-        return `\\[${content.trim()}\\]`;
-    });
+    
     text = text.replace(/\n/g, '<br>');
     return text;
 }

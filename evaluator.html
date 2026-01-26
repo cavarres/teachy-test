@@ -31,6 +31,15 @@
                         </select>
                     </div>
                     
+                    <div class="form-group">
+                        <label for="languageSelect">Language:</label>
+                        <select id="languageSelect" class="form-control">
+                            <option value="BOTH">Both (English & Portuguese)</option>
+                            <option value="English">English</option>
+                            <option value="Portuguese">Portuguese</option>
+                        </select>
+                    </div>
+                    
                     <button id="startEvaluatorBtn" class="btn btn-primary btn-block" disabled>Next →</button>
                 </div>
             </div>
@@ -41,7 +50,7 @@
             <header>
                 <h1>Question Evaluator</h1>
                 <div class="header-controls">
-                    <span class="selection-info">Subject: <strong id="selectedSubjectDisplay"></strong></span>
+                    <span class="selection-info">Subject: <strong id="selectedSubjectDisplay"></strong> | Language: <strong id="selectedLanguageDisplay"></strong></span>
                     <button id="exportCsvBtn" class="btn btn-primary" disabled>Export to CSV</button>
                 </div>
             </header>
@@ -67,11 +76,15 @@
                     <div class="question-header">
                         <h2>Question <span id="questionId"></span></h2>
                         <div class="question-meta">
-                            <span class="meta-item"><strong>Type:</strong> <span id="questionType"></span></span>
-                            <span class="meta-item"><strong>Grade:</strong> <span id="questionGrade"></span></span>
-                            <span class="meta-item"><strong>Difficulty:</strong> <span id="questionDifficulty"></span></span>
-                            <span class="meta-item"><strong>Category:</strong> <span id="questionCategory"></span></span>
-                            <span class="meta-item"><strong>Discipline:</strong> <span id="questionDiscipline"></span></span>
+                            <div class="meta-row-primary">
+                                <div class="meta-item"><strong>Discipline:</strong> <span id="questionDiscipline"></span></div>
+                                <div class="meta-item"><strong>Category:</strong> <span id="questionCategory"></span></div>
+                            </div>
+                            <div class="meta-row-secondary">
+                                <span class="meta-item"><strong>Grade:</strong> <span id="questionGrade"></span></span>
+                                <span class="meta-item"><strong>Difficulty:</strong> <span id="questionDifficulty"></span></span>
+                                <span class="meta-item"><strong>Type:</strong> <span id="questionType"></span></span>
+                            </div>
                         </div>
                     </div>
 
