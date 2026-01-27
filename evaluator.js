@@ -41,6 +41,7 @@ function setupEventListeners() {
     document.getElementById('startEvaluatorBtn').addEventListener('click', startEvaluator);
     
     // Evaluator page listeners
+    document.getElementById('backToSelectionBtn').addEventListener('click', backToSelection);
     document.getElementById('exportCsvBtn').addEventListener('click', exportToCsv);
     document.getElementById('prevBtn').addEventListener('click', () => navigateQuestion(-1));
     document.getElementById('nextBtn').addEventListener('click', () => navigateQuestion(1));
@@ -150,6 +151,9 @@ function loadJsonFile() {
             
             // Populate grade and subject dropdowns
             populateSelectionDropdowns();
+            
+            // Try to restore evaluator state after JSON loads
+            tryRestoreEvaluatorState();
         })
         .catch(error => {
             document.getElementById('selectionPage').innerHTML = '<p style="color: #e74c3c;">Error loading JSON file: ' + error.message + '</p>';
@@ -201,7 +205,7 @@ function validateSelection() {
 function startEvaluator() {
     userName = document.getElementById('userNameInput').value.trim();
     selectedSubject = document.getElementById('subjectSelect').value;
-    const selectedLanguage = document.getElementById('languageSelect').value;
+    selectedLanguage = document.getElementById('languageSelect').value;
     
     if (!userName) {
         alert('Please enter your name.');
@@ -250,6 +254,9 @@ function startEvaluator() {
         return;
     }
     
+    // Save selection state to localStorage
+    saveSelectionState();
+    
     // Hide selection page and show evaluator page
     document.getElementById('selectionPage').style.display = 'none';
     document.getElementById('evaluatorPage').style.display = 'block';
@@ -264,6 +271,120 @@ function startEvaluator() {
     document.getElementById('evaluatorInterface').style.display = 'block';
     displayQuestion(0);
     updateProgress();
+}
+
+function backToSelection() {
+    // Clear the saved selection state
+    clearSelectionState();
+    
+    // Show selection page and hide evaluator page
+    document.getElementById('selectionPage').style.display = 'flex';
+    document.getElementById('evaluatorPage').style.display = 'none';
+    
+    // Reset form
+    document.getElementById('userNameInput').value = userName || '';
+    if (selectedSubject) {
+        document.getElementById('subjectSelect').value = selectedSubject;
+    }
+    if (selectedLanguage) {
+        document.getElementById('languageSelect').value = selectedLanguage;
+    }
+    validateSelection();
+}
+
+function saveSelectionState() {
+    try {
+        const selectionState = {
+            userName: userName,
+            subject: selectedSubject,
+            language: selectedLanguage,
+            currentQuestionIndex: currentQuestionIndex
+        };
+        localStorage.setItem('evaluatorSelectionState', JSON.stringify(selectionState));
+    } catch (e) {
+        console.warn('Could not save selection state to localStorage:', e);
+    }
+}
+
+function clearSelectionState() {
+    try {
+        localStorage.removeItem('evaluatorSelectionState');
+    } catch (e) {
+        console.warn('Could not clear selection state from localStorage:', e);
+    }
+}
+
+function tryRestoreEvaluatorState() {
+    try {
+        const savedState = localStorage.getItem('evaluatorSelectionState');
+        if (!savedState) {
+            return; // No saved state, show selection page
+        }
+        
+        const selectionState = JSON.parse(savedState);
+        if (!selectionState.userName || !selectionState.subject || !selectionState.language) {
+            return; // Invalid state, show selection page
+        }
+        
+        // Restore the state
+        userName = selectionState.userName;
+        selectedSubject = selectionState.subject;
+        selectedLanguage = selectionState.language;
+        currentQuestionIndex = selectionState.currentQuestionIndex || 0;
+        
+        // Filter questions based on saved selection
+        let filteredQuestions = [];
+        if (selectedSubject === 'ALL') {
+            filteredQuestions = allQuestions;
+        } else {
+            filteredQuestions = allQuestions.filter(q => {
+                const subjectMatch = q.discipline && q.discipline.trim() === selectedSubject;
+                return subjectMatch;
+            });
+        }
+        
+        // Filter by language (locale)
+        if (selectedLanguage === 'BOTH') {
+            questions = filteredQuestions;
+        } else {
+            questions = filteredQuestions.filter(q => {
+                const locale = (q.locale || '').trim();
+                if (selectedLanguage === 'English') {
+                    return locale === 'en_US';
+                } else if (selectedLanguage === 'Portuguese') {
+                    return locale === 'pt_BR';
+                }
+                return false;
+            });
+        }
+        
+        if (questions.length === 0) {
+            // No questions found, show selection page
+            return;
+        }
+        
+        // Ensure currentQuestionIndex is valid
+        if (currentQuestionIndex >= questions.length) {
+            currentQuestionIndex = 0;
+        }
+        
+        // Hide selection page and show evaluator page
+        document.getElementById('selectionPage').style.display = 'none';
+        document.getElementById('evaluatorPage').style.display = 'block';
+        
+        // Update display with selected values
+        document.getElementById('selectedSubjectDisplay').textContent = selectedSubject === 'ALL' ? 'All Subjects' : selectedSubject;
+        document.getElementById('selectedLanguageDisplay').textContent = selectedLanguage === 'BOTH' ? 'Both' : selectedLanguage;
+        
+        // Initialize evaluator
+        document.getElementById('loadingMessage').style.display = 'none';
+        document.getElementById('evaluatorInterface').style.display = 'block';
+        displayQuestion(currentQuestionIndex);
+        updateProgress();
+    } catch (e) {
+        console.warn('Could not restore evaluator state:', e);
+        // On error, show selection page
+    }
 }
 
 
@@ -426,6 +547,8 @@ function navigateQuestion(direction) {
     if (newIndex >= 0 && newIndex < questions.length) {
         displayQuestion(newIndex);
         updateProgress();
+        // Save the current question index
+        saveSelectionState();
     }
 }
 
@@ -436,6 +559,8 @@ function jumpToQuestion() {
         displayQuestion(questionNum - 1);
         updateProgress();
         input.value = '';
+        // Save the current question index
+        saveSelectionState();
     } else {
         alert(`Please enter a number between 1 and ${questions.length}`);
     }
@@ -717,6 +842,8 @@ function saveToLocalStorage() {
         if (userName) {
             localStorage.setItem('evaluatorUserName', userName);
         }
+        // Also update the selection state with current question index
+        saveSelectionState();
     } catch (e) {
         console.warn('Could not save to localStorage:', e);
     }
