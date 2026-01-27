@@ -266,9 +266,12 @@ def generate_requests_for_discipline(discipline, grade_diff_categories, target_q
     """
     num_requests = target_questions // 2
 
-    # Special handling for language disciplines
-    if discipline == "English":
-        # English discipline: ALL questions in en_US
+    # Define English-only subjects
+    english_only_subjects = ["Biology", "Mathematics", "Physics", "Science", "English"]
+
+    # Special handling for language disciplines and STEM subjects
+    if discipline in english_only_subjects:
+        # Biology, Mathematics, Physics, Science, and English: ALL questions in en_US
         locale_pool = [ENGLISH_LOCALE] * num_requests
     elif discipline == "Portuguese":
         # Portuguese discipline: ALL questions in pt_BR

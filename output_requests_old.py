@@ -5,40 +5,25 @@
 
 REQUESTS = [
     # -------------------------------------------------------------------------
-    # Mathematics
+    # Matemática
     # -------------------------------------------------------------------------
     {
-        "grade": 80,
-        "locale": "en_US",
-        "difficulty": 300,
-        "category": "Percentage: Discounts or Percentage Increases",
-        "discipline": "Mathematics",
-        "num_mcq": 1,
-        "num_discursive": 1,
-    },
-    {
-        "grade": 110,
-        "locale": "en_US",
-        "difficulty": 700,
-        "category": "Spatial Geometry: Cavalieri's Principle",
-        "discipline": "Mathematics",
-        "num_mcq": 1,
-        "num_discursive": 1,
-    },
-    {
         "grade": 100,
-        "locale": "en_US",
+        "locale": "pt_BR",
         "difficulty": 500,
-        "category": "Angles: Vertically Opposite Angles",
-        "discipline": "Mathematics",
+        "category": "Notação Científica: Revisão",
+        "discipline": "Matemática",
         "num_mcq": 1,
         "num_discursive": 1,
     },
+    # -------------------------------------------------------------------------
+    # Mathematics
+    # -------------------------------------------------------------------------
     {
         "grade": 60,
         "locale": "en_US",
         "difficulty": 300,
-        "category": "Quadrilateral Classification",
+        "category": "Probability: Introduction",
         "discipline": "Mathematics",
         "num_mcq": 1,
         "num_discursive": 1,
@@ -47,8 +32,29 @@ REQUESTS = [
         "grade": 100,
         "locale": "en_US",
         "difficulty": 300,
-        "category": "Localization",
+        "category": "Circle: Eccentric Angles",
         "discipline": "Mathematics",
+        "num_mcq": 1,
+        "num_discursive": 1,
+    },
+    # -------------------------------------------------------------------------
+    # Matemática
+    # -------------------------------------------------------------------------
+    {
+        "grade": 110,
+        "locale": "pt_BR",
+        "difficulty": 700,
+        "category": "Análise Combinatória: Princípio Aditivo",
+        "discipline": "Matemática",
+        "num_mcq": 1,
+        "num_discursive": 1,
+    },
+    {
+        "grade": 90,
+        "locale": "pt_BR",
+        "difficulty": 700,
+        "category": "Volume: Prisma Retangular Contextualizado",
+        "discipline": "Matemática",
         "num_mcq": 1,
         "num_discursive": 1,
     },
@@ -56,34 +62,7 @@ REQUESTS = [
     # Português
     # -------------------------------------------------------------------------
     {
-        "grade": 70,
-        "locale": "pt_BR",
-        "difficulty": 700,
-        "category": "Pontuação",
-        "discipline": "Português",
-        "num_mcq": 1,
-        "num_discursive": 1,
-    },
-    {
-        "grade": 110,
-        "locale": "pt_BR",
-        "difficulty": 700,
-        "category": "Alfabetização",
-        "discipline": "Português",
-        "num_mcq": 1,
-        "num_discursive": 1,
-    },
-    {
-        "grade": 70,
-        "locale": "pt_BR",
-        "difficulty": 500,
-        "category": "Parnasianismo",
-        "discipline": "Português",
-        "num_mcq": 1,
-        "num_discursive": 1,
-    },
-    {
-        "grade": 80,
+        "grade": 120,
         "locale": "pt_BR",
         "difficulty": 300,
         "category": "Substantivos",
@@ -100,6 +79,57 @@ REQUESTS = [
         "num_mcq": 1,
         "num_discursive": 1,
     },
+    {
+        "grade": 80,
+        "locale": "pt_BR",
+        "difficulty": 300,
+        "category": "Interpretação de Texto",
+        "discipline": "Português",
+        "num_mcq": 1,
+        "num_discursive": 1,
+    },
+    {
+        "grade": 120,
+        "locale": "pt_BR",
+        "difficulty": 500,
+        "category": "Substantivo",
+        "discipline": "Português",
+        "num_mcq": 1,
+        "num_discursive": 1,
+    },
+    {
+        "grade": 60,
+        "locale": "pt_BR",
+        "difficulty": 500,
+        "category": "Substantivo",
+        "discipline": "Português",
+        "num_mcq": 1,
+        "num_discursive": 1,
+    },
+    # -------------------------------------------------------------------------
+    # Science
+    # -------------------------------------------------------------------------
+    {
+        "grade": 60,
+        "locale": "en_US",
+        "difficulty": 300,
+        "category": "Human Body: Digestive System",
+        "discipline": "Science",
+        "num_mcq": 1,
+        "num_discursive": 1,
+    },
+    # -------------------------------------------------------------------------
+    # Ciências
+    # -------------------------------------------------------------------------
+    {
+        "grade": 90,
+        "locale": "pt_BR",
+        "difficulty": 500,
+        "category": "Estequiometria Básica",
+        "discipline": "Ciências",
+        "num_mcq": 1,
+        "num_discursive": 1,
+    },
     # -------------------------------------------------------------------------
     # Science
     # -------------------------------------------------------------------------
@@ -107,43 +137,31 @@ REQUESTS = [
         "grade": 80,
         "locale": "en_US",
         "difficulty": 300,
-        "category": "Energy Transformation",
+        "category": "Human Body: Human Reproduction",
         "discipline": "Science",
         "num_mcq": 1,
         "num_discursive": 1,
     },
+    # -------------------------------------------------------------------------
+    # Ciências
+    # -------------------------------------------------------------------------
     {
-        "grade": 60,
-        "locale": "en_US",
+        "grade": 70,
+        "locale": "pt_BR",
         "difficulty": 300,
-        "category": "Human Body: Circulatory System",
-        "discipline": "Science",
+        "category": "Novos Materiais e Tecnologias",
+        "discipline": "Ciências",
         "num_mcq": 1,
         "num_discursive": 1,
     },
-    {
-        "grade": 90,
-        "locale": "en_US",
-        "difficulty": 300,
-        "category": "Human Body: Gametes and Transmission of Traits",
-        "discipline": "Science",
-        "num_mcq": 1,
-        "num_discursive": 1,
-    },
-    {
-        "grade": 60,
-        "locale": "en_US",
-        "difficulty": 300,
-        "category": "Earth Study",
-        "discipline": "Science",
-        "num_mcq": 1,
-        "num_discursive": 1,
-    },
+    # -------------------------------------------------------------------------
+    # Science
+    # -------------------------------------------------------------------------
     {
         "grade": 90,
         "locale": "en_US",
         "difficulty": 500,
-        "category": "Basic Stoichiometry",
+        "category": "Phases of the Moon",
         "discipline": "Science",
         "num_mcq": 1,
         "num_discursive": 1,
@@ -152,10 +170,10 @@ REQUESTS = [
     # História
     # -------------------------------------------------------------------------
     {
-        "grade": 70,
+        "grade": 80,
         "locale": "pt_BR",
         "difficulty": 300,
-        "category": "Grandes Navegações",
+        "category": "Independências Latino-Americanas: Formação das Primeiras Repúblicas",
         "discipline": "História",
         "num_mcq": 1,
         "num_discursive": 1,
@@ -164,28 +182,19 @@ REQUESTS = [
     # History
     # -------------------------------------------------------------------------
     {
-        "grade": 110,
-        "locale": "en_US",
-        "difficulty": 700,
-        "category": "Dictatorial Regimes in Latin America",
-        "discipline": "History",
-        "num_mcq": 1,
-        "num_discursive": 1,
-    },
-    {
         "grade": 80,
         "locale": "en_US",
         "difficulty": 300,
-        "category": "USA and Latin America: International Relations",
+        "category": "French Revolution: Constitutional Monarchy, National Convention, and Directory",
         "discipline": "History",
         "num_mcq": 1,
         "num_discursive": 1,
     },
     {
-        "grade": 60,
+        "grade": 90,
         "locale": "en_US",
         "difficulty": 300,
-        "category": "Ancient Egypt: Introduction",
+        "category": "World War II",
         "discipline": "History",
         "num_mcq": 1,
         "num_discursive": 1,
@@ -194,32 +203,23 @@ REQUESTS = [
     # História
     # -------------------------------------------------------------------------
     {
-        "grade": 110,
+        "grade": 70,
         "locale": "pt_BR",
-        "difficulty": 500,
-        "category": "Guerra Fria: Formação de Blocos",
+        "difficulty": 300,
+        "category": "Monarquias Absolutas",
         "discipline": "História",
         "num_mcq": 1,
         "num_discursive": 1,
     },
     # -------------------------------------------------------------------------
-    # Geography
+    # History
     # -------------------------------------------------------------------------
     {
         "grade": 100,
         "locale": "en_US",
         "difficulty": 500,
-        "category": "Fundamentals of Geography",
-        "discipline": "Geography",
-        "num_mcq": 1,
-        "num_discursive": 1,
-    },
-    {
-        "grade": 70,
-        "locale": "en_US",
-        "difficulty": 300,
-        "category": "Conscious Consumption and Circulation of Goods",
-        "discipline": "Geography",
+        "category": "Spanish Colonization: Economy, Politics, Society, Colonial Pact, and Slavery",
+        "discipline": "History",
         "num_mcq": 1,
         "num_discursive": 1,
     },
@@ -227,29 +227,80 @@ REQUESTS = [
     # Geografia
     # -------------------------------------------------------------------------
     {
-        "grade": 60,
+        "grade": 110,
+        "locale": "pt_BR",
+        "difficulty": 700,
+        "category": "América Latina: Governos de Esquerda",
+        "discipline": "Geografia",
+        "num_mcq": 1,
+        "num_discursive": 1,
+    },
+    # -------------------------------------------------------------------------
+    # Geography
+    # -------------------------------------------------------------------------
+    {
+        "grade": 110,
+        "locale": "en_US",
+        "difficulty": 700,
+        "category": "Europe: EURO and the Trade Blocks",
+        "discipline": "Geography",
+        "num_mcq": 1,
+        "num_discursive": 1,
+    },
+    {
+        "grade": 120,
+        "locale": "en_US",
+        "difficulty": 700,
+        "category": "Energy Sources: Renewable Energies: Review",
+        "discipline": "Geography",
+        "num_mcq": 1,
+        "num_discursive": 1,
+    },
+    {
+        "grade": 110,
+        "locale": "en_US",
+        "difficulty": 700,
+        "category": "Europe: EURO and the Trade Blocks",
+        "discipline": "Geography",
+        "num_mcq": 1,
+        "num_discursive": 1,
+    },
+    {
+        "grade": 120,
+        "locale": "en_US",
+        "difficulty": 700,
+        "category": "Modes and Transportation: Review",
+        "discipline": "Geography",
+        "num_mcq": 1,
+        "num_discursive": 1,
+    },
+    # -------------------------------------------------------------------------
+    # Biologia
+    # -------------------------------------------------------------------------
+    {
+        "grade": 120,
         "locale": "pt_BR",
         "difficulty": 300,
-        "category": "Terra: Placas Tectônicas",
-        "discipline": "Geografia",
+        "category": "Genética: 1ª Lei de Mendel",
+        "discipline": "Biologia",
         "num_mcq": 1,
         "num_discursive": 1,
     },
     {
-        "grade": 110,
+        "grade": 120,
         "locale": "pt_BR",
-        "difficulty": 700,
-        "category": "Centro-Oeste: Crescimento Regional, Desmatamento e seus Biomas",
-        "discipline": "Geografia",
+        "difficulty": 300,
+        "category": "Evolução",
+        "discipline": "Biologia",
         "num_mcq": 1,
         "num_discursive": 1,
     },
     {
-        "grade": 110,
+        "grade": 100,
         "locale": "pt_BR",
-        "difficulty": 700,
-        "category": "MERCOSUL: Características e Membros",
-        "discipline": "Geografia",
+        "difficulty": 300,
+        "category": "Animais: Sistema Respiratório",
+        "discipline": "Biologia",
         "num_mcq": 1,
         "num_discursive": 1,
     },
@@ -257,46 +308,19 @@ REQUESTS = [
     # Biology
     # -------------------------------------------------------------------------
     {
-        "grade": 100,
-        "locale": "en_US",
-        "difficulty": 300,
-        "category": "Monera Kingdom: Bacteria",
-        "discipline": "Biology",
-        "num_mcq": 1,
-        "num_discursive": 1,
-    },
-    {
-        "grade": 120,
-        "locale": "en_US",
-        "difficulty": 300,
-        "category": "Genetics: Exercises",
-        "discipline": "Biology",
-        "num_mcq": 1,
-        "num_discursive": 1,
-    },
-    {
-        "grade": 120,
-        "locale": "en_US",
-        "difficulty": 300,
-        "category": "Genetics: Mendel's 1st Law",
-        "discipline": "Biology",
-        "num_mcq": 1,
-        "num_discursive": 1,
-    },
-    {
-        "grade": 100,
-        "locale": "en_US",
-        "difficulty": 300,
-        "category": "Environment: Pollution",
-        "discipline": "Biology",
-        "num_mcq": 1,
-        "num_discursive": 1,
-    },
-    {
         "grade": 110,
         "locale": "en_US",
         "difficulty": 300,
-        "category": "Biochemistry: Carbohydrates and Lipids",
+        "category": "Human Body: Endocrine System",
+        "discipline": "Biology",
+        "num_mcq": 1,
+        "num_discursive": 1,
+    },
+    {
+        "grade": 100,
+        "locale": "en_US",
+        "difficulty": 300,
+        "category": "Plant Kingdom: Plants",
         "discipline": "Biology",
         "num_mcq": 1,
         "num_discursive": 1,
@@ -305,10 +329,10 @@ REQUESTS = [
     # English
     # -------------------------------------------------------------------------
     {
-        "grade": 110,
+        "grade": 70,
         "locale": "en_US",
-        "difficulty": 500,
-        "category": "Past Continuous",
+        "difficulty": 300,
+        "category": "Prepositions of Time",
         "discipline": "English",
         "num_mcq": 1,
         "num_discursive": 1,
@@ -317,7 +341,16 @@ REQUESTS = [
         "grade": 60,
         "locale": "en_US",
         "difficulty": 300,
-        "category": "Vocabulary: How to Request Clarifications",
+        "category": "Verbs: Introduction to Present Continuous",
+        "discipline": "English",
+        "num_mcq": 1,
+        "num_discursive": 1,
+    },
+    {
+        "grade": 110,
+        "locale": "en_US",
+        "difficulty": 500,
+        "category": "Pronouns and Adjectives: Demonstratives",
         "discipline": "English",
         "num_mcq": 1,
         "num_discursive": 1,
@@ -332,19 +365,10 @@ REQUESTS = [
         "num_discursive": 1,
     },
     {
-        "grade": 70,
+        "grade": 90,
         "locale": "en_US",
         "difficulty": 300,
-        "category": "Prepositions of Time",
-        "discipline": "English",
-        "num_mcq": 1,
-        "num_discursive": 1,
-    },
-    {
-        "grade": 60,
-        "locale": "en_US",
-        "difficulty": 300,
-        "category": "Personal Routines and Information",
+        "category": "Reading and Text Comprehension",
         "discipline": "English",
         "num_mcq": 1,
         "num_discursive": 1,
@@ -356,25 +380,31 @@ REQUESTS = [
         "grade": 120,
         "locale": "pt_BR",
         "difficulty": 300,
-        "category": "Política e Poder",
+        "category": "Diversidade Cultural",
         "discipline": "Filosofia",
         "num_mcq": 1,
         "num_discursive": 1,
     },
+    # -------------------------------------------------------------------------
+    # Philosophy
+    # -------------------------------------------------------------------------
     {
         "grade": 120,
-        "locale": "pt_BR",
+        "locale": "en_US",
         "difficulty": 300,
-        "category": "Escolas Filosóficas: Antiga, Medieval, Moderna e Contemporânea",
-        "discipline": "Filosofia",
+        "category": "Identity",
+        "discipline": "Philosophy",
         "num_mcq": 1,
         "num_discursive": 1,
     },
+    # -------------------------------------------------------------------------
+    # Filosofia
+    # -------------------------------------------------------------------------
     {
         "grade": 100,
         "locale": "pt_BR",
         "difficulty": 300,
-        "category": "Subjetividade na Sociedade Contemporânea",
+        "category": "Pensamento Científico vs. Senso Comum",
         "discipline": "Filosofia",
         "num_mcq": 1,
         "num_discursive": 1,
@@ -386,17 +416,20 @@ REQUESTS = [
         "grade": 100,
         "locale": "en_US",
         "difficulty": 300,
-        "category": "Democracy and Citizenship",
+        "category": "Ethics in the Globalized World",
         "discipline": "Philosophy",
         "num_mcq": 1,
         "num_discursive": 1,
     },
+    # -------------------------------------------------------------------------
+    # Filosofia
+    # -------------------------------------------------------------------------
     {
         "grade": 120,
-        "locale": "en_US",
+        "locale": "pt_BR",
         "difficulty": 300,
-        "category": "Ethics and Will",
-        "discipline": "Philosophy",
+        "category": "Escolas Filosóficas: Antiga, Medieval, Moderna e Contemporânea",
+        "discipline": "Filosofia",
         "num_mcq": 1,
         "num_discursive": 1,
     },
@@ -407,7 +440,7 @@ REQUESTS = [
         "grade": 80,
         "locale": "pt_BR",
         "difficulty": 300,
-        "category": "Transformações nos Esportes",
+        "category": "Transformações em Esportes",
         "discipline": "Educação Física",
         "num_mcq": 1,
         "num_discursive": 1,
@@ -425,7 +458,7 @@ REQUESTS = [
         "grade": 120,
         "locale": "pt_BR",
         "difficulty": 300,
-        "category": "Esportes de Combate",
+        "category": "Futebol",
         "discipline": "Educação Física",
         "num_mcq": 1,
         "num_discursive": 1,
@@ -437,7 +470,7 @@ REQUESTS = [
         "grade": 100,
         "locale": "en_US",
         "difficulty": 300,
-        "category": "History of Sports",
+        "category": "Health and Sports",
         "discipline": "Physical Education",
         "num_mcq": 1,
         "num_discursive": 1,
@@ -449,7 +482,7 @@ REQUESTS = [
         "grade": 100,
         "locale": "pt_BR",
         "difficulty": 300,
-        "category": "Saúde e Esportes",
+        "category": "Atletismo",
         "discipline": "Educação Física",
         "num_mcq": 1,
         "num_discursive": 1,
@@ -458,47 +491,50 @@ REQUESTS = [
     # Physics
     # -------------------------------------------------------------------------
     {
-        "grade": 110,
+        "grade": 120,
         "locale": "en_US",
-        "difficulty": 500,
-        "category": "Calorimetry: Thermal Power",
+        "difficulty": 700,
+        "category": "Geometric Optics: Optical Instruments",
         "discipline": "Physics",
+        "num_mcq": 1,
+        "num_discursive": 1,
+    },
+    # -------------------------------------------------------------------------
+    # Física
+    # -------------------------------------------------------------------------
+    {
+        "grade": 120,
+        "locale": "pt_BR",
+        "difficulty": 700,
+        "category": "Ondas: Batimentos",
+        "discipline": "Física",
+        "num_mcq": 1,
+        "num_discursive": 1,
+    },
+    {
+        "grade": 120,
+        "locale": "pt_BR",
+        "difficulty": 700,
+        "category": "Lentes: Vergência",
+        "discipline": "Física",
         "num_mcq": 1,
         "num_discursive": 1,
     },
     {
         "grade": 110,
-        "locale": "en_US",
+        "locale": "pt_BR",
         "difficulty": 700,
-        "category": "Magnetism: Magnetic Flux",
-        "discipline": "Physics",
-        "num_mcq": 1,
-        "num_discursive": 1,
-    },
-    {
-        "grade": 110,
-        "locale": "en_US",
-        "difficulty": 700,
-        "category": "Magnetism: Faraday's Law",
-        "discipline": "Physics",
+        "category": "Magnetismo: Lei de Faraday",
+        "discipline": "Física",
         "num_mcq": 1,
         "num_discursive": 1,
     },
     {
         "grade": 100,
-        "locale": "en_US",
+        "locale": "pt_BR",
         "difficulty": 300,
-        "category": "Kinematics: Acceleration of Uniformly Varied Circular Motion",
-        "discipline": "Physics",
-        "num_mcq": 1,
-        "num_discursive": 1,
-    },
-    {
-        "grade": 110,
-        "locale": "en_US",
-        "difficulty": 500,
-        "category": "Calorimetry: Fourier's Law",
-        "discipline": "Physics",
+        "category": "Dinâmica: Força de Atrito",
+        "discipline": "Física",
         "num_mcq": 1,
         "num_discursive": 1,
     },
@@ -523,5 +559,5 @@ REQUESTS = [
 #   Science: 5 requests (10 questions)
 
 # Locale distribution:
-#   en_US: 33 requests
-#   pt_BR: 17 requests
+#   en_US: 23 requests
+#   pt_BR: 27 requests

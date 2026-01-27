@@ -96,8 +96,15 @@ def generate_requests_for_discipline(discipline, categories, target_questions=10
     # Calculate number of requests needed (2 questions per request)
     num_requests = target_questions // 2
 
-    # Prepare locale pool: 5 en_US + 5 pt_BR
-    locale_pool = [ENGLISH_LOCALE] * 5 + [PORTUGUESE_LOCALE] * 5
+    # Determine locale pool based on discipline
+    # Biology, Mathematics, Physics, and Science: English only
+    # Other disciplines: 5 en_US + 5 pt_BR
+    english_only_subjects = ["Biology", "Mathematics", "Physics", "Science"]
+
+    if discipline in english_only_subjects:
+        locale_pool = [ENGLISH_LOCALE] * num_requests
+    else:
+        locale_pool = [ENGLISH_LOCALE] * 5 + [PORTUGUESE_LOCALE] * 5
 
     requests = []
 

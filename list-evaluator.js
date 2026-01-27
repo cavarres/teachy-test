@@ -1,13 +1,17 @@
 // Global state
-let allQuestions = [];
-let questionLists = {}; // Grouped by discipline and grade
+let allQuestionLists = []; // Array of question lists from JSON
+let filteredQuestionLists = []; // Filtered lists based on selection
 let listKeys = []; // Array of list keys in order
 let currentListIndex = 0; // Index in listKeys array
 let currentListKey = null;
 let currentQuestionList = [];
+let currentListData = null; // The full list object with list_id and request_context
 let listContext = {};
 let evaluation = null;
 let listId = null;
+let userName = null;
+let selectedSubject = null;
+let selectedLanguage = null;
 
 // Discipline name mapping (Portuguese -> English) for normalization
 const DISCIPLINE_TRANSLATIONS_REVERSE = {
@@ -111,12 +115,21 @@ const criteria = {
 
 // Initialize
 document.addEventListener('DOMContentLoaded', () => {
+    loadFromLocalStorage();
     setupEventListeners();
     updateExportButton();
     loadJsonFile();
 });
 
 function setupEventListeners() {
+    // Selection page listeners
+    document.getElementById('userNameInput').addEventListener('input', validateSelection);
+    document.getElementById('subjectSelect').addEventListener('change', validateSelection);
+    document.getElementById('languageSelect').addEventListener('change', validateSelection);
+    document.getElementById('startEvaluatorBtn').addEventListener('click', startEvaluator);
+    
+    // Evaluator page listeners
+    document.getElementById('backToSelectionBtn').addEventListener('click', backToSelection);
     document.getElementById('listSelector').addEventListener('change', onListSelect);
     document.getElementById('exportYamlBtn').addEventListener('click', exportToYaml);
     document.getElementById('toggleCriteriaBtn').addEventListener('click', toggleCriteria);
@@ -167,7 +180,7 @@ function setupEventListeners() {
 
 function loadJsonFile() {
     const urlParams = new URLSearchParams(window.location.search);
-    const jsonFile = urlParams.get('json') || 'individual_questions_to_test_Jan26.json';
+    const jsonFile = urlParams.get('json') || 'list_of_questions_to_test_v3.json';
     
     fetch(jsonFile)
         .then(response => {
@@ -177,96 +190,212 @@ function loadJsonFile() {
             return response.json();
         })
         .then(jsonData => {
-            // Transform JSON questions to match expected format
-            allQuestions = (jsonData.questions || []).map((q, index) => {
-                // Get original discipline name
-                const originalDiscipline = q.disciplineName || q.request_context?.discipline || '';
-                // Normalize to English discipline name
-                const normalizedDiscipline = DISCIPLINE_TRANSLATIONS_REVERSE[originalDiscipline] || originalDiscipline;
-                
-                // Map JSON fields to expected format
-                const mappedQuestion = {
-                    question_id: `q_${index + 1}`, // Generate question_id if not present
-                    question_statement: q.question_statement || '',
-                    question_solution: q.question_solution || '',
-                    discipline: normalizedDiscipline, // Use normalized English name
-                    discipline_original: originalDiscipline, // Keep original for display if needed
-                    category: q.categoryName || q.request_context?.category || '',
-                    grade: q.grade || q.request_context?.grade || '',
-                    difficulty: q.difficulty || q.difficulty_level || '',
-                    type: q.type === 'multiple_choice' ? 'MCQ' : (q.type || 'discursive'),
-                    locale: q.request_context?.locale || '',
-                    language: q.request_context?.locale === 'pt_BR' ? 'Portuguese' : (q.request_context?.locale === 'en_US' ? 'English' : ''),
-                    // Handle answer and alternatives
-                    correct_answer: q.answer || '',
-                    incorrect_alternative_1: q.incorrect_alternatives && q.incorrect_alternatives[0] ? q.incorrect_alternatives[0] : '',
-                    incorrect_alternative_2: q.incorrect_alternatives && q.incorrect_alternatives[1] ? q.incorrect_alternatives[1] : '',
-                    incorrect_alternative_3: q.incorrect_alternatives && q.incorrect_alternatives[2] ? q.incorrect_alternatives[2] : '',
-                    incorrect_alternative_4: q.incorrect_alternatives && q.incorrect_alternatives[3] ? q.incorrect_alternatives[3] : ''
-                };
-                return mappedQuestion;
-            }).filter(q => q.question_statement && q.question_statement.trim() !== '');
+            // Load question_lists from the JSON
+            allQuestionLists = (jsonData.question_lists || []).filter(list => 
+                list.questions && Array.isArray(list.questions) && list.questions.length > 0
+            );
             
-            if (allQuestions.length === 0) {
-                document.getElementById('loadingMessage').innerHTML = '<p style="color: #e74c3c;">No valid questions found in JSON file.</p>';
+            if (allQuestionLists.length === 0) {
+                document.getElementById('selectionPage').innerHTML = '<p style="color: #e74c3c;">No valid question lists found in JSON file.</p>';
                 return;
             }
             
-            // Group questions by discipline and grade
-            groupQuestionsByDisciplineAndGrade();
+            // Populate subject dropdown
+            populateSelectionDropdowns();
             
-            // Populate list selector
-            populateListSelector();
-            
-            document.getElementById('loadingMessage').style.display = 'none';
-            document.getElementById('evaluatorInterface').style.display = 'block';
+            // Try to restore evaluator state after JSON loads
+            tryRestoreEvaluatorState();
         })
         .catch(error => {
             document.getElementById('loadingMessage').innerHTML = '<p style="color: #e74c3c;">Error loading JSON file: ' + error.message + '</p>';
         });
 }
 
-function groupQuestionsByDisciplineAndGrade() {
-    questionLists = {};
+function transformQuestion(q, index) {
+    // Get original discipline name
+    const originalDiscipline = q.disciplineName || q.request_context?.discipline || '';
+    // Normalize to English discipline name
+    const normalizedDiscipline = DISCIPLINE_TRANSLATIONS_REVERSE[originalDiscipline] || originalDiscipline;
     
-    allQuestions.forEach(question => {
-        const discipline = question.discipline || 'Unknown';
-        const grade = question.grade || 'Unknown';
-        const key = `${discipline}_${grade}`;
-        
-        if (!questionLists[key]) {
-            questionLists[key] = {
-                discipline: discipline,
-                grade: grade,
-                questions: []
-            };
+    // Map JSON fields to expected format
+    const mappedQuestion = {
+        question_id: `q_${index + 1}`, // Generate question_id if not present
+        question_statement: q.question_statement || '',
+        question_solution: q.question_solution || '',
+        discipline: normalizedDiscipline, // Use normalized English name
+        discipline_original: originalDiscipline, // Keep original for display if needed
+        category: q.categoryName || q.request_context?.category || '',
+        grade: q.grade || q.request_context?.grade || '',
+        difficulty: q.difficulty || q.difficulty_level || '',
+        type: q.type === 'multiple_choice' ? 'MCQ' : (q.type || 'discursive'),
+        locale: q.request_context?.locale || '',
+        language: q.request_context?.locale === 'pt_BR' ? 'Portuguese' : (q.request_context?.locale === 'en_US' ? 'English' : ''),
+        // Handle answer and alternatives
+        correct_answer: q.answer || '',
+        incorrect_alternative_1: q.incorrect_alternatives && q.incorrect_alternatives[0] ? q.incorrect_alternatives[0] : '',
+        incorrect_alternative_2: q.incorrect_alternatives && q.incorrect_alternatives[1] ? q.incorrect_alternatives[1] : '',
+        incorrect_alternative_3: q.incorrect_alternatives && q.incorrect_alternatives[2] ? q.incorrect_alternatives[2] : '',
+        incorrect_alternative_4: q.incorrect_alternatives && q.incorrect_alternatives[3] ? q.incorrect_alternatives[3] : ''
+    };
+    return mappedQuestion;
+}
+
+function populateSelectionDropdowns() {
+    // Get unique subjects from all question lists
+    const subjects = new Set();
+    
+    allQuestionLists.forEach(list => {
+        const reqCtx = list.request_context || {};
+        const discipline = reqCtx.discipline || '';
+        if (discipline && discipline.trim() !== '') {
+            // Normalize to English discipline name
+            const normalizedDiscipline = DISCIPLINE_TRANSLATIONS_REVERSE[discipline.trim()] || discipline.trim();
+            subjects.add(normalizedDiscipline);
         }
-        
-        questionLists[key].questions.push(question);
     });
     
-    // Sort questions within each list by difficulty if available
-    Object.keys(questionLists).forEach(key => {
-        questionLists[key].questions.sort((a, b) => {
-            const diffA = parseInt(a.difficulty) || 0;
-            const diffB = parseInt(b.difficulty) || 0;
-            return diffA - diffB;
-        });
+    // Populate subject dropdown
+    const subjectSelect = document.getElementById('subjectSelect');
+    const sortedSubjects = Array.from(subjects).sort();
+    
+    // Add "All Subjects" option first
+    const allOption = document.createElement('option');
+    allOption.value = 'ALL';
+    allOption.textContent = 'All Subjects';
+    subjectSelect.appendChild(allOption);
+    
+    // Add individual subjects
+    sortedSubjects.forEach(subject => {
+        const option = document.createElement('option');
+        option.value = subject;
+        option.textContent = subject;
+        subjectSelect.appendChild(option);
     });
+}
+
+function validateSelection() {
+    const userNameInput = document.getElementById('userNameInput');
+    const subjectSelect = document.getElementById('subjectSelect');
+    const languageSelect = document.getElementById('languageSelect');
+    const startBtn = document.getElementById('startEvaluatorBtn');
+    
+    if (userNameInput.value.trim() && subjectSelect.value && languageSelect.value) {
+        startBtn.disabled = false;
+    } else {
+        startBtn.disabled = true;
+    }
+}
+
+function startEvaluator() {
+    userName = document.getElementById('userNameInput').value.trim();
+    selectedSubject = document.getElementById('subjectSelect').value;
+    selectedLanguage = document.getElementById('languageSelect').value;
+    
+    if (!userName) {
+        alert('Please enter your name.');
+        return;
+    }
+    
+    if (!selectedSubject) {
+        alert('Please select a subject or "All Subjects".');
+        return;
+    }
+    
+    if (!selectedLanguage) {
+        alert('Please select a language.');
+        return;
+    }
+    
+    // Filter lists based on subject
+    if (selectedSubject === 'ALL') {
+        filteredQuestionLists = allQuestionLists;
+    } else {
+        filteredQuestionLists = allQuestionLists.filter(list => {
+            const reqCtx = list.request_context || {};
+            const discipline = reqCtx.discipline || '';
+            const normalizedDiscipline = DISCIPLINE_TRANSLATIONS_REVERSE[discipline.trim()] || discipline.trim();
+            return normalizedDiscipline === selectedSubject;
+        });
+    }
+    
+    // Filter by language (locale)
+    if (selectedLanguage !== 'BOTH') {
+        filteredQuestionLists = filteredQuestionLists.filter(list => {
+            const reqCtx = list.request_context || {};
+            const locale = (reqCtx.locale || '').trim();
+            if (selectedLanguage === 'English') {
+                return locale === 'en_US';
+            } else if (selectedLanguage === 'Portuguese') {
+                return locale === 'pt_BR';
+            }
+            return false;
+        });
+    }
+    
+    if (filteredQuestionLists.length === 0) {
+        alert('No question lists found matching your selection. Please try different criteria.');
+        return;
+    }
+    
+    // Save selection to localStorage
+    saveToLocalStorage();
+    
+    // Hide selection page and show evaluator page
+    document.getElementById('selectionPage').style.display = 'none';
+    document.getElementById('evaluatorPage').style.display = 'block';
+    
+    // Update display
+    document.getElementById('selectedSubjectDisplay').textContent = selectedSubject === 'ALL' ? 'All Subjects' : selectedSubject;
+    document.getElementById('selectedLanguageDisplay').textContent = selectedLanguage;
+    
+    // Populate list selector with filtered lists
+    populateListSelector();
+    
+    document.getElementById('loadingMessage').style.display = 'none';
+    document.getElementById('evaluatorInterface').style.display = 'block';
+}
+
+function backToSelection() {
+    // Clear the saved selection state
+    clearSelectionState();
+    
+    // Show selection page and hide evaluator page
+    document.getElementById('selectionPage').style.display = 'block';
+    document.getElementById('evaluatorPage').style.display = 'none';
+    
+    // Reset form
+    const userNameInput = document.getElementById('userNameInput');
+    if (userNameInput) userNameInput.value = userName || '';
+    const subjectSelect = document.getElementById('subjectSelect');
+    if (subjectSelect && selectedSubject) {
+        subjectSelect.value = selectedSubject;
+    }
+    const languageSelect = document.getElementById('languageSelect');
+    if (languageSelect && selectedLanguage) {
+        languageSelect.value = selectedLanguage;
+    }
+    
+    // Validate selection
+    validateSelection();
 }
 
 function populateListSelector() {
     const selector = document.getElementById('listSelector');
     selector.innerHTML = '<option value="">Select a list...</option>';
     
-    // Store sorted keys in array for navigation
-    listKeys = Object.keys(questionLists).sort();
+    // Store list indices in array for navigation
+    listKeys = filteredQuestionLists.map((list, index) => index);
     
-    listKeys.forEach(key => {
-        const list = questionLists[key];
+    filteredQuestionLists.forEach((list, index) => {
+        const reqCtx = list.request_context || {};
+        const discipline = DISCIPLINE_TRANSLATIONS_REVERSE[reqCtx.discipline] || reqCtx.discipline || 'Unknown';
+        const grade = formatGrade(reqCtx.grade || '');
+        const category = reqCtx.category || 'No category';
+        const numQuestions = list.questions ? list.questions.length : 0;
+        
         const option = document.createElement('option');
-        option.value = key;
-        option.textContent = `${list.discipline} - ${formatGrade(list.grade)} (${list.questions.length} questions)`;
+        option.value = index.toString();
+        option.textContent = `List ${list.list_id || index + 1}: ${discipline} - ${grade} - ${category} (${numQuestions} questions)`;
         selector.appendChild(option);
     });
     
@@ -276,21 +405,32 @@ function populateListSelector() {
 
 function onListSelect() {
     const selector = document.getElementById('listSelector');
-    const selectedKey = selector.value;
+    const selectedIndex = parseInt(selector.value);
     
-    if (!selectedKey || !questionLists[selectedKey]) {
+    if (isNaN(selectedIndex) || selectedIndex < 0 || selectedIndex >= filteredQuestionLists.length) {
         currentListKey = null;
         currentListIndex = -1;
         currentQuestionList = [];
+        currentListData = null;
         return;
     }
     
-    // Find the index of the selected list
-    currentListIndex = listKeys.indexOf(selectedKey);
-    currentListKey = selectedKey;
-    currentQuestionList = questionLists[selectedKey].questions;
+    // Get the selected list from filtered lists
+    currentListIndex = selectedIndex;
+    currentListKey = selectedIndex.toString();
+    currentListData = filteredQuestionLists[selectedIndex];
     
-    // Extract list context
+    // Transform questions to match expected format
+    currentQuestionList = (currentListData.questions || []).map((q, qIndex) => transformQuestion(q, qIndex))
+        .filter(q => q.question_statement && q.question_statement.trim() !== '')
+        .sort((a, b) => {
+            // Sort by difficulty if available
+            const diffA = parseInt(a.difficulty) || 0;
+            const diffB = parseInt(b.difficulty) || 0;
+            return diffA - diffB;
+        });
+    
+    // Extract list context from request_context
     extractListContext();
     
     // Generate list ID
@@ -317,24 +457,27 @@ function onListSelect() {
 }
 
 function extractListContext() {
-    if (currentQuestionList.length === 0) return;
+    if (!currentListData || !currentListData.request_context) return;
     
-    const firstQuestion = currentQuestionList[0];
+    const reqCtx = currentListData.request_context;
     listContext = {
-        grade: firstQuestion.grade || 'Not specified',
-        locale: firstQuestion.locale || 'Not specified',
-        category: firstQuestion.category || 'Not specified',
-        discipline: firstQuestion.discipline || 'Not specified',
-        numMultipleChoice: currentQuestionList.filter(q => q.type === 'MCQ').length,
-        numDiscursive: currentQuestionList.filter(q => q.type !== 'MCQ').length,
-        teacherInput: firstQuestion.teacher_input || null,
-        uploadedFiles: firstQuestion.uploaded_files ? firstQuestion.uploaded_files.split(',').map(f => f.trim()) : []
+        grade: reqCtx.grade || 'Not specified',
+        locale: reqCtx.locale || 'Not specified',
+        category: reqCtx.category || 'Not specified',
+        discipline: DISCIPLINE_TRANSLATIONS_REVERSE[reqCtx.discipline] || reqCtx.discipline || 'Not specified',
+        difficulty: reqCtx.difficulty || 'Not specified',
+        numMultipleChoice: reqCtx.num_mcq_requested || currentQuestionList.filter(q => q.type === 'MCQ').length,
+        numDiscursive: reqCtx.num_discursive_requested || currentQuestionList.filter(q => q.type !== 'MCQ').length,
+        list_id: currentListData.list_id || null,
+        teacherInput: null, // Not in this data structure
+        uploadedFiles: [] // Not in this data structure
     };
 }
 
 function generateListId() {
-    if (!currentListKey) return null;
-    const hash = currentListKey + '_' + currentQuestionList.length;
+    if (!currentListData) return null;
+    const listIdNum = currentListData.list_id || currentListIndex;
+    const hash = `list_${listIdNum}_${currentQuestionList.length}`;
     return 'list_' + btoa(hash).replace(/[^a-zA-Z0-9]/g, '').substring(0, 16);
 }
 
@@ -439,7 +582,7 @@ function getMCQDetail(question) {
 }
 
 function updateListNavigation() {
-    if (listKeys.length === 0) {
+    if (filteredQuestionLists.length === 0) {
         document.getElementById('questionCounter').textContent = 'No lists available';
         document.getElementById('prevBtn').disabled = true;
         document.getElementById('nextBtn').disabled = true;
@@ -447,11 +590,12 @@ function updateListNavigation() {
     }
     
     // Update counter to show list number
-    document.getElementById('questionCounter').textContent = `List ${currentListIndex + 1} of ${listKeys.length}`;
+    const listIdNum = currentListData ? (currentListData.list_id || currentListIndex + 1) : currentListIndex + 1;
+    document.getElementById('questionCounter').textContent = `List ${listIdNum} of ${filteredQuestionLists.length}`;
     
     // Update navigation buttons
     document.getElementById('prevBtn').disabled = currentListIndex === 0;
-    document.getElementById('nextBtn').disabled = currentListIndex === listKeys.length - 1;
+    document.getElementById('nextBtn').disabled = currentListIndex === filteredQuestionLists.length - 1;
 }
 
 function selectQuestion(index) {
@@ -468,10 +612,9 @@ function selectQuestion(index) {
 
 function navigateQuestion(direction) {
     const newListIndex = currentListIndex + direction;
-    if (newListIndex >= 0 && newListIndex < listKeys.length) {
+    if (newListIndex >= 0 && newListIndex < filteredQuestionLists.length) {
         // Update selector to the new list
-        const newListKey = listKeys[newListIndex];
-        document.getElementById('listSelector').value = newListKey;
+        document.getElementById('listSelector').value = newListIndex.toString();
         // Trigger the list selection
         onListSelect();
     }
@@ -665,7 +808,8 @@ function saveEvaluation() {
         max_possible_score: 16,
         percentage: percentage,
         summary: summary || null,
-        evaluated_at: new Date().toISOString()
+        evaluated_at: new Date().toISOString(),
+        evaluator_name: userName || null
     };
     
     saveToLocalStorage();
@@ -710,8 +854,92 @@ function saveToLocalStorage() {
         if (listId && evaluation) {
             localStorage.setItem(`listEvaluation_${listId}`, JSON.stringify(evaluation));
         }
+        // Save selection state
+        saveSelectionState();
     } catch (e) {
         console.warn('Could not save to localStorage:', e);
+    }
+}
+
+function loadFromLocalStorage() {
+    try {
+        const savedUserName = localStorage.getItem('listEvaluatorUserName');
+        if (savedUserName) {
+            userName = savedUserName;
+            const userNameInput = document.getElementById('userNameInput');
+            if (userNameInput) {
+                userNameInput.value = savedUserName;
+            }
+        }
+    } catch (e) {
+        console.warn('Could not load from localStorage:', e);
+    }
+}
+
+function saveSelectionState() {
+    try {
+        const selectionState = {
+            userName: userName,
+            subject: selectedSubject,
+            language: selectedLanguage,
+            currentListIndex: currentListIndex
+        };
+        localStorage.setItem('listEvaluatorSelectionState', JSON.stringify(selectionState));
+        if (userName) {
+            localStorage.setItem('listEvaluatorUserName', userName);
+        }
+    } catch (e) {
+        console.warn('Could not save selection state to localStorage:', e);
+    }
+}
+
+function clearSelectionState() {
+    try {
+        localStorage.removeItem('listEvaluatorSelectionState');
+    } catch (e) {
+        console.warn('Could not clear selection state from localStorage:', e);
+    }
+}
+
+function tryRestoreEvaluatorState() {
+    try {
+        const savedState = localStorage.getItem('listEvaluatorSelectionState');
+        if (!savedState) {
+            return; // No saved state, show selection page
+        }
+        
+        const selectionState = JSON.parse(savedState);
+        if (!selectionState.userName || !selectionState.subject || !selectionState.language) {
+            return; // Invalid state, show selection page
+        }
+        
+        // Restore the state
+        userName = selectionState.userName;
+        selectedSubject = selectionState.subject;
+        selectedLanguage = selectionState.language;
+        currentListIndex = selectionState.currentListIndex || 0;
+        
+        // Restore form values
+        const userNameInput = document.getElementById('userNameInput');
+        const subjectSelect = document.getElementById('subjectSelect');
+        const languageSelect = document.getElementById('languageSelect');
+        
+        if (userNameInput) userNameInput.value = userName;
+        if (subjectSelect) subjectSelect.value = selectedSubject;
+        if (languageSelect) languageSelect.value = selectedLanguage;
+        
+        // Validate and enable start button
+        validateSelection();
+        
+        // Auto-start evaluator if all fields are valid
+        if (userName && selectedSubject && selectedLanguage) {
+            // Use setTimeout to ensure DOM is ready
+            setTimeout(() => {
+                startEvaluator();
+            }, 100);
+        }
+    } catch (e) {
+        console.warn('Could not restore evaluator state:', e);
     }
 }
 

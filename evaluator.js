@@ -106,7 +106,7 @@ function setupEventListeners() {
 }
 
 function loadJsonFile() {
-    fetch('individual_questions_to_test_Jan26.json')
+    fetch('individual_questions_to_test_v3.json')
         .then(response => {
             if (!response.ok) {
                 throw new Error('Could not load JSON file');

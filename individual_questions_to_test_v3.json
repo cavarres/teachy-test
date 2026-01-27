@@ -1,0 +1,3162 @@
+{
+  "generated_at": "2026-01-27 11:04:17",
+  "model_used": "default",
+  "total_questions": 98,
+  "questions": [
+    {
+      "question_statement": "A video game is originally priced at $60. During a sale, the store offers a 20% discount on all video games. What is the final price of the video game after the discount is applied?",
+      "question_solution": "To find the discount amount, calculate 20% of $60. \\n{{MATH}} 0.20 \\times 60 = 12 {{/MATH}}\\nSo, the discount is $12. \\nTo find the final price, subtract the discount from the original price. \\n{{MATH}} 60 - 12 = 48 {{/MATH}}\\nThe final price of the video game is $48.",
+      "keywords": [
+        "percentage",
+        "discount",
+        "sale price",
+        "subtraction",
+        "mathematics"
+      ],
+      "difficulty": 300,
+      "topic": "Percentage: Discounts in Mathematics",
+      "type": "multiple_choice",
+      "answer": "$48",
+      "incorrect_alternatives": [
+        "$12",
+        "$72",
+        "$50"
+      ],
+      "difficulty_level": 300,
+      "ai_model": "gemini-2.5-flash",
+      "grade": 80,
+      "education_level": 20,
+      "categoryName": "Percentage: Discounts or Percentage Increases",
+      "categoryId": "",
+      "disciplineName": "Mathematics",
+      "disciplineId": "",
+      "request_context": {
+        "grade": 80,
+        "locale": "en_US",
+        "difficulty": 300,
+        "category": "Percentage: Discounts or Percentage Increases",
+        "discipline": "Mathematics"
+      }
+    },
+    {
+      "question_statement": "A student's test score increased from 75 points to 90 points. Determine the percentage increase in the student's score.",
+      "question_solution": "First, find the amount of increase in the score: \\n{{MATH}} 90 - 75 = 15 {{/MATH}} points.\\nNext, calculate the percentage increase using the formula: \\n{{MATH}} \\text{Percentage Increase} = \\frac{\\text{Amount of Increase}}{\\text{Original Amount}} \\times 100\\% {{/MATH}}\\nSubstitute the values: \\n{{MATH}} \\text{Percentage Increase} = \\frac{15}{75} \\times 100\\% {{/MATH}}\\n{{MATH}} \\text{Percentage Increase} = 0.2 \\times 100\\% {{/MATH}}\\n{{MATH}} \\text{Percentage Increase} = 20\\% {{/MATH}}\\nThe percentage increase in the student's score is 20%.",
+      "keywords": [
+        "percentage",
+        "increase",
+        "score",
+        "ratio",
+        "mathematics"
+      ],
+      "difficulty": 300,
+      "topic": "Percentage: Percentage Increases in Mathematics",
+      "type": "discursive",
+      "difficulty_level": 300,
+      "ai_model": "gemini-2.5-flash",
+      "grade": 80,
+      "education_level": 20,
+      "categoryName": "Percentage: Discounts or Percentage Increases",
+      "categoryId": "",
+      "disciplineName": "Mathematics",
+      "disciplineId": "",
+      "request_context": {
+        "grade": 80,
+        "locale": "en_US",
+        "difficulty": 300,
+        "category": "Percentage: Discounts or Percentage Increases",
+        "discipline": "Mathematics"
+      }
+    },
+    {
+      "question_statement": "Consider two solids, Solid P and Solid Q. Solid P is a right circular cylinder with a base radius of {{MATH}} r {{/MATH}} and a height of {{MATH}} h {{/MATH}}. Solid Q is an oblique prism whose base is an ellipse with an area equal to the circular base of Solid P, and its perpendicular height is also {{MATH}} h {{/MATH}}. If a plane parallel to their respective bases intersects both solids at any height {{MATH}} y {{/MATH}} (where {{MATH}} 0 < y < h {{/MATH}}), which of the following statements about their volumes is correct, based on Cavalieri's Principle in Spatial Geometry?",
+      "question_solution": "Cavalieri's Principle states that if two solids lie between two parallel planes, and if every plane parallel to these two planes intersects both solids in cross-sections of equal area, then the two solids have the same volume. In this problem, Solid P (right circular cylinder) and Solid Q (oblique prism with an elliptical base) both have a height of {{MATH}} h {{/MATH}}. The problem specifies that the base area of Solid Q (ellipse) is equal to the base area of Solid P (circle). A key property of cylinders and prisms is that any cross-section parallel to the base has an area identical to the base area itself, regardless of whether the solid is right or oblique. Therefore, for any height {{MATH}} y {{/MATH}}, the cross-sectional area of Solid P will be {{MATH}} \\pi r^2 {{/MATH}}, and the cross-sectional area of Solid Q will also be {{MATH}} \\pi r^2 {{/MATH}} (since its elliptical base area is equal to the circular base area of Solid P). Since both solids have the same height and their cross-sectional areas are equal at every corresponding height, according to Cavalieri's Principle, their volumes must be equal. Therefore, the volume of Solid P is equal to the volume of Solid Q.",
+      "keywords": [
+        "Cavalieri's Principle",
+        "Volume",
+        "Cylinder",
+        "Prism",
+        "Cross-sectional area"
+      ],
+      "difficulty": 700,
+      "topic": "Spatial Geometry: Cavalieri's Principle applied to volumes of a cylinder and an oblique prism",
+      "type": "multiple_choice",
+      "answer": "The volume of Solid P is equal to the volume of Solid Q.",
+      "incorrect_alternatives": [
+        "The volume of Solid P is greater than the volume of Solid Q due to its regular shape.",
+        "The volume of Solid Q is greater than the volume of Solid P because of its elliptical base.",
+        "The relationship between their volumes cannot be determined without knowing the exact dimensions of the elliptical base.",
+        "Cavalieri's Principle is not applicable here because Solid Q is an oblique prism."
+      ],
+      "difficulty_level": 700,
+      "ai_model": "gemini-2.5-flash",
+      "grade": 110,
+      "education_level": 30,
+      "categoryName": "Spatial Geometry: Cavalieri's Principle",
+      "categoryId": "",
+      "disciplineName": "Mathematics",
+      "disciplineId": "",
+      "request_context": {
+        "grade": 110,
+        "locale": "en_US",
+        "difficulty": 700,
+        "category": "Spatial Geometry: Cavalieri's Principle",
+        "discipline": "Mathematics"
+      }
+    },
+    {
+      "question_statement": "A sculptor creates two abstract solid objects, Object A and Object B, positioned on a flat surface. Object A has a circular base with radius {{MATH}} R {{/MATH}} and gradually tapers to a single point directly above the center of its base, reaching a maximum height of {{MATH}} H {{/MATH}}. Object B has an irregular polygonal base whose area is exactly equal to the circular base area of Object A. Object B also tapers to a single point, but this point is not necessarily directly above the center of its base, and it also reaches a maximum height of {{MATH}} H {{/MATH}}. When a horizontal plane slices through both objects at any height {{MATH}} h {{/MATH}} above their bases (where {{MATH}} 0 < h < H {{/MATH}}), the cross-sectional area of Object A is given by {{MATH}} A_A(h) = \\pi R^2 \\left(1 - \\frac{h}{H}\\right)^2 {{/MATH}}, and the cross-sectional area of Object B is given by {{MATH}} A_B(h) = \\text{Area of polygonal base} \\times \\left(1 - \\frac{h}{H}\\right)^2 {{/MATH}}. Based on the principles of Spatial Geometry, justify the comparison of their volumes.",
+      "question_solution": "To compare the volumes of Object A and Object B, we must apply Cavalieri's Principle. This principle states that if two solids lie between two parallel planes, and if every plane parallel to these two planes intersects both solids in cross-sections of equal area, then the two solids have the same volume. \\\\ \\n \\n 1. **Establish Parallel Planes and Height:** Both objects are positioned on a flat surface (representing a lower parallel plane, {{MATH}} h=0 {{/MATH}}) and reach a maximum height of {{MATH}} H {{/MATH}} (representing an upper parallel plane, {{MATH}} h=H {{/MATH}}). Therefore, they lie between the same two parallel planes. \\\\ \\n 2. **Compare Base Areas:** The problem states that Object A has a circular base with radius {{MATH}} R {{/MATH}}, so its base area is {{MATH}} \\pi R^2 {{/MATH}}. Object B has an irregular polygonal base whose area is exactly equal to the circular base area of Object A. Thus, \\text{Area of polygonal base} = \\pi R^2 {{/MATH}}. \\\\ \\n 3. **Compare Cross-sectional Areas:** For any horizontal plane at a height {{MATH}} h {{/MATH}}, the cross-sectional area of Object A is given by {{MATH}} A_A(h) = \\pi R^2 \\left(1 - \\frac{h}{H}\\right)^2 {{/MATH}}. The cross-sectional area of Object B is given by {{MATH}} A_B(h) = \\text{Area of polygonal base} \\times \\left(1 - \\frac{h}{H}\\right)^2 {{/MATH}}. Since we established that \\text{Area of polygonal base} = \\pi R^2 {{/MATH}}, it follows that {{MATH}} A_B(h) = \\pi R^2 \\left(1 - \\frac{h}{H}\\right)^2 {{/MATH}}. Therefore, for every corresponding height {{MATH}} h {{/MATH}}, the cross-sectional area of Object A is equal to the cross-sectional area of Object B (i.e., {{MATH}} A_A(h) = A_B(h) {{/MATH}}). \\\\ \\n 4. **Conclusion by Cavalieri's Principle:** Since both objects have the same height and, at every corresponding height, their cross-sectional areas are equal, Cavalieri's Principle dictates that the volume of Object A is equal to the volume of Object B.",
+      "keywords": [
+        "Cavalieri's Principle",
+        "Volume comparison",
+        "Cross-sectional area",
+        "Pyramid",
+        "Cone"
+      ],
+      "difficulty": 900,
+      "topic": "Spatial Geometry: Justification of volume equality using Cavalieri's Principle for abstract solids",
+      "type": "discursive",
+      "difficulty_level": 900,
+      "ai_model": "gemini-2.5-flash",
+      "grade": 110,
+      "education_level": 30,
+      "categoryName": "Spatial Geometry: Cavalieri's Principle",
+      "categoryId": "",
+      "disciplineName": "Mathematics",
+      "disciplineId": "",
+      "request_context": {
+        "grade": 110,
+        "locale": "en_US",
+        "difficulty": 700,
+        "category": "Spatial Geometry: Cavalieri's Principle",
+        "discipline": "Mathematics"
+      }
+    },
+    {
+      "question_statement": "Two straight lines intersect to form four angles. If one angle measures {{MATH}} (3x + 10)^{\\circ} {{/MATH}} and its vertically opposite angle measures {{MATH}} (5x - 30)^{\\circ} {{/MATH}}, determine the measure of the angle adjacent to these two angles in degrees.",
+      "question_solution": "Vertically opposite angles are equal. Therefore, set the expressions equal to each other: \n\n{{MATHBLOCK}} 3x + 10 = 5x - 30 \\\\ 10 + 30 = 5x - 3x \\\\ 40 = 2x \\\\ x = 20 {{/MATHBLOCK}}\n\nNow, substitute the value of {{MATH}} x {{/MATH}} into one of the expressions to find the measure of the vertically opposite angles:\n\n{{MATHBLOCK}} 3x + 10 = 3(20) + 10 = 60 + 10 = 70^{\\circ} {{/MATHBLOCK}}\n\nThe angle adjacent to these vertically opposite angles forms a linear pair with them. Angles in a linear pair are supplementary, meaning their sum is {{MATH}} 180^{\\circ} {{/MATH}}. \nLet {{MATH}} \\theta {{/MATH}} be the adjacent angle.\n\n{{MATHBLOCK}} 70^{\\circ} + \\theta = 180^{\\circ} \\\\ \\theta = 180^{\\circ} - 70^{\\circ} \\\\ \\theta = 110^{\\circ} {{/MATHBLOCK}}\n\nThe measure of the angle adjacent to these two angles is {{MATH}} 110^{\\circ} {{/MATH}}.",
+      "keywords": [
+        "Vertically opposite angles",
+        "Linear pair",
+        "Algebra",
+        "Angle measure",
+        "Mathematics"
+      ],
+      "difficulty": 500,
+      "topic": "Calculating angles using vertically opposite angles and linear pairs in Mathematics",
+      "type": "multiple_choice",
+      "answer": "{{MATH}} 110^{\\circ} {{/MATH}}",
+      "incorrect_alternatives": [
+        "{{MATH}} 70^{\\circ} {{/MATH}}",
+        "{{MATH}} 20^{\\circ} {{/MATH}}",
+        "{{MATH}} 140^{\\circ} {{/MATH}}",
+        "{{MATH}} 100^{\\circ} {{/MATH}}"
+      ],
+      "difficulty_level": 500,
+      "ai_model": "gemini-2.5-flash",
+      "grade": 100,
+      "education_level": 30,
+      "categoryName": "Angles: Vertically Opposite Angles",
+      "categoryId": "",
+      "disciplineName": "Mathematics",
+      "disciplineId": "",
+      "request_context": {
+        "grade": 100,
+        "locale": "en_US",
+        "difficulty": 500,
+        "category": "Angles: Vertically Opposite Angles",
+        "discipline": "Mathematics"
+      }
+    },
+    {
+      "question_statement": "Two distinct straight lines intersect at a single point. State the relationship between the two angles that are directly across from each other at this intersection point in terms of their measures.",
+      "question_solution": "When two distinct straight lines intersect at a single point, the two angles that are directly across from each other are known as vertically opposite angles. These angles always have equal measures. Therefore, their relationship is that they are congruent, or their measures are identical.",
+      "keywords": [
+        "Vertically opposite angles",
+        "Intersection of lines",
+        "Angle properties",
+        "Mathematics"
+      ],
+      "difficulty": 300,
+      "topic": "Properties of Vertically Opposite Angles in Mathematics",
+      "type": "discursive",
+      "difficulty_level": 300,
+      "ai_model": "gemini-2.5-flash",
+      "grade": 100,
+      "education_level": 30,
+      "categoryName": "Angles: Vertically Opposite Angles",
+      "categoryId": "",
+      "disciplineName": "Mathematics",
+      "disciplineId": "",
+      "request_context": {
+        "grade": 100,
+        "locale": "en_US",
+        "difficulty": 500,
+        "category": "Angles: Vertically Opposite Angles",
+        "discipline": "Mathematics"
+      }
+    },
+    {
+      "question_statement": "Which of the following characteristics *best* distinguishes a trapezoid from other quadrilaterals in the classification of geometric shapes?",
+      "question_solution": "A trapezoid is uniquely defined among quadrilaterals by possessing exactly one pair of parallel sides. Other quadrilaterals like parallelograms, rectangles, rhombuses, and squares have two pairs of parallel sides or different defining properties. The specific property of having only one pair of parallel sides is the key characteristic for a trapezoid.",
+      "keywords": [
+        "quadrilateral",
+        "trapezoid",
+        "parallel sides",
+        "classification",
+        "geometry"
+      ],
+      "difficulty": 300,
+      "topic": "Trapezoid characteristics in Quadrilateral Classification - Mathematics",
+      "type": "multiple_choice",
+      "answer": "It has exactly one pair of parallel sides.",
+      "incorrect_alternatives": [
+        "It has all four sides of equal length.",
+        "It has all interior angles equal to 90 degrees.",
+        "It has two pairs of parallel sides."
+      ],
+      "difficulty_level": 300,
+      "ai_model": "gemini-2.5-flash",
+      "grade": 60,
+      "education_level": 20,
+      "categoryName": "Quadrilateral Classification",
+      "categoryId": "",
+      "disciplineName": "Mathematics",
+      "disciplineId": "",
+      "request_context": {
+        "grade": 60,
+        "locale": "en_US",
+        "difficulty": 300,
+        "category": "Quadrilateral Classification",
+        "discipline": "Mathematics"
+      }
+    },
+    {
+      "question_statement": "Consider a quadrilateral with four right angles and all four sides of equal length. According to the standard classification of quadrilaterals in Mathematics, identify the specific name for this shape and state one additional property it possesses.",
+      "question_solution": "A quadrilateral with four right angles and all four sides of equal length is classified as a **square**. \\ \nAn additional property it possesses is that its diagonals are perpendicular bisectors of each other. Other valid properties include: its diagonals are equal in length, its opposite sides are parallel, or it is both a rectangle and a rhombus.",
+      "keywords": [
+        "quadrilateral",
+        "square",
+        "properties",
+        "classification",
+        "geometry"
+      ],
+      "difficulty": 100,
+      "topic": "Properties of a square within Quadrilateral Classification - Mathematics",
+      "type": "discursive",
+      "difficulty_level": 100,
+      "ai_model": "gemini-2.5-flash",
+      "grade": 60,
+      "education_level": 20,
+      "categoryName": "Quadrilateral Classification",
+      "categoryId": "",
+      "disciplineName": "Mathematics",
+      "disciplineId": "",
+      "request_context": {
+        "grade": 60,
+        "locale": "en_US",
+        "difficulty": 300,
+        "category": "Quadrilateral Classification",
+        "discipline": "Mathematics"
+      }
+    },
+    {
+      "question_statement": "A hiker uses a two-dimensional coordinate system to track their movement. If the hiker starts at the origin {{MATH}}(0,0){{/MATH}} and first walks 5 units East, then 3 units North, what are the hiker's final coordinates?",
+      "question_solution": "The problem describes movement in a coordinate system. Walking 'East' corresponds to movement along the positive x-axis, and walking 'North' corresponds to movement along the positive y-axis. The hiker starts at {{MATH}}(0,0){{/MATH}}.\n\n1.  **First movement:** 5 units East. This means the x-coordinate increases by 5. The position becomes {{MATH}}(0+5, 0) = (5,0){{/MATH}}.\n2.  **Second movement:** 3 units North. This means the y-coordinate increases by 3. From {{MATH}}(5,0){{/MATH}}, the position becomes {{MATH}}(5, 0+3) = (5,3){{/MATH}}.\n\nTherefore, the hiker's final coordinates are {{MATH}}(5,3){{/MATH}}.",
+      "keywords": [
+        "localization",
+        "coordinates",
+        "grid",
+        "mathematics",
+        "position"
+      ],
+      "difficulty": 300,
+      "topic": "Localization using Cartesian Coordinates in Mathematics",
+      "type": "multiple_choice",
+      "answer": "{{MATH}}(5,3){{/MATH}}",
+      "incorrect_alternatives": [
+        "{{MATH}}(3,5){{/MATH}}",
+        "{{MATH}}(-5,3){{/MATH}}",
+        "{{MATH}}(5,-3){{/MATH}}",
+        "{{MATH}}(8,0){{/MATH}}"
+      ],
+      "difficulty_level": 300,
+      "ai_model": "gemini-2.5-flash",
+      "grade": 100,
+      "education_level": 30,
+      "categoryName": "Localization",
+      "categoryId": "",
+      "disciplineName": "Mathematics",
+      "disciplineId": "",
+      "request_context": {
+        "grade": 100,
+        "locale": "en_US",
+        "difficulty": 300,
+        "category": "Localization",
+        "discipline": "Mathematics"
+      }
+    },
+    {
+      "question_statement": "Consider a drone programmed to locate a specific target. The drone's current position is given by the coordinates {{MATH}}(10, 20){{/MATH}} on a grid, where each unit represents 1 meter. The target is known to be 15 meters East and 8 meters South from the drone's current position. Determine the coordinates of the target.",
+      "question_solution": "To determine the coordinates of the target, we need to adjust the drone's current coordinates based on the relative displacement to the target.\n\n1.  **Initial Position:** The drone's current coordinates are {{MATH}}(x_d, y_d) = (10, 20){{/MATH}}.\n2.  **Displacement to Target:**\n    *   'East' corresponds to a positive change in the x-coordinate. So, 15 meters East means {{MATH}}\\Delta x = +15{{/MATH}}.\n    *   'South' corresponds to a negative change in the y-coordinate. So, 8 meters South means {{MATH}}\\Delta y = -8{{/MATH}}.\n3.  **Calculate Target Coordinates:** The target's coordinates {{MATH}}(x_t, y_t){{/MATH}} can be found by adding the displacement to the drone's current coordinates.\n    *   {{MATH}}x_t = x_d + \\Delta x = 10 + 15 = 25{{/MATH}}\n    *   {{MATH}}y_t = y_d + \\Delta y = 20 + (-8) = 12{{/MATH}}\n\nTherefore, the coordinates of the target are {{MATH}}(25, 12){{/MATH}}.",
+      "keywords": [
+        "localization",
+        "coordinates",
+        "displacement",
+        "mathematics",
+        "vectors"
+      ],
+      "difficulty": 500,
+      "topic": "Localization using Relative Position in Mathematics",
+      "type": "discursive",
+      "difficulty_level": 500,
+      "ai_model": "gemini-2.5-flash",
+      "grade": 100,
+      "education_level": 30,
+      "categoryName": "Localization",
+      "categoryId": "",
+      "disciplineName": "Mathematics",
+      "disciplineId": "",
+      "request_context": {
+        "grade": 100,
+        "locale": "en_US",
+        "difficulty": 300,
+        "category": "Localization",
+        "discipline": "Mathematics"
+      }
+    },
+    {
+      "question_statement": "Considerando o uso da v\u00edrgula para separar ora\u00e7\u00f5es coordenadas e apostos, analise a frase a seguir e indique a alternativa que apresenta a pontua\u00e7\u00e3o correta, garantindo clareza e sentido adequado: 'Jo\u00e3o que \u00e9 o l\u00edder da equipe sempre dedicado ao trabalho apresentou hoje um projeto inovador e todos o parabenizaram pelo empenho'",
+      "question_solution": "A v\u00edrgula \u00e9 essencial para isolar o aposto explicativo ('que \u00e9 o l\u00edder da equipe') e a ora\u00e7\u00e3o coordenada aditiva ('e todos o parabenizaram pelo empenho') quando o sujeito \u00e9 diferente do anterior, al\u00e9m de marcar a sequ\u00eancia de a\u00e7\u00f5es. A op\u00e7\u00e3o correta posiciona as v\u00edrgulas de forma a delimitar corretamente essas estruturas, tornando o sentido da frase inequ\u00edvoco.",
+      "keywords": [
+        "Pontua\u00e7\u00e3o",
+        "V\u00edrgula",
+        "Aposto",
+        "Ora\u00e7\u00f5es Coordenadas",
+        "Sintaxe"
+      ],
+      "difficulty": 700,
+      "topic": "Uso da v\u00edrgula em ora\u00e7\u00f5es coordenadas e apostos na pontua\u00e7\u00e3o em Portugu\u00eas",
+      "type": "multiple_choice",
+      "answer": "Jo\u00e3o, que \u00e9 o l\u00edder da equipe, sempre dedicado ao trabalho, apresentou hoje um projeto inovador, e todos o parabenizaram pelo empenho.",
+      "incorrect_alternatives": [
+        "Jo\u00e3o, que \u00e9 o l\u00edder da equipe sempre dedicado ao trabalho, apresentou hoje um projeto inovador e todos o parabenizaram pelo empenho.",
+        "Jo\u00e3o que \u00e9 o l\u00edder da equipe, sempre dedicado ao trabalho, apresentou hoje um projeto inovador e todos o parabenizaram, pelo empenho.",
+        "Jo\u00e3o, que \u00e9 o l\u00edder da equipe, sempre dedicado ao trabalho apresentou hoje um projeto inovador e todos o parabenizaram pelo empenho."
+      ],
+      "difficulty_level": 700,
+      "ai_model": "gemini-2.5-flash",
+      "grade": 70,
+      "education_level": 20,
+      "categoryName": "Pontua\u00e7\u00e3o",
+      "categoryId": "",
+      "disciplineName": "Portugu\u00eas",
+      "disciplineId": "",
+      "request_context": {
+        "grade": 70,
+        "locale": "pt_BR",
+        "difficulty": 700,
+        "category": "Pontua\u00e7\u00e3o",
+        "discipline": "Portugu\u00eas"
+      }
+    },
+    {
+      "question_statement": "A aus\u00eancia ou o uso inadequado da pontua\u00e7\u00e3o pode alterar drasticamente o sentido de uma frase. Apresente duas pontua\u00e7\u00f5es distintas para a sequ\u00eancia de palavras 'N\u00e3o coma bolo minha av\u00f3' e explique o significado de cada uma das frases pontuadas, destacando o papel da v\u00edrgula em cada interpreta\u00e7\u00e3o.",
+      "question_solution": "1. 'N\u00e3o coma, bolo, minha av\u00f3.' - Nesta pontua\u00e7\u00e3o, 'bolo' e 'minha av\u00f3' atuam como vocativos, indicando que a pessoa est\u00e1 se dirigindo a um bolo e \u00e0 sua av\u00f3 para que n\u00e3o comam algo (impl\u00edcito). \u00c9 uma constru\u00e7\u00e3o mais incomum, mas gramaticalmente poss\u00edvel se interpretarmos 'bolo' como um nome pr\u00f3prio ou apelido. A v\u00edrgula isola os vocativos.\n2. 'N\u00e3o coma bolo, minha av\u00f3!' - Nesta pontua\u00e7\u00e3o, a frase \u00e9 um pedido ou uma ordem direta para a av\u00f3 n\u00e3o comer bolo. 'Minha av\u00f3' \u00e9 o vocativo, isolado pela v\u00edrgula, e 'bolo' \u00e9 o objeto direto do verbo 'comer'. A v\u00edrgula \u00e9 crucial para separar o vocativo do restante da ora\u00e7\u00e3o, direcionando a mensagem para a av\u00f3 e deixando claro que ela \u00e9 quem n\u00e3o deve comer o bolo.",
+      "keywords": [
+        "Pontua\u00e7\u00e3o",
+        "V\u00edrgula",
+        "Vocativo",
+        "Sentido do Texto",
+        "Clareza"
+      ],
+      "difficulty": 700,
+      "topic": "Altera\u00e7\u00e3o do sentido pela pontua\u00e7\u00e3o: o papel da v\u00edrgula em Portugu\u00eas",
+      "type": "discursive",
+      "difficulty_level": 700,
+      "ai_model": "gemini-2.5-flash",
+      "grade": 70,
+      "education_level": 20,
+      "categoryName": "Pontua\u00e7\u00e3o",
+      "categoryId": "",
+      "disciplineName": "Portugu\u00eas",
+      "disciplineId": "",
+      "request_context": {
+        "grade": 70,
+        "locale": "pt_BR",
+        "difficulty": 700,
+        "category": "Pontua\u00e7\u00e3o",
+        "discipline": "Portugu\u00eas"
+      }
+    },
+    {
+      "question_statement": "Considerando o papel da alfabetiza\u00e7\u00e3o como letramento no contexto brasileiro do s\u00e9culo XXI, que vai al\u00e9m da decodifica\u00e7\u00e3o de letras e s\u00edlabas, qual das afirma\u00e7\u00f5es melhor representa a aplica\u00e7\u00e3o pr\u00e1tica do letramento cr\u00edtico em situa\u00e7\u00f5es cotidianas para um jovem do ensino m\u00e9dio?",
+      "question_solution": "O letramento cr\u00edtico envolve a capacidade de analisar textos e contextos de forma a questionar informa\u00e7\u00f5es, identificar interesses por tr\u00e1s de discursos e formar opini\u00f5es fundamentadas. Utilizar dados estat\u00edsticos e fontes diversas para refutar fake news sobre a sa\u00fade p\u00fablica demonstra essa habilidade de forma pr\u00e1tica, indo al\u00e9m da simples leitura para a compreens\u00e3o e interven\u00e7\u00e3o social.",
+      "keywords": [
+        "Letramento cr\u00edtico",
+        "Alfabetiza\u00e7\u00e3o",
+        "Contexto social",
+        "Fake news",
+        "An\u00e1lise textual"
+      ],
+      "difficulty": 700,
+      "topic": "Letramento cr\u00edtico e suas aplica\u00e7\u00f5es no Portugu\u00eas",
+      "type": "multiple_choice",
+      "answer": "Utilizar dados estat\u00edsticos e a an\u00e1lise de fontes diversas para refutar uma not\u00edcia falsa sobre sa\u00fade p\u00fablica em debates online.",
+      "incorrect_alternatives": [
+        "Memorizar as regras gramaticais da norma culta para redigir e-mails profissionais sem erros ortogr\u00e1ficos e de concord\u00e2ncia.",
+        "Identificar os elementos de uma not\u00edcia jornal\u00edstica para produzir um resumo objetivo sobre eventos pol\u00edticos regionais.",
+        "Compreender o significado de met\u00e1foras e ironias em poemas de autores modernistas para interpretar a inten\u00e7\u00e3o do escritor.",
+        "Praticar a leitura fluente de livros did\u00e1ticos, buscando apenas a compreens\u00e3o literal das informa\u00e7\u00f5es apresentadas."
+      ],
+      "difficulty_level": 700,
+      "ai_model": "gemini-2.5-flash",
+      "grade": 110,
+      "education_level": 30,
+      "categoryName": "Alfabetiza\u00e7\u00e3o",
+      "categoryId": "",
+      "disciplineName": "Portugu\u00eas",
+      "disciplineId": "",
+      "request_context": {
+        "grade": 110,
+        "locale": "pt_BR",
+        "difficulty": 700,
+        "category": "Alfabetiza\u00e7\u00e3o",
+        "discipline": "Portugu\u00eas"
+      }
+    },
+    {
+      "question_statement": "A alfabetiza\u00e7\u00e3o, em sua concep\u00e7\u00e3o mais ampla de letramento, \u00e9 fundamental para a participa\u00e7\u00e3o cidad\u00e3 plena. Discorra sobre como a leitura e a escrita, enquanto ferramentas de letramento, podem empoderar indiv\u00edduos a questionar narrativas dominantes em discursos pol\u00edticos e midi\u00e1ticos no Brasil contempor\u00e2neo.",
+      "question_solution": "A leitura e a escrita, no sentido de letramento, proporcionam aos indiv\u00edduos as ferramentas necess\u00e1rias para n\u00e3o apenas decodificar informa\u00e7\u00f5es, mas tamb\u00e9m para analis\u00e1-las criticamente. Ao ler e escrever com profici\u00eancia e criticidade, o cidad\u00e3o desenvolve a capacidade de identificar vieses, verificar fatos, confrontar diferentes perspectivas e compreender as inten\u00e7\u00f5es subjacentes a discursos pol\u00edticos e midi\u00e1ticos. Isso permite que ele questione narrativas que buscam manipular ou homogeneizar o pensamento, formando opini\u00f5es aut\u00f4nomas e participando de debates p\u00fablicos de forma mais consciente e ativa. Por exemplo, a habilidade de interpretar gr\u00e1ficos, dados e reportagens de diversas fontes \u00e9 crucial para desmascarar informa\u00e7\u00f5es distorcidas e promover um engajamento pol\u00edtico mais qualificado, fortalecendo a democracia.",
+      "keywords": [
+        "Letramento",
+        "Participa\u00e7\u00e3o cidad\u00e3",
+        "Cr\u00edtica midi\u00e1tica",
+        "Discurso pol\u00edtico",
+        "Empoderamento"
+      ],
+      "difficulty": 500,
+      "topic": "Letramento e participa\u00e7\u00e3o cidad\u00e3 na disciplina de Portugu\u00eas",
+      "type": "discursive",
+      "difficulty_level": 500,
+      "ai_model": "gemini-2.5-flash",
+      "grade": 110,
+      "education_level": 30,
+      "categoryName": "Alfabetiza\u00e7\u00e3o",
+      "categoryId": "",
+      "disciplineName": "Portugu\u00eas",
+      "disciplineId": "",
+      "request_context": {
+        "grade": 110,
+        "locale": "pt_BR",
+        "difficulty": 700,
+        "category": "Alfabetiza\u00e7\u00e3o",
+        "discipline": "Portugu\u00eas"
+      }
+    },
+    {
+      "question_statement": "Qual caracter\u00edstica do Parnasianismo, enquanto movimento liter\u00e1rio no Brasil, reflete a busca por uma linguagem elaborada e formal, inspirada na arte pela arte?",
+      "question_solution": "O Parnasianismo se caracteriza pela busca da perfei\u00e7\u00e3o formal, o que inclui o uso de uma linguagem rebuscada, m\u00e9trica rigorosa, rimas ricas e a prefer\u00eancia por sonetos. A ideia de 'arte pela arte' significa que a beleza est\u00e9tica da obra \u00e9 o objetivo principal, sem preocupa\u00e7\u00f5es com quest\u00f5es sociais ou morais. A descri\u00e7\u00e3o detalhada e o vocabul\u00e1rio erudito s\u00e3o elementos centrais para alcan\u00e7ar essa perfei\u00e7\u00e3o est\u00e9tica.",
+      "keywords": [
+        "Parnasianismo",
+        "linguagem formal",
+        "perfei\u00e7\u00e3o est\u00e9tica",
+        "arte pela arte",
+        "Portugu\u00eas"
+      ],
+      "difficulty": 500,
+      "topic": "Caracter\u00edsticas da linguagem no Parnasianismo em Portugu\u00eas",
+      "type": "multiple_choice",
+      "answer": "A valoriza\u00e7\u00e3o da forma, com uso de vocabul\u00e1rio erudito e m\u00e9trica r\u00edgida para alcan\u00e7ar a perfei\u00e7\u00e3o est\u00e9tica.",
+      "incorrect_alternatives": [
+        "A prioridade da express\u00e3o dos sentimentos pessoais e a subjetividade intensa do eu l\u00edrico.",
+        "A forte preocupa\u00e7\u00e3o com as quest\u00f5es sociais e a den\u00fancia das injusti\u00e7as da sociedade brasileira.",
+        "O emprego de versos livres e a quebra de padr\u00f5es formais, buscando a espontaneidade na escrita."
+      ],
+      "difficulty_level": 500,
+      "ai_model": "gemini-2.5-flash",
+      "grade": 70,
+      "education_level": 20,
+      "categoryName": "Parnasianismo",
+      "categoryId": "",
+      "disciplineName": "Portugu\u00eas",
+      "disciplineId": "",
+      "request_context": {
+        "grade": 70,
+        "locale": "pt_BR",
+        "difficulty": 500,
+        "category": "Parnasianismo",
+        "discipline": "Portugu\u00eas"
+      }
+    },
+    {
+      "question_statement": "Considere o contexto liter\u00e1rio do final do s\u00e9culo XIX no Brasil e a proposta do Parnasianismo. Que aspecto principal diferencia a vis\u00e3o parnasiana da poesia em rela\u00e7\u00e3o ao Romantismo, que o antecedeu?",
+      "question_solution": "A principal diferen\u00e7a entre a vis\u00e3o parnasiana e a rom\u00e2ntica reside na concep\u00e7\u00e3o da poesia. O Romantismo valorizava a subjetividade, a emo\u00e7\u00e3o, o sentimentalismo e a express\u00e3o do 'eu' interior do poeta, com uma busca por liberdade formal e temas como a natureza idealizada e o nacionalismo. Em contraste, o Parnasianismo defendia a objetividade, a impassibilidade (n\u00e3o envolvimento emocional do poeta), a perfei\u00e7\u00e3o formal (m\u00e9trica, rima, estrutura) e a valoriza\u00e7\u00e3o da 'arte pela arte', ou seja, a beleza est\u00e9tica como fim em si mesma, sem preocupa\u00e7\u00f5es com a moral ou a sociedade. Enquanto o rom\u00e2ntico expressava seus sentimentos, o parnasiano esculpia a palavra buscando a beleza fria e o rigor t\u00e9cnico.",
+      "keywords": [
+        "Parnasianismo",
+        "Romantismo",
+        "compara\u00e7\u00e3o",
+        "vis\u00e3o da poesia",
+        "Portugu\u00eas"
+      ],
+      "difficulty": 700,
+      "topic": "Diferen\u00e7as entre Parnasianismo e Romantismo na literatura brasileira em Portugu\u00eas",
+      "type": "discursive",
+      "difficulty_level": 700,
+      "ai_model": "gemini-2.5-flash",
+      "grade": 70,
+      "education_level": 20,
+      "categoryName": "Parnasianismo",
+      "categoryId": "",
+      "disciplineName": "Portugu\u00eas",
+      "disciplineId": "",
+      "request_context": {
+        "grade": 70,
+        "locale": "pt_BR",
+        "difficulty": 500,
+        "category": "Parnasianismo",
+        "discipline": "Portugu\u00eas"
+      }
+    },
+    {
+      "question_statement": "Em qual das frases a seguir o termo em destaque funciona como um substantivo comum, designando um elemento espec\u00edfico dentre outros de sua esp\u00e9cie?",
+      "question_solution": "A frase 'O **cachorro** do vizinho latiu a noite toda.' apresenta 'cachorro' como um substantivo comum. Substantivos comuns nomeiam seres em geral, sem particulariz\u00e1-los, embora possam se referir a um indiv\u00edduo espec\u00edfico quando determinados por um artigo ou pronome. Neste caso, 'cachorro' se refere a um animal da esp\u00e9cie canina, e a adi\u00e7\u00e3o de 'do vizinho' apenas especifica qual cachorro, sem transformar 'cachorro' em um substantivo pr\u00f3prio.",
+      "keywords": [
+        "substantivo",
+        "substantivo comum",
+        "classifica\u00e7\u00e3o",
+        "portugu\u00eas"
+      ],
+      "difficulty": 300,
+      "topic": "Substantivos comuns em Portugu\u00eas",
+      "type": "multiple_choice",
+      "answer": "O **cachorro** do vizinho latiu a noite toda.",
+      "incorrect_alternatives": [
+        "**Brasil** \u00e9 um pa\u00eds de grande diversidade cultural.",
+        "A **Maria** chegou cedo para a aula de hoje.",
+        "Comprei um livro da **Editora** Moderna."
+      ],
+      "difficulty_level": 300,
+      "ai_model": "gemini-2.5-flash",
+      "grade": 80,
+      "education_level": 20,
+      "categoryName": "Substantivos",
+      "categoryId": "",
+      "disciplineName": "Portugu\u00eas",
+      "disciplineId": "",
+      "request_context": {
+        "grade": 80,
+        "locale": "pt_BR",
+        "difficulty": 300,
+        "category": "Substantivos",
+        "discipline": "Portugu\u00eas"
+      }
+    },
+    {
+      "question_statement": "A l\u00edngua portuguesa apresenta diversas classifica\u00e7\u00f5es para os substantivos, como concreto, abstrato, primitivo, derivado, simples e composto. Analise a palavra 'chuveiro' e identifique duas classifica\u00e7\u00f5es morfol\u00f3gicas que se aplicam a ela. Justifique cada classifica\u00e7\u00e3o com uma breve explica\u00e7\u00e3o.",
+      "question_solution": "A palavra 'chuveiro' pode ser classificada como:\n\n1.  **Substantivo Concreto**: 'Chuveiro' nomeia um objeto real, que existe por si s\u00f3 e pode ser percebido pelos sentidos, n\u00e3o dependendo de outro ser para existir. \u00c9 algo que podemos tocar e ver.\n\n2.  **Substantivo Derivado**: 'Chuveiro' deriva da palavra 'chuva'. A partir do substantivo 'chuva' (primitivo), formou-se 'chuveiro' para designar o aparelho que simula uma chuva artificial.",
+      "keywords": [
+        "substantivo",
+        "classifica\u00e7\u00e3o",
+        "concreto",
+        "derivado",
+        "portugu\u00eas"
+      ],
+      "difficulty": 500,
+      "topic": "Classifica\u00e7\u00e3o morfol\u00f3gica dos substantivos em Portugu\u00eas",
+      "type": "discursive",
+      "difficulty_level": 500,
+      "ai_model": "gemini-2.5-flash",
+      "grade": 80,
+      "education_level": 20,
+      "categoryName": "Substantivos",
+      "categoryId": "",
+      "disciplineName": "Portugu\u00eas",
+      "disciplineId": "",
+      "request_context": {
+        "grade": 80,
+        "locale": "pt_BR",
+        "difficulty": 300,
+        "category": "Substantivos",
+        "discipline": "Portugu\u00eas"
+      }
+    },
+    {
+      "question_statement": "Leia o fragmento a seguir e responda \u00e0 quest\u00e3o:\n\n\"A recente pesquisa sobre o consumo de \u00e1gua no Brasil revela um panorama preocupante: enquanto a m\u00e9dia nacional de consumo per capita \u00e9 de 150 litros di\u00e1rios, algumas regi\u00f5es urbanas de grande porte chegam a superar os 200 litros, muitas vezes devido a h\u00e1bitos de desperd\u00edcio e infraestrutura defasada. Em contrapartida, \u00e1reas rurais e comunidades mais afastadas sofrem com a escassez, evidenciando uma desigualdade h\u00eddrica que demanda aten\u00e7\u00e3o urgente. \u00c9 crucial repensar o uso da \u00e1gua e investir em pol\u00edticas p\u00fablicas que promovam a conscientiza\u00e7\u00e3o e a melhoria da distribui\u00e7\u00e3o.\"\n\nQual a principal inten\u00e7\u00e3o comunicativa do texto apresentado sobre o consumo de \u00e1gua no Brasil?",
+      "question_solution": "A principal inten\u00e7\u00e3o do texto \u00e9 alertar sobre a disparidade no consumo e o desperd\u00edcio de \u00e1gua, ao mesmo tempo em que prop\u00f5e solu\u00e7\u00f5es como a conscientiza\u00e7\u00e3o e pol\u00edticas p\u00fablicas. Ele n\u00e3o apenas informa dados, mas busca provocar uma reflex\u00e3o e a busca por a\u00e7\u00f5es para mitigar o problema.",
+      "keywords": [
+        "Interpreta\u00e7\u00e3o Textual",
+        "Inten\u00e7\u00e3o Comunicativa",
+        "Consumo de \u00c1gua",
+        "Desigualdade H\u00eddrica",
+        "Conscientiza\u00e7\u00e3o"
+      ],
+      "difficulty": 500,
+      "topic": "Inten\u00e7\u00e3o Comunicativa em Textos sobre o Consumo de \u00c1gua no Brasil",
+      "type": "multiple_choice",
+      "answer": "Alertar sobre a desigualdade no consumo de \u00e1gua e sugerir a necessidade de a\u00e7\u00f5es para otimizar seu uso.",
+      "incorrect_alternatives": [
+        "Apresentar dados estat\u00edsticos detalhados sobre a distribui\u00e7\u00e3o de \u00e1gua em diferentes regi\u00f5es do pa\u00eds.",
+        "Criticar exclusivamente os h\u00e1bitos de desperd\u00edcio em \u00e1reas urbanas de alta renda.",
+        "Descrever a infraestrutura de abastecimento de \u00e1gua nas comunidades rurais brasileiras.",
+        "Comparar o consumo de \u00e1gua no Brasil com o de outros pa\u00edses em desenvolvimento."
+      ],
+      "difficulty_level": 500,
+      "ai_model": "gemini-2.5-flash",
+      "grade": 110,
+      "education_level": 30,
+      "categoryName": "Interpreta\u00e7\u00e3o Textual",
+      "categoryId": "",
+      "disciplineName": "Portugu\u00eas",
+      "disciplineId": "",
+      "request_context": {
+        "grade": 110,
+        "locale": "pt_BR",
+        "difficulty": 500,
+        "category": "Interpreta\u00e7\u00e3o Textual",
+        "discipline": "Portugu\u00eas"
+      }
+    },
+    {
+      "question_statement": "Observe a seguinte frase: 'Apesar de todas as dificuldades, a equipe manteve o foco e superou as expectativas, entregando um resultado excepcional.' Qual informa\u00e7\u00e3o impl\u00edcita pode ser inferida sobre a equipe a partir dessa declara\u00e7\u00e3o?",
+      "question_solution": "A informa\u00e7\u00e3o impl\u00edcita \u00e9 que a equipe possu\u00eda resili\u00eancia e determina\u00e7\u00e3o. A men\u00e7\u00e3o de 'todas as dificuldades' seguida por 'manteve o foco e superou as expectativas' sugere que, mesmo diante de obst\u00e1culos, eles n\u00e3o desistiram e alcan\u00e7aram um desempenho not\u00e1vel, o que caracteriza essas qualidades.",
+      "keywords": [
+        "Interpreta\u00e7\u00e3o Textual",
+        "Informa\u00e7\u00e3o Impl\u00edcita",
+        "Infer\u00eancia",
+        "Coes\u00e3o Textual",
+        "Contexto"
+      ],
+      "difficulty": 300,
+      "topic": "Infer\u00eancia de Informa\u00e7\u00f5es Impl\u00edcitas em Senten\u00e7as",
+      "type": "discursive",
+      "difficulty_level": 300,
+      "ai_model": "gemini-2.5-flash",
+      "grade": 110,
+      "education_level": 30,
+      "categoryName": "Interpreta\u00e7\u00e3o Textual",
+      "categoryId": "",
+      "disciplineName": "Portugu\u00eas",
+      "disciplineId": "",
+      "request_context": {
+        "grade": 110,
+        "locale": "pt_BR",
+        "difficulty": 500,
+        "category": "Interpreta\u00e7\u00e3o Textual",
+        "discipline": "Portugu\u00eas"
+      }
+    },
+    {
+      "question_statement": "When a toaster is used to make toast, electrical energy is primarily converted into which two forms of energy, allowing the bread to change its state?",
+      "question_solution": "A toaster uses electrical energy to heat up the resistance wires inside. This process directly transforms electrical energy into thermal (heat) energy, which then cooks the bread. As the wires glow red, a small amount of light energy is also produced. Therefore, the primary transformations are to thermal and light energy.",
+      "keywords": [
+        "Energy transformation",
+        "Thermal energy",
+        "Light energy",
+        "Electrical energy"
+      ],
+      "difficulty": 300,
+      "topic": "Energy Transformation in Household Appliances - Science",
+      "type": "multiple_choice",
+      "answer": "Thermal energy and light energy",
+      "incorrect_alternatives": [
+        "Kinetic energy and sound energy",
+        "Chemical energy and potential energy",
+        "Nuclear energy and mechanical energy"
+      ],
+      "difficulty_level": 300,
+      "ai_model": "gemini-2.5-flash",
+      "grade": 80,
+      "education_level": 20,
+      "categoryName": "Energy Transformation",
+      "categoryId": "",
+      "disciplineName": "Science",
+      "disciplineId": "",
+      "request_context": {
+        "grade": 80,
+        "locale": "en_US",
+        "difficulty": 300,
+        "category": "Energy Transformation",
+        "discipline": "Science"
+      }
+    },
+    {
+      "question_statement": "Describe how the energy from the Sun eventually powers a bicycle lamp through multiple energy transformations within the context of **Energy Transformation** in Science.",
+      "question_solution": "The process begins with the Sun emitting radiant energy (light energy). This radiant energy is absorbed by plants during photosynthesis, converting it into chemical potential energy stored in their biomass. Over geological time, this biomass can transform into fossil fuels, which still store chemical potential energy. When these fossil fuels are burned in a power plant, their chemical energy is converted into thermal energy, which boils water to produce steam. The steam's thermal energy is converted into kinetic energy as it spins a turbine. The turbine's kinetic energy is then converted into electrical energy by a generator. This electrical energy travels through power lines to a home. When a bicycle lamp is plugged in and turned on, the electrical energy is transformed into light energy and some thermal energy, illuminating the path.",
+      "keywords": [
+        "Radiant energy",
+        "Chemical energy",
+        "Kinetic energy",
+        "Electrical energy",
+        "Thermal energy"
+      ],
+      "difficulty": 300,
+      "topic": "Solar Energy to Electrical Energy Transformations - Science",
+      "type": "discursive",
+      "difficulty_level": 300,
+      "ai_model": "gemini-2.5-flash",
+      "grade": 80,
+      "education_level": 20,
+      "categoryName": "Energy Transformation",
+      "categoryId": "",
+      "disciplineName": "Science",
+      "disciplineId": "",
+      "request_context": {
+        "grade": 80,
+        "locale": "en_US",
+        "difficulty": 300,
+        "category": "Energy Transformation",
+        "discipline": "Science"
+      }
+    },
+    {
+      "question_statement": "Which part of the Human Body's Circulatory System is responsible for pumping blood throughout the entire body?",
+      "question_solution": "The heart is the central organ of the circulatory system. Its primary function is to pump blood, which carries oxygen and nutrients, to all parts of the body and to receive deoxygenated blood and pump it to the lungs.",
+      "keywords": [
+        "heart",
+        "circulatory system",
+        "blood pump",
+        "human body"
+      ],
+      "difficulty": 100,
+      "topic": "Human Body: Circulatory System - Science",
+      "type": "multiple_choice",
+      "answer": "The heart",
+      "incorrect_alternatives": [
+        "The lungs",
+        "The kidneys",
+        "The brain"
+      ],
+      "difficulty_level": 100,
+      "ai_model": "gemini-2.5-flash",
+      "grade": 60,
+      "education_level": 20,
+      "categoryName": "Human Body: Circulatory System",
+      "categoryId": "",
+      "disciplineName": "Science",
+      "disciplineId": "",
+      "request_context": {
+        "grade": 60,
+        "locale": "en_US",
+        "difficulty": 300,
+        "category": "Human Body: Circulatory System",
+        "discipline": "Science"
+      }
+    },
+    {
+      "question_statement": "Identify the primary function of red blood cells within the human body's circulatory system.",
+      "question_solution": "The primary function of red blood cells is to transport oxygen from the lungs to all the tissues and organs throughout the body. They contain a protein called hemoglobin that binds to oxygen.",
+      "keywords": [
+        "red blood cells",
+        "oxygen transport",
+        "circulatory system",
+        "human body"
+      ],
+      "difficulty": 300,
+      "topic": "Human Body: Circulatory System - Science",
+      "type": "discursive",
+      "difficulty_level": 300,
+      "ai_model": "gemini-2.5-flash",
+      "grade": 60,
+      "education_level": 20,
+      "categoryName": "Human Body: Circulatory System",
+      "categoryId": "",
+      "disciplineName": "Science",
+      "disciplineId": "",
+      "request_context": {
+        "grade": 60,
+        "locale": "en_US",
+        "difficulty": 300,
+        "category": "Human Body: Circulatory System",
+        "discipline": "Science"
+      }
+    },
+    {
+      "question_statement": "In the human body, the process of meiosis is essential for the formation of gametes. Which of the following statements accurately describes the primary outcome of meiosis in terms of chromosome number?",
+      "question_solution": "Meiosis is a specialized type of cell division that reduces the chromosome number by half. This ensures that when two gametes (sperm and egg) fuse during fertilization, the resulting zygote has the correct diploid number of chromosomes characteristic of the human species (46 chromosomes). If gametes did not have half the chromosome number, fertilization would lead to a doubling of chromosomes in each generation, which is unsustainable and incompatible with life.",
+      "keywords": [
+        "Meiosis",
+        "Gametes",
+        "Chromosome number",
+        "Haploid",
+        "Diploid"
+      ],
+      "difficulty": 300,
+      "topic": "Human Body: Gametes and Transmission of Traits - Meiosis",
+      "type": "multiple_choice",
+      "answer": "It reduces the chromosome number in daughter cells by half, producing haploid gametes.",
+      "incorrect_alternatives": [
+        "It maintains the chromosome number in daughter cells, producing diploid body cells.",
+        "It doubles the chromosome number in daughter cells, producing tetraploid gametes.",
+        "It randomly changes the chromosome number, leading to genetic variation in cells.",
+        "It duplicates the chromosome number, resulting in identical diploid cells for growth."
+      ],
+      "difficulty_level": 300,
+      "ai_model": "gemini-2.5-flash",
+      "grade": 90,
+      "education_level": 30,
+      "categoryName": "Human Body: Gametes and Transmission of Traits",
+      "categoryId": "",
+      "disciplineName": "Science",
+      "disciplineId": "",
+      "request_context": {
+        "grade": 90,
+        "locale": "en_US",
+        "difficulty": 300,
+        "category": "Human Body: Gametes and Transmission of Traits",
+        "discipline": "Science"
+      }
+    },
+    {
+      "question_statement": "Consider a human couple where both individuals are carriers for a recessive genetic trait. Explain how the principles of gamete formation and trait transmission lead to the possibility of their child inheriting the trait.",
+      "question_solution": "Each parent carries one normal allele and one recessive allele for the trait, making them heterozygous carriers. During gamete formation (meiosis), these alleles segregate, meaning each gamete (sperm or egg) receives only one of the two alleles. Therefore, each parent produces gametes that are 50% likely to carry the normal allele and 50% likely to carry the recessive allele. For their child to inherit the recessive trait, the child must receive a recessive allele from both the mother and the father. This specific combination (recessive allele from mother + recessive allele from father) results in the child having two recessive alleles, thereby expressing the recessive genetic trait.",
+      "keywords": [
+        "Recessive trait",
+        "Gamete formation",
+        "Allele segregation",
+        "Inheritance",
+        "Human genetics"
+      ],
+      "difficulty": 500,
+      "topic": "Human Body: Gametes and Transmission of Traits - Recessive Inheritance",
+      "type": "discursive",
+      "difficulty_level": 500,
+      "ai_model": "gemini-2.5-flash",
+      "grade": 90,
+      "education_level": 30,
+      "categoryName": "Human Body: Gametes and Transmission of Traits",
+      "categoryId": "",
+      "disciplineName": "Science",
+      "disciplineId": "",
+      "request_context": {
+        "grade": 90,
+        "locale": "en_US",
+        "difficulty": 300,
+        "category": "Human Body: Gametes and Transmission of Traits",
+        "discipline": "Science"
+      }
+    },
+    {
+      "question_statement": "Which of Earth's layers is mostly solid iron and nickel, making it the innermost part of our planet?",
+      "question_solution": "The Earth's core is divided into two parts: the liquid outer core and the solid inner core. The inner core is primarily composed of solid iron and nickel due to immense pressure, despite its high temperature. This makes it the innermost layer of the Earth.",
+      "keywords": [
+        "Earth's layers",
+        "inner core",
+        "composition",
+        "iron",
+        "nickel"
+      ],
+      "difficulty": 300,
+      "topic": "Earth's Internal Structure - Science",
+      "type": "multiple_choice",
+      "answer": "Inner core",
+      "incorrect_alternatives": [
+        "Outer core",
+        "Mantle",
+        "Crust"
+      ],
+      "difficulty_level": 300,
+      "ai_model": "gemini-2.5-flash",
+      "grade": 60,
+      "education_level": 20,
+      "categoryName": "Earth Study",
+      "categoryId": "",
+      "disciplineName": "Science",
+      "disciplineId": "",
+      "request_context": {
+        "grade": 60,
+        "locale": "en_US",
+        "difficulty": 300,
+        "category": "Earth Study",
+        "discipline": "Science"
+      }
+    },
+    {
+      "question_statement": "Identify the primary source of the heat that drives convection currents within Earth's mantle.",
+      "question_solution": "The primary source of heat that drives convection currents in Earth's mantle comes from two main origins: residual heat left over from the planet's formation and heat generated by the radioactive decay of elements within the mantle and core. This internal heat causes the mantle material to slowly move, leading to the movement of tectonic plates.",
+      "keywords": [
+        "Earth's mantle",
+        "heat source",
+        "convection currents",
+        "radioactive decay",
+        "planetary formation"
+      ],
+      "difficulty": 500,
+      "topic": "Earth's Internal Processes - Science",
+      "type": "discursive",
+      "difficulty_level": 500,
+      "ai_model": "gemini-2.5-flash",
+      "grade": 60,
+      "education_level": 20,
+      "categoryName": "Earth Study",
+      "categoryId": "",
+      "disciplineName": "Science",
+      "disciplineId": "",
+      "request_context": {
+        "grade": 60,
+        "locale": "en_US",
+        "difficulty": 300,
+        "category": "Earth Study",
+        "discipline": "Science"
+      }
+    },
+    {
+      "question_statement": "A student performs a reaction where 24.3 g of magnesium (Mg) reacts completely with oxygen (O{{MATH}} _2 {{/MATH}}) to form magnesium oxide (MgO). Given the molar mass of Mg is 24.3 g/mol and O is 16.0 g/mol, what mass of oxygen is consumed in this reaction? \n\nThe balanced chemical equation is: \n\n{{MATHBLOCK}} 2Mg(s) + O_2(g) \\rightarrow 2MgO(s) {{/MATHBLOCK}}\n\n",
+      "question_solution": "First, calculate the moles of magnesium: {{MATH}} \\text{moles Mg} = \\frac{24.3\\text{ g}}{24.3\\text{ g/mol}} = 1.0\\text{ mol} {{/MATH}}.\n\nFrom the balanced equation, 2 moles of Mg react with 1 mole of O{{MATH}} _2 {{/MATH}}. So, moles of O{{MATH}} _2 {{/MATH}} consumed = {{MATH}} \\frac{1.0\\text{ mol Mg}}{2} = 0.5\\text{ mol O}_2 {{/MATH}}.\n\nThe molar mass of O{{MATH}} _2 {{/MATH}} is {{MATH}} 2 \\times 16.0\\text{ g/mol} = 32.0\\text{ g/mol} {{/MATH}}.\n\nFinally, calculate the mass of oxygen consumed: {{MATH}} \\text{mass O}_2 = 0.5\\text{ mol} \\times 32.0\\text{ g/mol} = 16.0\\text{ g} {{/MATH}}.",
+      "keywords": [
+        "stoichiometry",
+        "moles",
+        "molar mass",
+        "chemical reaction",
+        "mass-to-mass"
+      ],
+      "difficulty": 500,
+      "topic": "Mass-to-mass stoichiometry in chemical reactions (Science)",
+      "type": "multiple_choice",
+      "answer": "16.0 g",
+      "incorrect_alternatives": [
+        "8.0 g",
+        "32.0 g",
+        "24.3 g",
+        "40.3 g"
+      ],
+      "difficulty_level": 500,
+      "ai_model": "gemini-2.5-flash",
+      "grade": 90,
+      "education_level": 30,
+      "categoryName": "Basic Stoichiometry",
+      "categoryId": "",
+      "disciplineName": "Science",
+      "disciplineId": "",
+      "request_context": {
+        "grade": 90,
+        "locale": "en_US",
+        "difficulty": 500,
+        "category": "Basic Stoichiometry",
+        "discipline": "Science"
+      }
+    },
+    {
+      "question_statement": "Consider the reaction between hydrogen gas (H{{MATH}} _2 {{/MATH}}) and nitrogen gas (N{{MATH}} _2 {{/MATH}}) to produce ammonia (NH{{MATH}} _3 {{/MATH}}). If 3 moles of N{{MATH}} _2 {{/MATH}} completely react, determine the moles of H{{MATH}} _2 {{/MATH}} required. \n\nProvide the balanced chemical equation for this synthesis of ammonia.",
+      "question_solution": "The balanced chemical equation for the synthesis of ammonia is:\n\n{{MATHBLOCK}} N_2(g) + 3H_2(g) \\rightarrow 2NH_3(g) {{/MATHBLOCK}}\n\nFrom the balanced equation, 1 mole of N{{MATH}} _2 {{/MATH}} reacts with 3 moles of H{{MATH}} _2 {{/MATH}}. Therefore, if 3 moles of N{{MATH}} _2 {{/MATH}} react, the moles of H{{MATH}} _2 {{/MATH}} required are: {{MATH}} 3\\text{ mol N}_2 \\times \\frac{3\\text{ mol H}_2}{1\\text{ mol N}_2} = 9\\text{ mol H}_2 {{/MATH}}.",
+      "keywords": [
+        "stoichiometry",
+        "mole ratio",
+        "balanced equation",
+        "ammonia synthesis",
+        "limiting reactant"
+      ],
+      "difficulty": 500,
+      "topic": "Mole-to-mole stoichiometry with balanced equations (Science)",
+      "type": "discursive",
+      "difficulty_level": 500,
+      "ai_model": "gemini-2.5-flash",
+      "grade": 90,
+      "education_level": 30,
+      "categoryName": "Basic Stoichiometry",
+      "categoryId": "",
+      "disciplineName": "Science",
+      "disciplineId": "",
+      "request_context": {
+        "grade": 90,
+        "locale": "en_US",
+        "difficulty": 500,
+        "category": "Basic Stoichiometry",
+        "discipline": "Science"
+      }
+    },
+    {
+      "question_statement": "Qual dos seguintes fatores representa a principal motiva\u00e7\u00e3o econ\u00f4mica para o in\u00edcio das Grandes Navega\u00e7\u00f5es pelos reinos europeus, como Portugal e Espanha, no s\u00e9culo XV?",
+      "question_solution": "A busca por novas rotas comerciais que permitissem o acesso direto a especiarias e produtos de luxo do Oriente, evitando os intermedi\u00e1rios que encareciam essas mercadorias. A conquista de novas terras e a expans\u00e3o da f\u00e9 crist\u00e3 tamb\u00e9m foram importantes, mas o motor inicial era econ\u00f4mico.",
+      "keywords": [
+        "Grandes Navega\u00e7\u00f5es",
+        "motiva\u00e7\u00f5es econ\u00f4micas",
+        "rotas comerciais",
+        "especiarias",
+        "Hist\u00f3ria"
+      ],
+      "difficulty": 300,
+      "topic": "Motiva\u00e7\u00f5es econ\u00f4micas das Grandes Navega\u00e7\u00f5es na Hist\u00f3ria",
+      "type": "multiple_choice",
+      "answer": "A busca por novas rotas mar\u00edtimas para o com\u00e9rcio de especiarias e outros produtos valiosos do Oriente.",
+      "incorrect_alternatives": [
+        "O desejo de provar que a Terra era plana, refutando teorias da \u00e9poca.",
+        "A necessidade de encontrar novas fontes de escravos para trabalhar nas planta\u00e7\u00f5es europeias.",
+        "A inten\u00e7\u00e3o de mapear todo o oceano Atl\u00e2ntico por curiosidade cient\u00edfica e sem fins lucrativos."
+      ],
+      "difficulty_level": 300,
+      "ai_model": "gemini-2.5-flash",
+      "grade": 70,
+      "education_level": 20,
+      "categoryName": "Grandes Navega\u00e7\u00f5es",
+      "categoryId": "",
+      "disciplineName": "Hist\u00f3ria",
+      "disciplineId": "",
+      "request_context": {
+        "grade": 70,
+        "locale": "pt_BR",
+        "difficulty": 300,
+        "category": "Grandes Navega\u00e7\u00f5es",
+        "discipline": "Hist\u00f3ria"
+      }
+    },
+    {
+      "question_statement": "Qual foi o tipo de embarca\u00e7\u00e3o mais utilizada pelos portugueses e espanh\u00f3is no in\u00edcio das Grandes Navega\u00e7\u00f5es devido \u00e0 sua agilidade e capacidade de navegar contra o vento?",
+      "question_solution": "O tipo de embarca\u00e7\u00e3o mais utilizada e revolucion\u00e1ria para o in\u00edcio das Grandes Navega\u00e7\u00f5es foi a caravela, conhecida por sua leveza, velocidade e velas latinas, que permitiam velejar com mais efici\u00eancia em diferentes condi\u00e7\u00f5es de vento.",
+      "keywords": [
+        "Grandes Navega\u00e7\u00f5es",
+        "caravela",
+        "embarca\u00e7\u00f5es",
+        "tecnologia naval",
+        "Hist\u00f3ria"
+      ],
+      "difficulty": 100,
+      "topic": "Tipos de embarca\u00e7\u00f5es nas Grandes Navega\u00e7\u00f5es na Hist\u00f3ria",
+      "type": "discursive",
+      "difficulty_level": 100,
+      "ai_model": "gemini-2.5-flash",
+      "grade": 70,
+      "education_level": 20,
+      "categoryName": "Grandes Navega\u00e7\u00f5es",
+      "categoryId": "",
+      "disciplineName": "Hist\u00f3ria",
+      "disciplineId": "",
+      "request_context": {
+        "grade": 70,
+        "locale": "pt_BR",
+        "difficulty": 300,
+        "category": "Grandes Navega\u00e7\u00f5es",
+        "discipline": "Hist\u00f3ria"
+      }
+    },
+    {
+      "question_statement": "In the mid-20th century, many dictatorial regimes in Latin America implemented economic policies often characterized by state-led industrialization and protectionism. However, a common long-term consequence of these policies in several nations was a significant increase in external debt. Which of the following factors primarily contributed to this rise in external debt under these dictatorial governments?",
+      "question_solution": "Dictatorial regimes often pursued ambitious industrialization projects that required significant capital investment. Since domestic savings were insufficient, these governments frequently relied on foreign loans to finance infrastructure development, heavy industries, and sometimes even social programs designed to maintain control. This reliance on external credit, often without sufficient economic growth to service the debt, led to a substantial increase in national debt.",
+      "keywords": [
+        "Latin America",
+        "Dictatorial Regimes",
+        "Economic Policies",
+        "External Debt",
+        "Industrialization"
+      ],
+      "difficulty": 700,
+      "topic": "Economic consequences of dictatorial regimes in 20th-century Latin America",
+      "type": "multiple_choice",
+      "answer": "Extensive foreign borrowing to finance large-scale state-led industrial and infrastructure projects.",
+      "incorrect_alternatives": [
+        "Rigorous enforcement of free-market principles that attracted excessive speculative foreign capital.",
+        "Reduction of agricultural exports due to tariffs, causing a decline in foreign exchange earnings.",
+        "Widespread nationalization of foreign-owned industries without appropriate compensation, leading to international sanctions.",
+        "Consistent budget surpluses that permitted speculative investments in unstable global financial markets."
+      ],
+      "difficulty_level": 700,
+      "ai_model": "gemini-2.5-flash",
+      "grade": 110,
+      "education_level": 30,
+      "categoryName": "Dictatorial Regimes in Latin America",
+      "categoryId": "",
+      "disciplineName": "History",
+      "disciplineId": "",
+      "request_context": {
+        "grade": 110,
+        "locale": "en_US",
+        "difficulty": 700,
+        "category": "Dictatorial Regimes in Latin America",
+        "discipline": "History"
+      }
+    },
+    {
+      "question_statement": "Evaluate how Cold War geopolitical rivalries influenced the emergence and longevity of dictatorial regimes across Latin America during the second half of the 20th century.",
+      "question_solution": "During the second half of the 20th century, Cold War geopolitical rivalries significantly impacted the rise and endurance of dictatorial regimes in Latin America. The United States, fearing the spread of communism, actively supported anti-communist, often authoritarian, governments. This support manifested as military aid, financial assistance, and intelligence sharing, which strengthened the security apparatus of these regimes and helped them suppress internal dissent. Simultaneously, the Soviet Union and Cuba also offered aid and ideological backing to leftist insurgent groups or governments, further fueling regional conflicts and justifying repressive measures by right-wing dictatorships as necessary to combat communism. This international polarization often meant that dictatorial leaders could frame their rule as a defense against external ideologies, securing crucial foreign support while extending their power domestically. The perceived threat of communism or capitalist intervention provided both sides with a pretext to intervene, often at the expense of democratic processes and human rights, solidifying the grip of many authoritarian rulers.",
+      "keywords": [
+        "Cold War",
+        "Dictatorial Regimes",
+        "Latin America",
+        "Geopolitics",
+        "US Foreign Policy"
+      ],
+      "difficulty": 700,
+      "topic": "Impact of Cold War on Latin American dictatorial regimes",
+      "type": "discursive",
+      "difficulty_level": 700,
+      "ai_model": "gemini-2.5-flash",
+      "grade": 110,
+      "education_level": 30,
+      "categoryName": "Dictatorial Regimes in Latin America",
+      "categoryId": "",
+      "disciplineName": "History",
+      "disciplineId": "",
+      "request_context": {
+        "grade": 110,
+        "locale": "en_US",
+        "difficulty": 700,
+        "category": "Dictatorial Regimes in Latin America",
+        "discipline": "History"
+      }
+    },
+    {
+      "question_statement": "The Monroe Doctrine, announced in 1823, outlined a specific foreign policy principle regarding the involvement of European powers in the Americas. This policy primarily aimed to prevent which of the following actions by European nations in Latin America?",
+      "question_solution": "The Monroe Doctrine, issued by President James Monroe, declared that European powers should not colonize or intervene in the affairs of independent nations in the Western Hemisphere. It was a foundational statement of US foreign policy in Latin America, asserting American influence and aiming to protect newly independent Latin American countries from European re-colonization.",
+      "keywords": [
+        "Monroe Doctrine",
+        "European intervention",
+        "Latin America",
+        "US foreign policy"
+      ],
+      "difficulty": 300,
+      "topic": "USA and Latin America: International Relations - Monroe Doctrine",
+      "type": "multiple_choice",
+      "answer": "Establishing new colonies or re-establishing control over newly independent countries.",
+      "incorrect_alternatives": [
+        "Forming trade alliances with Latin American republics.",
+        "Sending cultural exchange programs to South American nations.",
+        "Providing financial aid to help build Latin American infrastructure."
+      ],
+      "difficulty_level": 300,
+      "ai_model": "gemini-2.5-flash",
+      "grade": 80,
+      "education_level": 20,
+      "categoryName": "USA and Latin America: International Relations",
+      "categoryId": "",
+      "disciplineName": "History",
+      "disciplineId": "",
+      "request_context": {
+        "grade": 80,
+        "locale": "en_US",
+        "difficulty": 300,
+        "category": "USA and Latin America: International Relations",
+        "discipline": "History"
+      }
+    },
+    {
+      "question_statement": "During the early 20th century, US foreign policy in Latin America often shifted between diplomatic support and direct intervention. Compare two distinct reasons that motivated the United States to intervene in Latin American nations during this period.",
+      "question_solution": "One primary reason for US intervention in Latin American nations during the early 20th century was to protect American economic interests, such as investments in industries like fruit plantations, mining, or railroads. The US government often viewed political instability in these countries as a threat to these investments and intervened to stabilize the region or protect American businesses. Another significant reason was to enforce the Roosevelt Corollary to the Monroe Doctrine, which asserted the right of the United States to intervene in Latin American countries to prevent European intervention and ensure stability, often by collecting debts owed to European powers. This was often framed as maintaining order and preventing European influence, which the US saw as a threat to its own security and regional dominance.",
+      "keywords": [
+        "US intervention",
+        "Latin America",
+        "economic interests",
+        "Roosevelt Corollary",
+        "foreign policy"
+      ],
+      "difficulty": 500,
+      "topic": "USA and Latin America: International Relations - US Intervention Motivations (Early 20th Century)",
+      "type": "discursive",
+      "difficulty_level": 500,
+      "ai_model": "gemini-2.5-flash",
+      "grade": 80,
+      "education_level": 20,
+      "categoryName": "USA and Latin America: International Relations",
+      "categoryId": "",
+      "disciplineName": "History",
+      "disciplineId": "",
+      "request_context": {
+        "grade": 80,
+        "locale": "en_US",
+        "difficulty": 300,
+        "category": "USA and Latin America: International Relations",
+        "discipline": "History"
+      }
+    },
+    {
+      "question_statement": "Which essential geographical feature played the most significant role in supporting the growth and establishment of ancient Egyptian civilization?",
+      "question_solution": "The Nile River was crucial for ancient Egyptian civilization because its annual flooding deposited rich, fertile soil along its banks, making agriculture possible in an otherwise desert region. It also served as a primary transportation route for trade and communication.",
+      "keywords": [
+        "Ancient Egypt",
+        "Nile River",
+        "civilization",
+        "geography",
+        "history"
+      ],
+      "difficulty": 300,
+      "topic": "Ancient Egypt: History and Geography",
+      "type": "multiple_choice",
+      "answer": "The Nile River, offering fertile land for farming and easy travel.",
+      "incorrect_alternatives": [
+        "The vast Sahara Desert, providing natural boundaries and defense.",
+        "The Red Sea coast, allowing for extensive maritime trade routes.",
+        "The numerous large mountain ranges, supplying valuable minerals."
+      ],
+      "difficulty_level": 300,
+      "ai_model": "gemini-2.5-flash",
+      "grade": 60,
+      "education_level": 20,
+      "categoryName": "Ancient Egypt: Introduction",
+      "categoryId": "",
+      "disciplineName": "History",
+      "disciplineId": "",
+      "request_context": {
+        "grade": 60,
+        "locale": "en_US",
+        "difficulty": 300,
+        "category": "Ancient Egypt: Introduction",
+        "discipline": "History"
+      }
+    },
+    {
+      "question_statement": "Consider the challenges faced by early settlements in ancient Egypt. How did the unique environment along the Nile River influence the daily lives and long-term organization of the people?",
+      "question_solution": "The unique environment along the Nile River heavily influenced the daily lives and long-term organization of ancient Egyptians. Daily life revolved around the river's annual flood cycle (Akhet, Peret, Shemu), which determined planting, harvesting, and building schedules. This predictable flooding, while providing fertile soil, also necessitated organized systems for managing irrigation and flood control. Such large-scale projects, like building canals and dykes, required cooperation and central authority, which contributed to the formation of a unified government and a complex social structure. The river also served as the main highway, connecting communities and facilitating trade, further solidifying a cohesive Egyptian identity and political system over time.",
+      "keywords": [
+        "Ancient Egypt",
+        "Nile River",
+        "social organization",
+        "daily life",
+        "history"
+      ],
+      "difficulty": 500,
+      "topic": "Ancient Egypt: Environmental Impact on History",
+      "type": "discursive",
+      "difficulty_level": 500,
+      "ai_model": "gemini-2.5-flash",
+      "grade": 60,
+      "education_level": 20,
+      "categoryName": "Ancient Egypt: Introduction",
+      "categoryId": "",
+      "disciplineName": "History",
+      "disciplineId": "",
+      "request_context": {
+        "grade": 60,
+        "locale": "en_US",
+        "difficulty": 300,
+        "category": "Ancient Egypt: Introduction",
+        "discipline": "History"
+      }
+    },
+    {
+      "question_statement": "Durante o per\u00edodo da Guerra Fria na Hist\u00f3ria, a forma\u00e7\u00e3o de blocos militares, como a OTAN e o Pacto de Vars\u00f3via, e econ\u00f4micos, como o COMECON e o Plano Marshall, teve um impacto significativo na pol\u00edtica internacional. Considerando esse contexto, como a exist\u00eancia desses blocos influenciou a autonomia de na\u00e7\u00f5es que buscavam manter uma postura de n\u00e3o-alinhamento?",
+      "question_solution": "A exist\u00eancia dos blocos militares e econ\u00f4micos da Guerra Fria dificultou a autonomia de na\u00e7\u00f5es n\u00e3o-alinhadas, pois as press\u00f5es ideol\u00f3gicas e econ\u00f4micas de ambas as superpot\u00eancias limitavam suas op\u00e7\u00f5es pol\u00edticas e comerciais. Mesmo buscando a neutralidade, essas na\u00e7\u00f5es frequentemente se viam for\u00e7adas a fazer concess\u00f5es ou a alinhar-se tacitamente para garantir apoio ou evitar retalia\u00e7\u00f5es, exemplificando a polariza\u00e7\u00e3o global que reduzia o espa\u00e7o para uma verdadeira independ\u00eancia estrat\u00e9gica.",
+      "keywords": [
+        "Guerra Fria",
+        "Blocos militares",
+        "Blocos econ\u00f4micos",
+        "N\u00e3o-alinhamento",
+        "Autonomia"
+      ],
+      "difficulty": 500,
+      "topic": "A influ\u00eancia dos blocos da Guerra Fria na autonomia de na\u00e7\u00f5es n\u00e3o-alinhadas na Hist\u00f3ria.",
+      "type": "discursive",
+      "difficulty_level": 500,
+      "ai_model": "gemini-2.5-flash",
+      "grade": 110,
+      "education_level": 30,
+      "categoryName": "Guerra Fria: Forma\u00e7\u00e3o de Blocos",
+      "categoryId": "",
+      "disciplineName": "Hist\u00f3ria",
+      "disciplineId": "",
+      "request_context": {
+        "grade": 110,
+        "locale": "pt_BR",
+        "difficulty": 500,
+        "category": "Guerra Fria: Forma\u00e7\u00e3o de Blocos",
+        "discipline": "Hist\u00f3ria"
+      }
+    },
+    {
+      "question_statement": "Na Hist\u00f3ria, a Guerra Fria foi marcada pela forma\u00e7\u00e3o de blocos antag\u00f4nicos, representados principalmente pela OTAN e pelo Pacto de Vars\u00f3via. Qual das alternativas melhor descreve uma consequ\u00eancia direta da polariza\u00e7\u00e3o global gerada por esses blocos militares para os pa\u00edses em desenvolvimento?",
+      "question_solution": "A polariza\u00e7\u00e3o global for\u00e7ava muitos pa\u00edses em desenvolvimento a escolher um lado, recebendo apoio financeiro e militar em troca de alinhamento ideol\u00f3gico e estrat\u00e9gico, o que resultava em interven\u00e7\u00f5es e instabilidade interna.",
+      "keywords": [
+        "Guerra Fria",
+        "OTAN",
+        "Pacto de Vars\u00f3via",
+        "Pa\u00edses em desenvolvimento",
+        "Polariza\u00e7\u00e3o"
+      ],
+      "difficulty": 500,
+      "topic": "Consequ\u00eancias da forma\u00e7\u00e3o de blocos militares na Guerra Fria para pa\u00edses em desenvolvimento na Hist\u00f3ria.",
+      "type": "multiple_choice",
+      "answer": "A polariza\u00e7\u00e3o global for\u00e7ava muitos pa\u00edses em desenvolvimento a escolher um lado, recebendo apoio financeiro e militar em troca de alinhamento ideol\u00f3gico e estrat\u00e9gico, o que resultava em interven\u00e7\u00f5es e instabilidade interna.",
+      "incorrect_alternatives": [
+        "O surgimento desses blocos promoveu a completa neutralidade de todas as na\u00e7\u00f5es, fortalecendo a soberania pol\u00edtica e econ\u00f4mica sem press\u00f5es externas.",
+        "A forma\u00e7\u00e3o dos blocos estimulou o desenvolvimento de economias autossuficientes, isolando os pa\u00edses em desenvolvimento de conflitos geopol\u00edticos.",
+        "Os blocos garantiram uma era de paz e prosperidade generalizada, pois a amea\u00e7a m\u00fatua impedia qualquer tipo de interven\u00e7\u00e3o em na\u00e7\u00f5es emergentes.",
+        "A principal consequ\u00eancia foi a completa desmilitariza\u00e7\u00e3o de todas as regi\u00f5es fora dos blocos, devido ao medo de escalada de conflitos."
+      ],
+      "difficulty_level": 500,
+      "ai_model": "gemini-2.5-flash",
+      "grade": 110,
+      "education_level": 30,
+      "categoryName": "Guerra Fria: Forma\u00e7\u00e3o de Blocos",
+      "categoryId": "",
+      "disciplineName": "Hist\u00f3ria",
+      "disciplineId": "",
+      "request_context": {
+        "grade": 110,
+        "locale": "pt_BR",
+        "difficulty": 500,
+        "category": "Guerra Fria: Forma\u00e7\u00e3o de Blocos",
+        "discipline": "Hist\u00f3ria"
+      }
+    },
+    {
+      "question_statement": "A cartographer is designing a new world map specifically to represent the accurate relative land area of each continent. Which type of map projection would be most suitable for maintaining correct area proportions across the globe in a geographical context?",
+      "question_solution": "The correct answer is an equal-area projection. These projections are designed to ensure that the relative sizes of landmasses are preserved on the map, allowing for accurate comparisons of continental areas, even if they result in some distortion of shapes or angles.",
+      "keywords": [
+        "Geography",
+        "Map Projections",
+        "Cartography",
+        "Equal-area",
+        "Distortion"
+      ],
+      "difficulty": 500,
+      "topic": "Map Projections and Area Preservation in Geography",
+      "type": "multiple_choice",
+      "answer": "Equal-area projection",
+      "incorrect_alternatives": [
+        "Conformal projection",
+        "Equidistant projection",
+        "Cylindrical projection",
+        "Compromise projection"
+      ],
+      "difficulty_level": 500,
+      "ai_model": "gemini-2.5-flash",
+      "grade": 100,
+      "education_level": 30,
+      "categoryName": "Fundamentals of Geography",
+      "categoryId": "",
+      "disciplineName": "Geography",
+      "disciplineId": "",
+      "request_context": {
+        "grade": 100,
+        "locale": "en_US",
+        "difficulty": 500,
+        "category": "Fundamentals of Geography",
+        "discipline": "Geography"
+      }
+    },
+    {
+      "question_statement": "Explain how the concept of 'relative location' helps understand the significance of a place within the broader field of Geography.",
+      "question_solution": "Relative location describes a place in relation to other places or features, rather than by exact coordinates. Understanding a place's relative location is crucial in Geography because it highlights its connectivity, accessibility, and functional importance within a network of other places. For example, a city's relative location near a major river or a trade route can explain its historical development and economic significance, providing context beyond its absolute position.",
+      "keywords": [
+        "Geography",
+        "Location",
+        "Relative Location",
+        "Spatial Relationships",
+        "Place Significance"
+      ],
+      "difficulty": 300,
+      "topic": "Fundamentals of Geography: Understanding Relative Location",
+      "type": "discursive",
+      "difficulty_level": 300,
+      "ai_model": "gemini-2.5-flash",
+      "grade": 100,
+      "education_level": 30,
+      "categoryName": "Fundamentals of Geography",
+      "categoryId": "",
+      "disciplineName": "Geography",
+      "disciplineId": "",
+      "request_context": {
+        "grade": 100,
+        "locale": "en_US",
+        "difficulty": 500,
+        "category": "Fundamentals of Geography",
+        "discipline": "Geography"
+      }
+    },
+    {
+      "question_statement": "Which action best represents a core principle of conscious consumption in the context of goods circulation?",
+      "question_solution": "Conscious consumption involves making purchasing decisions that consider the entire life cycle of a product, from its creation and transportation to its disposal. This means prioritizing goods that are produced sustainably, ethically, and with minimal negative effects on the environment and society. Therefore, choosing products that support fair labor practices and reduce environmental harm directly aligns with this principle.",
+      "keywords": [
+        "conscious consumption",
+        "goods circulation",
+        "sustainability",
+        "ethical sourcing"
+      ],
+      "difficulty": 300,
+      "topic": "Conscious Consumption and Circulation of Goods - Geography",
+      "type": "multiple_choice",
+      "answer": "Selecting products made with fair labor and reduced environmental damage.",
+      "incorrect_alternatives": [
+        "Purchasing items exclusively from large international corporations.",
+        "Prioritizing the fastest shipping options for online purchases.",
+        "Disposing of unwanted goods quickly to make space for new ones."
+      ],
+      "difficulty_level": 300,
+      "ai_model": "gemini-2.5-flash",
+      "grade": 70,
+      "education_level": 20,
+      "categoryName": "Conscious Consumption and Circulation of Goods",
+      "categoryId": "",
+      "disciplineName": "Geography",
+      "disciplineId": "",
+      "request_context": {
+        "grade": 70,
+        "locale": "en_US",
+        "difficulty": 300,
+        "category": "Conscious Consumption and Circulation of Goods",
+        "discipline": "Geography"
+      }
+    },
+    {
+      "question_statement": "Consider a student deciding between two similar t-shirts: one produced locally using organic cotton and another imported from a distant country with unknown production conditions. Explain how a conscious consumption mindset, from a geographical perspective, would influence this choice regarding the circulation of goods.",
+      "question_solution": "From a geographical perspective, a conscious consumption mindset would favor the locally produced t-shirt made with organic cotton. The local production reduces the 'food miles' or 'product miles,' meaning less transportation is needed, which in turn lowers carbon emissions associated with global circulation. Organic cotton often implies more sustainable agricultural practices, reducing the environmental footprint in the geographical area of production. The 'unknown production conditions' of the imported shirt suggest potential ethical issues (like unfair labor or unsustainable resource use) in its country of origin, which conscious consumers aim to avoid. This choice reflects an understanding of how consumption patterns impact various geographical regions through resource use, pollution, and social equity during the circulation of goods.",
+      "keywords": [
+        "conscious consumption",
+        "goods circulation",
+        "local production",
+        "carbon footprint",
+        "geography"
+      ],
+      "difficulty": 500,
+      "topic": "Conscious Consumption and Circulation of Goods - Geography",
+      "type": "discursive",
+      "difficulty_level": 500,
+      "ai_model": "gemini-2.5-flash",
+      "grade": 70,
+      "education_level": 20,
+      "categoryName": "Conscious Consumption and Circulation of Goods",
+      "categoryId": "",
+      "disciplineName": "Geography",
+      "disciplineId": "",
+      "request_context": {
+        "grade": 70,
+        "locale": "en_US",
+        "difficulty": 300,
+        "category": "Conscious Consumption and Circulation of Goods",
+        "discipline": "Geography"
+      }
+    },
+    {
+      "question_statement": "A movimenta\u00e7\u00e3o das placas tect\u00f4nicas, que molda a superf\u00edcie da Terra e causa fen\u00f4menos como terremotos e vulc\u00f5es, ocorre principalmente devido a qual processo dentro do planeta?",
+      "question_solution": "A movimenta\u00e7\u00e3o das placas tect\u00f4nicas \u00e9 impulsionada pelas correntes de convec\u00e7\u00e3o que ocorrem no manto terrestre. O calor interno da Terra faz com que o material rochoso do manto se mova em ciclos, arrastando as placas litosf\u00e9ricas que flutuam sobre ele. Este \u00e9 o mecanismo fundamental por tr\u00e1s da deriva continental e da atividade geol\u00f3gica nas bordas das placas.",
+      "keywords": [
+        "Placas Tect\u00f4nicas",
+        "Movimento",
+        "Correntes de Convec\u00e7\u00e3o",
+        "Manto",
+        "Geografia"
+      ],
+      "difficulty": 300,
+      "topic": "Terra: Movimenta\u00e7\u00e3o das Placas Tect\u00f4nicas",
+      "type": "multiple_choice",
+      "answer": "Correntes de convec\u00e7\u00e3o no manto terrestre, que arrastam as placas.",
+      "incorrect_alternatives": [
+        "A for\u00e7a da gravidade exercida pela Lua sobre a crosta.",
+        "O giro da Terra em torno de seu pr\u00f3prio eixo, que empurra as massas continentais.",
+        "A press\u00e3o constante da \u00e1gua dos oceanos sobre as bordas dos continentes."
+      ],
+      "difficulty_level": 300,
+      "ai_model": "gemini-2.5-flash",
+      "grade": 60,
+      "education_level": 20,
+      "categoryName": "Terra: Placas Tect\u00f4nicas",
+      "categoryId": "",
+      "disciplineName": "Geografia",
+      "disciplineId": "",
+      "request_context": {
+        "grade": 60,
+        "locale": "pt_BR",
+        "difficulty": 300,
+        "category": "Terra: Placas Tect\u00f4nicas",
+        "discipline": "Geografia"
+      }
+    },
+    {
+      "question_statement": "As placas tect\u00f4nicas interagem de diferentes maneiras nas suas fronteiras. Cite dois tipos de limites entre placas e apresente uma caracter\u00edstica geogr\u00e1fica marcante de cada um, explicando como essa caracter\u00edstica se forma.",
+      "question_solution": "Um tipo de limite \u00e9 o **divergente**. Neste limite, as placas se afastam uma da outra. Uma caracter\u00edstica geogr\u00e1fica marcante \u00e9 a **forma\u00e7\u00e3o de dorsais oce\u00e2nicas** (como a Dorsal Mesoatl\u00e2ntica) ou **vales rifte** (como o Grande Vale do Rift na \u00c1frica Oriental). Essas estruturas se formam porque o afastamento das placas permite que o magma do manto ascenda, criando nova crosta oce\u00e2nica e elevando o fundo do mar, ou causando o afundamento e o alongamento da crosta continental.\n\nOutro tipo de limite \u00e9 o **convergente**. Neste limite, as placas se movem uma em dire\u00e7\u00e3o \u00e0 outra, podendo colidir ou uma mergulhar sob a outra (subduc\u00e7\u00e3o). Uma caracter\u00edstica geogr\u00e1fica marcante \u00e9 a **forma\u00e7\u00e3o de cadeias de montanhas** (como os Andes ou o Himalaia) ou **fossas oce\u00e2nicas profundas** e **arcos de ilhas vulc\u00e2nicas** (como no Oceano Pac\u00edfico). As montanhas se formam pela compress\u00e3o e dobramento das rochas na colis\u00e3o continental, enquanto as fossas e arcos de ilhas resultam do mergulho de uma placa sob a outra, que causa derretimento e vulcanismo.",
+      "keywords": [
+        "Placas Tect\u00f4nicas",
+        "Limites",
+        "Divergente",
+        "Convergente",
+        "Geografia"
+      ],
+      "difficulty": 500,
+      "topic": "Terra: Tipos de Limites de Placas Tect\u00f4nicas e suas Forma\u00e7\u00f5es Geogr\u00e1ficas",
+      "type": "discursive",
+      "difficulty_level": 500,
+      "ai_model": "gemini-2.5-flash",
+      "grade": 60,
+      "education_level": 20,
+      "categoryName": "Terra: Placas Tect\u00f4nicas",
+      "categoryId": "",
+      "disciplineName": "Geografia",
+      "disciplineId": "",
+      "request_context": {
+        "grade": 60,
+        "locale": "pt_BR",
+        "difficulty": 300,
+        "category": "Terra: Placas Tect\u00f4nicas",
+        "discipline": "Geografia"
+      }
+    },
+    {
+      "question_statement": "O crescimento econ\u00f4mico da regi\u00e3o Centro-Oeste do Brasil, impulsionado principalmente pela expans\u00e3o do agroneg\u00f3cio, tem gerado impactos significativos nos biomas locais. Considerando a din\u00e2mica entre produ\u00e7\u00e3o agr\u00edcola e conserva\u00e7\u00e3o ambiental na Geografia do Centro-Oeste, qual \u00e9 a principal consequ\u00eancia ecol\u00f3gica da monocultura extensiva de soja e pecu\u00e1ria para o bioma Cerrado?",
+      "question_solution": "A expans\u00e3o da monocultura de soja e da pecu\u00e1ria extensiva na regi\u00e3o Centro-Oeste leva predominantemente \u00e0 degrada\u00e7\u00e3o do solo, \u00e0 perda de biodiversidade devido \u00e0 destrui\u00e7\u00e3o de habitats naturais e \u00e0 altera\u00e7\u00e3o dos ciclos h\u00eddricos. O desmatamento para a forma\u00e7\u00e3o de pastagens e lavouras elimina a vegeta\u00e7\u00e3o nativa, empobrece o solo e afeta a recarga de aqu\u00edferos, comprometendo a sa\u00fade ecol\u00f3gica do Cerrado.",
+      "keywords": [
+        "Centro-Oeste",
+        "Cerrado",
+        "Desmatamento",
+        "Agroneg\u00f3cio",
+        "Biodiversidade"
+      ],
+      "difficulty": 700,
+      "topic": "Centro-Oeste: Crescimento Regional, Desmatamento e seus Biomas - Geografia",
+      "type": "multiple_choice",
+      "answer": "Degrada\u00e7\u00e3o do solo e perda de biodiversidade devido \u00e0 destrui\u00e7\u00e3o de habitats naturais.",
+      "incorrect_alternatives": [
+        "Aumento da fertilidade natural do solo pela adi\u00e7\u00e3o de nutrientes ex\u00f3genos.",
+        "Expans\u00e3o das \u00e1reas de reflorestamento com esp\u00e9cies nativas do bioma.",
+        "Estabiliza\u00e7\u00e3o dos padr\u00f5es clim\u00e1ticos regionais devido \u00e0 maior umidade atmosf\u00e9rica.",
+        "Forma\u00e7\u00e3o de novos ecossistemas aqu\u00e1ticos pela reten\u00e7\u00e3o de \u00e1gua em barragens."
+      ],
+      "difficulty_level": 700,
+      "ai_model": "gemini-2.5-flash",
+      "grade": 110,
+      "education_level": 30,
+      "categoryName": "Centro-Oeste: Crescimento Regional, Desmatamento e seus Biomas",
+      "categoryId": "",
+      "disciplineName": "Geografia",
+      "disciplineId": "",
+      "request_context": {
+        "grade": 110,
+        "locale": "pt_BR",
+        "difficulty": 700,
+        "category": "Centro-Oeste: Crescimento Regional, Desmatamento e seus Biomas",
+        "discipline": "Geografia"
+      }
+    },
+    {
+      "question_statement": "A expans\u00e3o das fronteiras agr\u00edcolas no Centro-Oeste brasileiro \u00e9 um fator chave para o crescimento regional. No entanto, essa expans\u00e3o frequentemente se traduz em desmatamento e altera\u00e7\u00f5es nos biomas nativos. Como a intensifica\u00e7\u00e3o da agricultura e da pecu\u00e1ria no Centro-Oeste modifica diretamente a paisagem e o equil\u00edbrio ambiental do Pantanal, um dos biomas da regi\u00e3o?",
+      "question_solution": "A intensifica\u00e7\u00e3o da agricultura e pecu\u00e1ria nas \u00e1reas de planalto adjacentes ao Pantanal contribui para o aumento do desmatamento, eros\u00e3o do solo e uso intensivo de agrot\u00f3xicos. Esses fatores resultam no assoreamento dos rios que alimentam a plan\u00edcie pantaneira, na contamina\u00e7\u00e3o das \u00e1guas e na altera\u00e7\u00e3o do regime h\u00eddrico, impactando a fauna e a flora adaptadas aos ciclos de cheia e seca caracter\u00edsticos do bioma.",
+      "keywords": [
+        "Centro-Oeste",
+        "Pantanal",
+        "Desmatamento",
+        "Agroneg\u00f3cio",
+        "Impacto ambiental"
+      ],
+      "difficulty": 500,
+      "topic": "Centro-Oeste: Crescimento Regional, Desmatamento e seus Biomas - Geografia",
+      "type": "discursive",
+      "difficulty_level": 500,
+      "ai_model": "gemini-2.5-flash",
+      "grade": 110,
+      "education_level": 30,
+      "categoryName": "Centro-Oeste: Crescimento Regional, Desmatamento e seus Biomas",
+      "categoryId": "",
+      "disciplineName": "Geografia",
+      "disciplineId": "",
+      "request_context": {
+        "grade": 110,
+        "locale": "pt_BR",
+        "difficulty": 700,
+        "category": "Centro-Oeste: Crescimento Regional, Desmatamento e seus Biomas",
+        "discipline": "Geografia"
+      }
+    },
+    {
+      "question_statement": "Considerando as caracter\u00edsticas geoecon\u00f4micas do MERCOSUL, o bloco busca, al\u00e9m da integra\u00e7\u00e3o comercial, consolidar a regi\u00e3o como um espa\u00e7o de negocia\u00e7\u00e3o estrat\u00e9gica em f\u00f3runs globais. Avalie o papel do bloco na proje\u00e7\u00e3o externa de seus membros plenos. Qual das op\u00e7\u00f5es a seguir melhor descreve um impacto geoecon\u00f4mico direto da atua\u00e7\u00e3o conjunta dos pa\u00edses membros do MERCOSUL em n\u00edvel internacional?",
+      "question_solution": "A alternativa correta \u00e9 que a atua\u00e7\u00e3o conjunta do MERCOSUL em negocia\u00e7\u00f5es internacionais amplia o poder de barganha dos pa\u00edses membros, possibilitando melhores condi\u00e7\u00f5es comerciais e fortalecendo sua posi\u00e7\u00e3o em rela\u00e7\u00e3o a blocos econ\u00f4micos maiores. As outras alternativas descrevem resultados indiretos, n\u00e3o relacionados diretamente \u00e0 proje\u00e7\u00e3o externa ou s\u00e3o imprecisas.",
+      "keywords": [
+        "MERCOSUL",
+        "Geoeconomia",
+        "Integra\u00e7\u00e3o regional",
+        "Rela\u00e7\u00f5es internacionais",
+        "Poder de barganha"
+      ],
+      "difficulty": 700,
+      "topic": "Impactos Geoecon\u00f4micos e Proje\u00e7\u00e3o Externa do MERCOSUL",
+      "type": "multiple_choice",
+      "answer": "Amplia\u00e7\u00e3o do poder de barganha coletivo para estabelecer acordos comerciais mais vantajosos com outras economias globais.",
+      "incorrect_alternatives": [
+        "Redu\u00e7\u00e3o da depend\u00eancia tecnol\u00f3gica dos pa\u00edses membros ao estimular o desenvolvimento industrial interno em escala global.",
+        "Padroniza\u00e7\u00e3o das pol\u00edticas fiscais e monet\u00e1rias internas para alinhar-se completamente aos modelos econ\u00f4micos dos pa\u00edses desenvolvidos.",
+        "Aumento significativo da entrada de investimentos diretos estrangeiros exclusivamente para setores de alta tecnologia nos pa\u00edses da regi\u00e3o.",
+        "Diminui\u00e7\u00e3o da diversifica\u00e7\u00e3o da pauta exportadora dos membros, concentrando-se apenas em produtos agr\u00edcolas de alto valor agregado."
+      ],
+      "difficulty_level": 700,
+      "ai_model": "gemini-2.5-flash",
+      "grade": 110,
+      "education_level": 30,
+      "categoryName": "MERCOSUL: Caracter\u00edsticas e Membros",
+      "categoryId": "",
+      "disciplineName": "Geografia",
+      "disciplineId": "",
+      "request_context": {
+        "grade": 110,
+        "locale": "pt_BR",
+        "difficulty": 700,
+        "category": "MERCOSUL: Caracter\u00edsticas e Membros",
+        "discipline": "Geografia"
+      }
+    },
+    {
+      "question_statement": "O MERCOSUL, como um bloco de integra\u00e7\u00e3o regional, apresenta particularidades na din\u00e2mica de com\u00e9rcio entre seus membros. Identifique duas caracter\u00edsticas comerciais internas do MERCOSUL que o distinguem de outros blocos econ\u00f4micos de integra\u00e7\u00e3o mais avan\u00e7ada, como a Uni\u00e3o Europeia.",
+      "question_solution": "O MERCOSUL ainda apresenta barreiras n\u00e3o tarif\u00e1rias significativas e uma menor livre circula\u00e7\u00e3o de pessoas e servi\u00e7os, que s\u00e3o caracter\u00edsticas que o distinguem de blocos mais avan\u00e7ados. Na Uni\u00e3o Europeia, por exemplo, a livre circula\u00e7\u00e3o \u00e9 quase plena e as barreiras n\u00e3o tarif\u00e1rias s\u00e3o muito reduzidas.",
+      "keywords": [
+        "MERCOSUL",
+        "Integra\u00e7\u00e3o comercial",
+        "Barreiras comerciais",
+        "Uni\u00e3o Europeia",
+        "Geografia econ\u00f4mica"
+      ],
+      "difficulty": 500,
+      "topic": "Caracter\u00edsticas Comerciais Internas do MERCOSUL em Compara\u00e7\u00e3o com Outros Blocos",
+      "type": "discursive",
+      "difficulty_level": 500,
+      "ai_model": "gemini-2.5-flash",
+      "grade": 110,
+      "education_level": 30,
+      "categoryName": "MERCOSUL: Caracter\u00edsticas e Membros",
+      "categoryId": "",
+      "disciplineName": "Geografia",
+      "disciplineId": "",
+      "request_context": {
+        "grade": 110,
+        "locale": "pt_BR",
+        "difficulty": 700,
+        "category": "MERCOSUL: Caracter\u00edsticas e Membros",
+        "discipline": "Geografia"
+      }
+    },
+    {
+      "question_statement": "Which characteristic best describes a bacterium, a common organism found in the Monera Kingdom?",
+      "question_solution": "Bacteria are prokaryotic organisms, meaning their cells lack a membrane-bound nucleus and other membrane-bound organelles. This is a fundamental defining feature that distinguishes them from eukaryotic cells.",
+      "keywords": [
+        "Monera",
+        "Bacteria",
+        "Prokaryotic",
+        "Cell structure",
+        "Organelle"
+      ],
+      "difficulty": 300,
+      "topic": "Monera Kingdom: Bacteria - Basic characteristics of bacteria",
+      "type": "multiple_choice",
+      "answer": "They are prokaryotic cells without a membrane-bound nucleus.",
+      "incorrect_alternatives": [
+        "They are eukaryotic cells with many specialized organelles.",
+        "They possess chloroplasts for photosynthesis in all species.",
+        "They are multicellular organisms with differentiated tissues.",
+        "They always reproduce sexually through gamete fusion."
+      ],
+      "difficulty_level": 300,
+      "ai_model": "gemini-2.5-flash",
+      "grade": 100,
+      "education_level": 30,
+      "categoryName": "Monera Kingdom: Bacteria",
+      "categoryId": "",
+      "disciplineName": "Biology",
+      "disciplineId": "",
+      "request_context": {
+        "grade": 100,
+        "locale": "en_US",
+        "difficulty": 300,
+        "category": "Monera Kingdom: Bacteria",
+        "discipline": "Biology"
+      }
+    },
+    {
+      "question_statement": "Identify a common structural component found in most bacterial cells within the Monera Kingdom that provides shape and protection.",
+      "question_solution": "Most bacterial cells possess a cell wall, which is a rigid outer layer located outside the plasma membrane. This cell wall provides structural support, maintains the cell's shape, and protects the bacterium from osmotic lysis and mechanical stress.",
+      "keywords": [
+        "Bacteria",
+        "Cell wall",
+        "Structure",
+        "Protection",
+        "Monera Kingdom"
+      ],
+      "difficulty": 100,
+      "topic": "Monera Kingdom: Bacteria - Bacterial cell structure",
+      "type": "discursive",
+      "difficulty_level": 100,
+      "ai_model": "gemini-2.5-flash",
+      "grade": 100,
+      "education_level": 30,
+      "categoryName": "Monera Kingdom: Bacteria",
+      "categoryId": "",
+      "disciplineName": "Biology",
+      "disciplineId": "",
+      "request_context": {
+        "grade": 100,
+        "locale": "en_US",
+        "difficulty": 300,
+        "category": "Monera Kingdom: Bacteria",
+        "discipline": "Biology"
+      }
+    },
+    {
+      "question_statement": "In pea plants, the allele for tall stems (T) is dominant over the allele for short stems (t). A genetic cross occurs between a heterozygous tall plant and a short plant. What proportion of the offspring are expected to exhibit the short stem phenotype?",
+      "question_solution": "A heterozygous tall plant has the genotype Tt. A short plant has the genotype tt (since short is recessive). When Tt is crossed with tt, the possible gametes from Tt are T and t, and from tt are t and t. A Punnett square reveals the following genotypes for the offspring: Tt, Tt, tt, tt. This means 50% of the offspring will have the Tt genotype (tall phenotype) and 50% will have the tt genotype (short phenotype). Therefore, 1/2 of the offspring are expected to exhibit the short stem phenotype.",
+      "keywords": [
+        "Genetics",
+        "Mendelian inheritance",
+        "Punnett square",
+        "Phenotype",
+        "Dominant"
+      ],
+      "difficulty": 300,
+      "topic": "Monohybrid Cross Phenotype Prediction in Biology Genetics",
+      "type": "multiple_choice",
+      "answer": "1/2",
+      "incorrect_alternatives": [
+        "3/4",
+        "1/4",
+        "All",
+        "None"
+      ],
+      "difficulty_level": 300,
+      "ai_model": "gemini-2.5-flash",
+      "grade": 120,
+      "education_level": 30,
+      "categoryName": "Genetics: Exercises",
+      "categoryId": "",
+      "disciplineName": "Biology",
+      "disciplineId": "",
+      "request_context": {
+        "grade": 120,
+        "locale": "en_US",
+        "difficulty": 300,
+        "category": "Genetics: Exercises",
+        "discipline": "Biology"
+      }
+    },
+    {
+      "question_statement": "A scientist studies a population of fruit flies where red eye color (R) is dominant over white eye color (r). Two fruit flies, both with red eyes, produce offspring, some of which have white eyes. Determine the genotypes of the parent fruit flies and explain how white-eyed offspring are possible from red-eyed parents.",
+      "question_solution": "Since both parent fruit flies have red eyes, but produce offspring with white eyes, both parents must carry the recessive allele for white eyes. For white eyes (rr) to appear in the offspring, each parent must contribute an 'r' allele. Therefore, both red-eyed parents must be heterozygous, with the genotype Rr. When two Rr individuals cross, a Punnett square shows the possible offspring genotypes are RR, Rr, Rr, and rr. The rr genotype results in white eyes, thus explaining how white-eyed offspring can arise from two red-eyed parents.",
+      "keywords": [
+        "Genetics",
+        "Punnett square",
+        "Genotype",
+        "Dominant",
+        "Recessive"
+      ],
+      "difficulty": 500,
+      "topic": "Parental Genotype Determination in Biology Genetics",
+      "type": "discursive",
+      "difficulty_level": 500,
+      "ai_model": "gemini-2.5-flash",
+      "grade": 120,
+      "education_level": 30,
+      "categoryName": "Genetics: Exercises",
+      "categoryId": "",
+      "disciplineName": "Biology",
+      "disciplineId": "",
+      "request_context": {
+        "grade": 120,
+        "locale": "en_US",
+        "difficulty": 300,
+        "category": "Genetics: Exercises",
+        "discipline": "Biology"
+      }
+    },
+    {
+      "question_statement": "In a cross between two pea plants heterozygous for flower color (Pp), where 'P' represents purple and 'p' represents white, what is the expected genotypic ratio of the offspring, according to Mendel's First Law of Segregation?",
+      "question_solution": "Mendel's First Law, the Law of Segregation, states that during the formation of gametes, the two alleles for a heritable character separate from each other, so that each gamete carries only one allele. When crossing two heterozygous individuals (Pp x Pp), a Punnett square shows the possible genotypic combinations: PP, Pp, pP, and pp. This results in a genotypic ratio of 1 PP : 2 Pp : 1 pp.",
+      "keywords": [
+        "Mendel's First Law",
+        "Genotype",
+        "Segregation",
+        "Punnett Square",
+        "Heterozygous"
+      ],
+      "difficulty": 300,
+      "topic": "Genetics: Mendel's 1st Law - Biology",
+      "type": "multiple_choice",
+      "answer": "1 PP : 2 Pp : 1 pp",
+      "incorrect_alternatives": [
+        "3 Purple : 1 White",
+        "1 PP : 1 Pp : 1 pp",
+        "2 Pp : 1 PP : 1 pp",
+        "1 PP : 3 pp"
+      ],
+      "difficulty_level": 300,
+      "ai_model": "gemini-2.5-flash",
+      "grade": 120,
+      "education_level": 30,
+      "categoryName": "Genetics: Mendel's 1st Law",
+      "categoryId": "",
+      "disciplineName": "Biology",
+      "disciplineId": "",
+      "request_context": {
+        "grade": 120,
+        "locale": "en_US",
+        "difficulty": 300,
+        "category": "Genetics: Mendel's 1st Law",
+        "discipline": "Biology"
+      }
+    },
+    {
+      "question_statement": "A plant breeder observes that crossing two tall pea plants (Tt) consistently yields some dwarf pea plants (tt) in the next generation. Identify the genetic principle from Mendel's work that directly explains the appearance of the dwarf phenotype.",
+      "question_solution": "The appearance of dwarf pea plants (tt) from two tall pea plants (Tt) in the next generation is a direct demonstration of Mendel's First Law, the Law of Segregation. This law states that during gamete formation, the two alleles for a trait (T and t) separate, so that each gamete receives only one. When two heterozygous parents (Tt) are crossed, each parent contributes either a 'T' or a 't' allele to their offspring. For a dwarf plant (tt) to appear, both parents must contribute the 't' allele, which is only possible if the alleles segregated during gamete formation in the heterozygous parents.",
+      "keywords": [
+        "Mendel's First Law",
+        "Segregation",
+        "Alleles",
+        "Phenotype",
+        "Genetics"
+      ],
+      "difficulty": 300,
+      "topic": "Genetics: Mendel's 1st Law - Biology",
+      "type": "discursive",
+      "difficulty_level": 300,
+      "ai_model": "gemini-2.5-flash",
+      "grade": 120,
+      "education_level": 30,
+      "categoryName": "Genetics: Mendel's 1st Law",
+      "categoryId": "",
+      "disciplineName": "Biology",
+      "disciplineId": "",
+      "request_context": {
+        "grade": 120,
+        "locale": "en_US",
+        "difficulty": 300,
+        "category": "Genetics: Mendel's 1st Law",
+        "discipline": "Biology"
+      }
+    },
+    {
+      "question_statement": "The excessive growth of algae and aquatic plants in a body of water, often due to nutrient runoff from human activities, is a biological consequence known as which environmental process?",
+      "question_solution": "Eutrophication is the process where a body of water becomes overly enriched with nutrients, leading to excessive growth of algae and other aquatic plants. This algal bloom depletes oxygen when the organisms die and decompose, harming other aquatic life. It's a direct biological impact of pollution, often from agricultural runoff containing nitrogen and phosphorus.",
+      "keywords": [
+        "eutrophication",
+        "nutrient pollution",
+        "algal bloom",
+        "aquatic biology",
+        "environmental impact"
+      ],
+      "difficulty": 300,
+      "topic": "Environmental Pollution: Eutrophication in Biology",
+      "type": "multiple_choice",
+      "answer": "Eutrophication",
+      "incorrect_alternatives": [
+        "Bioaccumulation",
+        "Acid deposition",
+        "Thermal inversion",
+        "Desertification"
+      ],
+      "difficulty_level": 300,
+      "ai_model": "gemini-2.5-flash",
+      "grade": 100,
+      "education_level": 30,
+      "categoryName": "Environment: Pollution",
+      "categoryId": "",
+      "disciplineName": "Biology",
+      "disciplineId": "",
+      "request_context": {
+        "grade": 100,
+        "locale": "en_US",
+        "difficulty": 300,
+        "category": "Environment: Pollution",
+        "discipline": "Biology"
+      }
+    },
+    {
+      "question_statement": "Explain how the presence of persistent organic pollutants (POPs) in an ecosystem can lead to higher concentrations of these substances in top predators compared to primary producers.",
+      "question_solution": "Persistent organic pollutants (POPs) are not easily broken down in the environment and can be absorbed by living organisms. When primary producers (like plants or algae) absorb these POPs from their environment, they accumulate small amounts. As primary consumers (herbivores) eat many primary producers, the POPs from all those producers accumulate in the consumers' bodies. This process, known as biomagnification, continues up the food chain. Apex predators, consuming large quantities of contaminated prey over their lifespan, accumulate the highest concentrations of POPs, leading to potentially harmful effects, even if the initial concentration in the environment was low. The pollutants are stored in tissues, particularly fatty tissues, and are not easily excreted.",
+      "keywords": [
+        "biomagnification",
+        "POPs",
+        "food chain",
+        "trophic levels",
+        "environmental biology"
+      ],
+      "difficulty": 300,
+      "topic": "Environmental Pollution: Biomagnification of Pollutants in Biology",
+      "type": "discursive",
+      "difficulty_level": 300,
+      "ai_model": "gemini-2.5-flash",
+      "grade": 100,
+      "education_level": 30,
+      "categoryName": "Environment: Pollution",
+      "categoryId": "",
+      "disciplineName": "Biology",
+      "disciplineId": "",
+      "request_context": {
+        "grade": 100,
+        "locale": "en_US",
+        "difficulty": 300,
+        "category": "Environment: Pollution",
+        "discipline": "Biology"
+      }
+    },
+    {
+      "question_statement": "A student is analyzing two different organic molecules extracted from a plant cell. Molecule A is readily soluble in water and provides quick energy for cellular processes. Molecule B is insoluble in water and functions primarily as long-term energy storage and a component of cell membranes. Based on these properties, what can be inferred about the primary classification of Molecule A and Molecule B within biochemistry?",
+      "question_solution": "Molecule A's properties (water-soluble, quick energy) are characteristic of carbohydrates, specifically monosaccharides or disaccharides, which are readily used by cells for energy. Molecule B's properties (water-insoluble, long-term energy storage, membrane component) are characteristic of lipids, such as triglycerides for storage and phospholipids for membranes. Therefore, Molecule A is a carbohydrate, and Molecule B is a lipid.",
+      "keywords": [
+        "Carbohydrates",
+        "Lipids",
+        "Energy Storage",
+        "Solubility",
+        "Cell Membranes"
+      ],
+      "difficulty": 300,
+      "topic": "Biochemistry: Functional roles of Carbohydrates and Lipids in Biology",
+      "type": "multiple_choice",
+      "answer": "Molecule A is a carbohydrate, and Molecule B is a lipid.",
+      "incorrect_alternatives": [
+        "Molecule A is a protein, and Molecule B is a nucleic acid.",
+        "Molecule A is a lipid, and Molecule B is a carbohydrate.",
+        "Molecule A is a nucleic acid, and Molecule B is a protein.",
+        "Both Molecule A and Molecule B are types of proteins."
+      ],
+      "difficulty_level": 300,
+      "ai_model": "gemini-2.5-flash",
+      "grade": 110,
+      "education_level": 30,
+      "categoryName": "Biochemistry: Carbohydrates and Lipids",
+      "categoryId": "",
+      "disciplineName": "Biology",
+      "disciplineId": "",
+      "request_context": {
+        "grade": 110,
+        "locale": "en_US",
+        "difficulty": 300,
+        "category": "Biochemistry: Carbohydrates and Lipids",
+        "discipline": "Biology"
+      }
+    },
+    {
+      "question_statement": "Consider a biological scenario where a desert animal needs to store a significant amount of energy for an extended period without access to water, while also needing a structural component for cell flexibility in varying temperatures. Justify why lipids are particularly well-suited for both of these critical biological functions in this animal.",
+      "question_solution": "Lipids are excellent for long-term energy storage because they are highly hydrophobic, meaning they do not attract water. This allows an animal to store a large amount of energy in a compact form without increasing its water weight significantly, which is crucial in a desert environment where water is scarce. Additionally, the fatty acid tails of phospholipids, a type of lipid, are essential components of cell membranes. The varying saturation levels and lengths of these fatty acids contribute to the fluidity and flexibility of cell membranes, allowing the animal's cells to adapt and maintain function across different temperatures. The hydrophobic nature also helps maintain the cell's integrity and regulate water movement across the membrane.",
+      "keywords": [
+        "Lipids",
+        "Energy Storage",
+        "Cell Membranes",
+        "Adaptation",
+        "Hydrophobicity"
+      ],
+      "difficulty": 500,
+      "topic": "Biochemistry: Roles of Lipids in desert animal adaptation",
+      "type": "discursive",
+      "difficulty_level": 500,
+      "ai_model": "gemini-2.5-flash",
+      "grade": 110,
+      "education_level": 30,
+      "categoryName": "Biochemistry: Carbohydrates and Lipids",
+      "categoryId": "",
+      "disciplineName": "Biology",
+      "disciplineId": "",
+      "request_context": {
+        "grade": 110,
+        "locale": "en_US",
+        "difficulty": 300,
+        "category": "Biochemistry: Carbohydrates and Lipids",
+        "discipline": "Biology"
+      }
+    },
+    {
+      "question_statement": "While Sarah ______ for her flight at the terminal, she suddenly noticed her old college professor walking past with a large suitcase.",
+      "question_solution": "The sentence describes two actions happening simultaneously in the past. One action, 'waiting,' was ongoing (Past Continuous), and the other, 'noticed,' was a sudden interruption (Simple Past). Therefore, 'was waiting' correctly fills the blank to indicate Sarah's continuous action at the moment she noticed her professor.",
+      "keywords": [
+        "Past Continuous",
+        "Simple Past",
+        "simultaneous actions",
+        "interruption",
+        "verb tense"
+      ],
+      "difficulty": 500,
+      "topic": "Using Past Continuous with Simple Past for simultaneous or interrupted actions in English",
+      "type": "multiple_choice",
+      "answer": "was waiting",
+      "incorrect_alternatives": [
+        "is waiting",
+        "waits",
+        "waited",
+        "had waited"
+      ],
+      "difficulty_level": 500,
+      "ai_model": "gemini-2.5-flash",
+      "grade": 110,
+      "education_level": 30,
+      "categoryName": "Past Continuous",
+      "categoryId": "",
+      "disciplineName": "English",
+      "disciplineId": "",
+      "request_context": {
+        "grade": 110,
+        "locale": "en_US",
+        "difficulty": 500,
+        "category": "Past Continuous",
+        "discipline": "English"
+      }
+    },
+    {
+      "question_statement": "Construct a single sentence using the Past Continuous tense to describe two distinct actions happening at the same time in the past.",
+      "question_solution": "An acceptable sentence construction would be: 'While I was studying for my English exam, my roommate was listening to music in the next room.' This demonstrates two continuous actions occurring simultaneously in the past, effectively applying the Past Continuous tense for both. (Other correct examples could include: 'She was cooking dinner while he was setting the table.' or 'The children were playing outside, and their parents were reading inside.')",
+      "keywords": [
+        "Past Continuous",
+        "simultaneous actions",
+        "English grammar",
+        "verb tense"
+      ],
+      "difficulty": 300,
+      "topic": "Forming sentences with Past Continuous for parallel actions in English",
+      "type": "discursive",
+      "difficulty_level": 300,
+      "ai_model": "gemini-2.5-flash",
+      "grade": 110,
+      "education_level": 30,
+      "categoryName": "Past Continuous",
+      "categoryId": "",
+      "disciplineName": "English",
+      "disciplineId": "",
+      "request_context": {
+        "grade": 110,
+        "locale": "en_US",
+        "difficulty": 500,
+        "category": "Past Continuous",
+        "discipline": "English"
+      }
+    },
+    {
+      "question_statement": "Your friend is telling a story, but you didn't hear one important part of their sentence. What is a polite way to ask your friend to say that specific part again so you can understand the story completely?",
+      "question_solution": "A polite way to ask your friend to say a specific part again is to say something like, 'Could you please repeat that last part?' or 'I didn't quite catch what you said about [mention specific topic if possible]. Can you say it again?' or 'Would you mind saying that once more?' These phrases show you are listening and politely seeking understanding.",
+      "keywords": [
+        "English",
+        "clarification",
+        "politeness",
+        "request",
+        "vocabulary"
+      ],
+      "difficulty": 100,
+      "topic": "Vocabulary: How to Request Clarifications - English",
+      "type": "discursive",
+      "difficulty_level": 100,
+      "ai_model": "gemini-2.5-flash",
+      "grade": 60,
+      "education_level": 20,
+      "categoryName": "Vocabulary: How to Request Clarifications",
+      "categoryId": "",
+      "disciplineName": "English",
+      "disciplineId": "",
+      "request_context": {
+        "grade": 60,
+        "locale": "en_US",
+        "difficulty": 300,
+        "category": "Vocabulary: How to Request Clarifications",
+        "discipline": "English"
+      }
+    },
+    {
+      "question_statement": "Imagine a classmate is giving instructions for a group project, but their explanation of the first step was a little fast. Which phrase is best to use if you need them to clarify just that one step?",
+      "question_solution": "The phrase \"Could you explain the first step again, please?\" is the most appropriate. It directly and politely asks for clarification on a specific part of the instructions, showing that you understood some but need help with a particular section.",
+      "keywords": [
+        "English",
+        "clarification",
+        "asking",
+        "vocabulary",
+        "comprehension"
+      ],
+      "difficulty": 300,
+      "topic": "Vocabulary: How to Request Clarifications - English",
+      "type": "multiple_choice",
+      "answer": "Could you explain the first step again, please?",
+      "incorrect_alternatives": [
+        "Just say everything you just said.",
+        "What did you even mean by that?",
+        "I need you to talk slower now."
+      ],
+      "difficulty_level": 300,
+      "ai_model": "gemini-2.5-flash",
+      "grade": 60,
+      "education_level": 20,
+      "categoryName": "Vocabulary: How to Request Clarifications",
+      "categoryId": "",
+      "disciplineName": "English",
+      "disciplineId": "",
+      "request_context": {
+        "grade": 60,
+        "locale": "en_US",
+        "difficulty": 300,
+        "category": "Vocabulary: How to Request Clarifications",
+        "discipline": "English"
+      }
+    },
+    {
+      "question_statement": "In the sentence, 'The team celebrated its victory after a hard-fought game,' identify the possessive form that refers to the team.",
+      "question_solution": "The correct possessive form that refers to the team is 'its.' 'Its' is a possessive pronoun (functioning as an adjective here) that shows ownership by a singular, non-human entity, which 'team' represents. It correctly indicates that the victory belongs to the team.",
+      "keywords": [
+        "possessive pronoun",
+        "possessive adjective",
+        "genitive",
+        "pronoun",
+        "adjective"
+      ],
+      "difficulty": 300,
+      "topic": "Possessive Pronouns and Adjectives in English",
+      "type": "multiple_choice",
+      "answer": "its",
+      "incorrect_alternatives": [
+        "it's",
+        "their",
+        "them's",
+        "it is"
+      ],
+      "difficulty_level": 300,
+      "ai_model": "gemini-2.5-flash",
+      "grade": 100,
+      "education_level": 30,
+      "categoryName": "Pronouns and Adjectives: Possessive and Genitive",
+      "categoryId": "",
+      "disciplineName": "English",
+      "disciplineId": "",
+      "request_context": {
+        "grade": 100,
+        "locale": "en_US",
+        "difficulty": 300,
+        "category": "Pronouns and Adjectives: Possessive and Genitive",
+        "discipline": "English"
+      }
+    },
+    {
+      "question_statement": "Consider the sentence: 'The student earned high marks on the test, but the teacher had difficulty understanding his handwritten notes.' Identify the possessive form in the sentence and determine if it acts as a possessive pronoun or a possessive adjective.",
+      "question_solution": "The possessive form in the sentence is 'his.' It functions as a possessive adjective because it modifies the noun 'notes,' indicating ownership or association ('his notes'). Possessive adjectives always precede the noun they modify.",
+      "keywords": [
+        "possessive adjective",
+        "possessive pronoun",
+        "genitive",
+        "pronoun function",
+        "adjective function"
+      ],
+      "difficulty": 500,
+      "topic": "Distinguishing Possessive Pronouns from Possessive Adjectives in English",
+      "type": "discursive",
+      "difficulty_level": 500,
+      "ai_model": "gemini-2.5-flash",
+      "grade": 100,
+      "education_level": 30,
+      "categoryName": "Pronouns and Adjectives: Possessive and Genitive",
+      "categoryId": "",
+      "disciplineName": "English",
+      "disciplineId": "",
+      "request_context": {
+        "grade": 100,
+        "locale": "en_US",
+        "difficulty": 300,
+        "category": "Pronouns and Adjectives: Possessive and Genitive",
+        "discipline": "English"
+      }
+    },
+    {
+      "question_statement": "Which preposition correctly completes the sentence: 'The school concert will begin _____ 7:00 PM on Friday evening.'",
+      "question_solution": "The correct preposition for a specific time like '7:00 PM' is 'at'. 'On' is used for days and dates, and 'in' is used for longer periods like months, years, or parts of the day (e.g., 'in the morning').",
+      "keywords": [
+        "Prepositions of Time",
+        "at",
+        "specific time",
+        "English grammar"
+      ],
+      "difficulty": 300,
+      "topic": "Prepositions of Time - English",
+      "type": "multiple_choice",
+      "answer": "at",
+      "incorrect_alternatives": [
+        "on",
+        "in",
+        "for"
+      ],
+      "difficulty_level": 300,
+      "ai_model": "gemini-2.5-flash",
+      "grade": 70,
+      "education_level": 20,
+      "categoryName": "Prepositions of Time",
+      "categoryId": "",
+      "disciplineName": "English",
+      "disciplineId": "",
+      "request_context": {
+        "grade": 70,
+        "locale": "en_US",
+        "difficulty": 300,
+        "category": "Prepositions of Time",
+        "discipline": "English"
+      }
+    },
+    {
+      "question_statement": "Identify the most appropriate preposition of time from 'at', 'on', or 'in' for each of the following phrases: 'the weekend', 'August', 'the 15th of March', 'night', 'the year 2024'.",
+      "question_solution": "For 'the weekend', the most appropriate preposition is 'on' (in American English). For 'August', it is 'in' because it is a month. For 'the 15th of March', it is 'on' because it is a specific date. For 'night', it is 'at'. For 'the year 2024', it is 'in' because it refers to a specific year.",
+      "keywords": [
+        "Prepositions of Time",
+        "at",
+        "on",
+        "in",
+        "time expressions"
+      ],
+      "difficulty": 500,
+      "topic": "Prepositions of Time - English usage",
+      "type": "discursive",
+      "difficulty_level": 500,
+      "ai_model": "gemini-2.5-flash",
+      "grade": 70,
+      "education_level": 20,
+      "categoryName": "Prepositions of Time",
+      "categoryId": "",
+      "disciplineName": "English",
+      "disciplineId": "",
+      "request_context": {
+        "grade": 70,
+        "locale": "en_US",
+        "difficulty": 300,
+        "category": "Prepositions of Time",
+        "discipline": "English"
+      }
+    },
+    {
+      "question_statement": "Which sentence correctly uses present tense verbs to describe a typical morning routine in English?",
+      "question_solution": "The correct sentence uses present tense verbs to describe habitual actions in a routine. 'She wakes up early, eats breakfast, and then goes to school.' uses 'wakes up,' 'eats,' and 'goes,' all in the simple present tense, which is appropriate for describing a routine.",
+      "keywords": [
+        "daily routine",
+        "present tense",
+        "verbs",
+        "English grammar"
+      ],
+      "difficulty": 300,
+      "topic": "Personal Routines and Information - English",
+      "type": "multiple_choice",
+      "answer": "She wakes up early, eats breakfast, and then goes to school.",
+      "incorrect_alternatives": [
+        "She was waking up early, eating breakfast, and then going to school.",
+        "She will wake up early, ate breakfast, and then went to school.",
+        "She wakes up early, ate breakfast, and then gone to school."
+      ],
+      "difficulty_level": 300,
+      "ai_model": "gemini-2.5-flash",
+      "grade": 60,
+      "education_level": 20,
+      "categoryName": "Personal Routines and Information",
+      "categoryId": "",
+      "disciplineName": "English",
+      "disciplineId": "",
+      "request_context": {
+        "grade": 60,
+        "locale": "en_US",
+        "difficulty": 300,
+        "category": "Personal Routines and Information",
+        "discipline": "English"
+      }
+    },
+    {
+      "question_statement": "Identify a common daily activity that happens before lunch and after waking up, then state one reason why this activity is often part of a personal routine.",
+      "question_solution": "A common daily activity that happens before lunch and after waking up is usually 'brushing teeth' or 'having breakfast'. One reason why brushing teeth is often part of a personal routine is for personal hygiene, to keep teeth clean and healthy, and to have fresh breath. For breakfast, a reason is to provide energy for the day's activities and studies.",
+      "keywords": [
+        "daily activities",
+        "personal routine",
+        "hygiene",
+        "English communication"
+      ],
+      "difficulty": 300,
+      "topic": "Personal Routines and Information - English",
+      "type": "discursive",
+      "difficulty_level": 300,
+      "ai_model": "gemini-2.5-flash",
+      "grade": 60,
+      "education_level": 20,
+      "categoryName": "Personal Routines and Information",
+      "categoryId": "",
+      "disciplineName": "English",
+      "disciplineId": "",
+      "request_context": {
+        "grade": 60,
+        "locale": "en_US",
+        "difficulty": 300,
+        "category": "Personal Routines and Information",
+        "discipline": "English"
+      }
+    },
+    {
+      "question_statement": "Na Filosofia Pol\u00edtica, o conceito de poder n\u00e3o se restringe apenas \u00e0 capacidade de imposi\u00e7\u00e3o pela for\u00e7a. O que, essencialmente, diferencia o poder pol\u00edtico de outras formas de poder, como o econ\u00f4mico ou o social, em um contexto filos\u00f3fico?",
+      "question_solution": "O poder pol\u00edtico \u00e9 caracterizado pela sua capacidade de criar leis obrigat\u00f3rias para todos os membros de uma comunidade e de garantir sua execu\u00e7\u00e3o por meio de institui\u00e7\u00f5es estatais. Essa \u00e9 a ess\u00eancia do seu car\u00e1ter de soberania e universalidade em um determinado territ\u00f3rio, conforme discutido por diversos fil\u00f3sofos que abordam a organiza\u00e7\u00e3o da p\u00f3lis ou do Estado.",
+      "keywords": [
+        "Poder pol\u00edtico",
+        "Filosofia pol\u00edtica",
+        "Legitimidade",
+        "Estado",
+        "Soberania"
+      ],
+      "difficulty": 300,
+      "topic": "Distin\u00e7\u00e3o do Poder Pol\u00edtico na Filosofia",
+      "type": "multiple_choice",
+      "answer": "Sua pretens\u00e3o de soberania e de estabelecer normas v\u00e1lidas para toda a coletividade.",
+      "incorrect_alternatives": [
+        "Sua forte influ\u00eancia sobre as decis\u00f5es individuais dos cidad\u00e3os.",
+        "Sua depend\u00eancia exclusiva da riqueza acumulada pelos governantes.",
+        "Sua origem na capacidade de persuas\u00e3o de l\u00edderes carism\u00e1ticos.",
+        "Sua manifesta\u00e7\u00e3o apenas em regimes autorit\u00e1rios e n\u00e3o democr\u00e1ticos."
+      ],
+      "difficulty_level": 300,
+      "ai_model": "gemini-2.5-flash",
+      "grade": 120,
+      "education_level": 30,
+      "categoryName": "Pol\u00edtica e Poder",
+      "categoryId": "",
+      "disciplineName": "Filosofia",
+      "disciplineId": "",
+      "request_context": {
+        "grade": 120,
+        "locale": "pt_BR",
+        "difficulty": 300,
+        "category": "Pol\u00edtica e Poder",
+        "discipline": "Filosofia"
+      }
+    },
+    {
+      "question_statement": "Considerando os debates filos\u00f3ficos sobre a rela\u00e7\u00e3o entre Pol\u00edtica e Poder, identifique a principal fun\u00e7\u00e3o do Estado, segundo uma perspectiva contratualista, para garantir a conviv\u00eancia social. Qual problema central o Estado visa resolver com essa fun\u00e7\u00e3o?",
+      "question_solution": "A principal fun\u00e7\u00e3o do Estado, segundo uma perspectiva contratualista, \u00e9 garantir a seguran\u00e7a e a ordem social. O problema central que o Estado visa resolver com essa fun\u00e7\u00e3o \u00e9 o estado de natureza, onde a aus\u00eancia de leis e de uma autoridade central levaria ao conflito generalizado e \u00e0 inviabilidade da vida em sociedade. Ao estabelecer leis e institui\u00e7\u00f5es de execu\u00e7\u00e3o, o Estado supera a incerteza e a guerra de todos contra todos, proporcionando um ambiente de conviv\u00eancia pac\u00edfica e previs\u00edvel.",
+      "keywords": [
+        "Contratualismo",
+        "Estado",
+        "Seguran\u00e7a social",
+        "Poder pol\u00edtico",
+        "Conviv\u00eancia"
+      ],
+      "difficulty": 500,
+      "topic": "Fun\u00e7\u00e3o do Estado na Filosofia Contratualista (Pol\u00edtica e Poder)",
+      "type": "discursive",
+      "difficulty_level": 500,
+      "ai_model": "gemini-2.5-flash",
+      "grade": 120,
+      "education_level": 30,
+      "categoryName": "Pol\u00edtica e Poder",
+      "categoryId": "",
+      "disciplineName": "Filosofia",
+      "disciplineId": "",
+      "request_context": {
+        "grade": 120,
+        "locale": "pt_BR",
+        "difficulty": 300,
+        "category": "Pol\u00edtica e Poder",
+        "discipline": "Filosofia"
+      }
+    },
+    {
+      "question_statement": "A Filosofia Medieval, diferentemente da Antiga, se notabilizou por direcionar grande parte de suas investiga\u00e7\u00f5es para a rela\u00e7\u00e3o entre raz\u00e3o e f\u00e9. Qual das caracter\u00edsticas abaixo melhor representa o desafio central dessa \u00e9poca no contexto das Escolas Filos\u00f3ficas?",
+      "question_solution": "A Filosofia Medieval buscou conciliar a raz\u00e3o, herdada dos gregos, com os dogmas da f\u00e9 crist\u00e3, \u00e1rabe ou judaica. Esse esfor\u00e7o de harmoniza\u00e7\u00e3o marcou profundamente o pensamento do per\u00edodo, estabelecendo a f\u00e9 como ponto de partida e a raz\u00e3o como ferramenta para aprofundar a compreens\u00e3o das verdades reveladas, sem, contudo, question\u00e1-las.",
+      "keywords": [
+        "Filosofia Medieval",
+        "Raz\u00e3o e F\u00e9",
+        "Escolas Filos\u00f3ficas",
+        "Confronto de Ideias"
+      ],
+      "difficulty": 300,
+      "topic": "Concilia\u00e7\u00e3o entre Raz\u00e3o e F\u00e9 na Filosofia Medieval em compara\u00e7\u00e3o com a Antiga - Filosofia",
+      "type": "multiple_choice",
+      "answer": "A busca pela harmoniza\u00e7\u00e3o entre os princ\u00edpios da raz\u00e3o e os dogmas religiosos.",
+      "incorrect_alternatives": [
+        "A valoriza\u00e7\u00e3o exclusiva da experi\u00eancia sensorial como fonte prim\u00e1ria do conhecimento humano.",
+        "A total nega\u00e7\u00e3o da exist\u00eancia de Deus, priorizando o pensamento puramente materialista.",
+        "A defesa irrestrita da autonomia da raz\u00e3o, afastando-se de qualquer influ\u00eancia metaf\u00edsica.",
+        "A completa submiss\u00e3o da f\u00e9 aos preceitos l\u00f3gicos da filosofia grega cl\u00e1ssica."
+      ],
+      "difficulty_level": 300,
+      "ai_model": "gemini-2.5-flash",
+      "grade": 120,
+      "education_level": 30,
+      "categoryName": "Escolas Filos\u00f3ficas: Antiga, Medieval, Moderna e Contempor\u00e2nea",
+      "categoryId": "",
+      "disciplineName": "Filosofia",
+      "disciplineId": "",
+      "request_context": {
+        "grade": 120,
+        "locale": "pt_BR",
+        "difficulty": 300,
+        "category": "Escolas Filos\u00f3ficas: Antiga, Medieval, Moderna e Contempor\u00e2nea",
+        "discipline": "Filosofia"
+      }
+    },
+    {
+      "question_statement": "Considerando o panorama das Escolas Filos\u00f3ficas, avalie como o conceito de 'subjetividade' se transformou desde a Filosofia Moderna at\u00e9 a Contempor\u00e2nea, e qual o impacto dessa mudan\u00e7a na compreens\u00e3o do indiv\u00edduo.",
+      "question_solution": "Na Filosofia Moderna, o conceito de subjetividade emerge fortemente com pensadores como Descartes, que estabelece o 'eu pensante' (o cogito) como ponto de partida indubit\u00e1vel do conhecimento. A subjetividade moderna \u00e9 frequentemente entendida como uma consci\u00eancia individual, racional e aut\u00f4noma, capaz de conhecer o mundo a partir de si mesma. J\u00e1 na Filosofia Contempor\u00e2nea, a subjetividade passa por uma desconstru\u00e7\u00e3o e complexifica\u00e7\u00e3o significativa. Pensadores como Nietzsche, Foucault e Lacan questionam a no\u00e7\u00e3o de um sujeito unit\u00e1rio, racional e transparente a si mesmo. A subjetividade contempor\u00e2nea \u00e9 frequentemente vista como fragmentada, atravessada por for\u00e7as inconscientes, discursos sociais, rela\u00e7\u00f5es de poder e constru\u00e7\u00f5es culturais. O impacto dessa transforma\u00e7\u00e3o na compreens\u00e3o do indiv\u00edduo \u00e9 profundo: se na Modernidade o indiv\u00edduo era visto como um centro de autonomia e raz\u00e3o, na Contemporaneidade ele \u00e9 compreendido como um ser mais complexo, influenciado por estruturas externas e internas que moldam sua identidade e percep\u00e7\u00e3o de si, muitas vezes questionando a pr\u00f3pria ideia de uma ess\u00eancia individual fixa.",
+      "keywords": [
+        "Subjetividade",
+        "Filosofia Moderna",
+        "Filosofia Contempor\u00e2nea",
+        "Indiv\u00edduo"
+      ],
+      "difficulty": 500,
+      "topic": "Evolu\u00e7\u00e3o do conceito de Subjetividade nas Escolas Filos\u00f3ficas Moderna e Contempor\u00e2nea - Filosofia",
+      "type": "discursive",
+      "difficulty_level": 500,
+      "ai_model": "gemini-2.5-flash",
+      "grade": 120,
+      "education_level": 30,
+      "categoryName": "Escolas Filos\u00f3ficas: Antiga, Medieval, Moderna e Contempor\u00e2nea",
+      "categoryId": "",
+      "disciplineName": "Filosofia",
+      "disciplineId": "",
+      "request_context": {
+        "grade": 120,
+        "locale": "pt_BR",
+        "difficulty": 300,
+        "category": "Escolas Filos\u00f3ficas: Antiga, Medieval, Moderna e Contempor\u00e2nea",
+        "discipline": "Filosofia"
+      }
+    },
+    {
+      "question_statement": "Na Filosofia, a subjetividade na sociedade contempor\u00e2nea \u00e9 frequentemente discutida em rela\u00e7\u00e3o \u00e0 forma como as tecnologias digitais e as redes sociais impactam a constru\u00e7\u00e3o da identidade individual. Considerando esse contexto, qual caracter\u00edstica melhor descreve um dos principais desafios \u00e0 subjetividade pessoal na era digital?",
+      "question_solution": "A facilidade de moldar a percep\u00e7\u00e3o de si com base em valida\u00e7\u00f5es externas e padr\u00f5es ideais, gerando uma identidade fluida e por vezes inaut\u00eantica, \u00e9 um desafio central \u00e0 subjetividade na era digital. As intera\u00e7\u00f5es online e a busca por aprova\u00e7\u00e3o levam muitos indiv\u00edduos a adaptar sua persona para se encaixar em expectativas alheias, distanciando-se de uma constru\u00e7\u00e3o identit\u00e1ria mais profunda e aut\u00eantica.",
+      "keywords": [
+        "subjetividade",
+        "sociedade contempor\u00e2nea",
+        "identidade digital",
+        "redes sociais",
+        "valida\u00e7\u00e3o externa"
+      ],
+      "difficulty": 300,
+      "topic": "Subjetividade na Sociedade Contempor\u00e2nea - Filosofia",
+      "type": "multiple_choice",
+      "answer": "A crescente depend\u00eancia da valida\u00e7\u00e3o social online para a forma\u00e7\u00e3o da autoimagem, tornando-a mais suscet\u00edvel a influ\u00eancias externas.",
+      "incorrect_alternatives": [
+        "A diminui\u00e7\u00e3o significativa da privacidade individual, que fortalece os la\u00e7os comunit\u00e1rios e a coes\u00e3o social.",
+        "O aprimoramento da capacidade cr\u00edtica dos indiv\u00edduos, facilitado pelo acesso ilimitado a diversas fontes de informa\u00e7\u00e3o.",
+        "A redu\u00e7\u00e3o das intera\u00e7\u00f5es sociais presenciais, que promove um aprofundamento da introspec\u00e7\u00e3o e do autoconhecimento.",
+        "A facilidade de expressar opini\u00f5es diversas, o que leva a uma maior homogeneidade cultural e ideol\u00f3gica entre os indiv\u00edduos."
+      ],
+      "difficulty_level": 300,
+      "ai_model": "gemini-2.5-flash",
+      "grade": 100,
+      "education_level": 30,
+      "categoryName": "Subjetividade na Sociedade Contempor\u00e2nea",
+      "categoryId": "",
+      "disciplineName": "Filosofia",
+      "disciplineId": "",
+      "request_context": {
+        "grade": 100,
+        "locale": "pt_BR",
+        "difficulty": 300,
+        "category": "Subjetividade na Sociedade Contempor\u00e2nea",
+        "discipline": "Filosofia"
+      }
+    },
+    {
+      "question_statement": "Considerando o conceito de subjetividade na Filosofia, especialmente no contexto da sociedade contempor\u00e2nea, explique de que maneira a busca incessante por visibilidade e reconhecimento nas plataformas digitais pode reconfigurar a percep\u00e7\u00e3o que o indiv\u00edduo tem de si mesmo. Aborde como essa din\u00e2mica afeta a autonomia na constru\u00e7\u00e3o da identidade pessoal.",
+      "question_solution": "Na sociedade contempor\u00e2nea, a busca por visibilidade e reconhecimento nas plataformas digitais (como redes sociais) influencia significativamente a subjetividade. O indiv\u00edduo tende a construir sua identidade a partir da rea\u00e7\u00e3o e da aprova\u00e7\u00e3o do p\u00fablico virtual, adaptando sua imagem, comportamento e opini\u00f5es para se alinhar aos padr\u00f5es valorizados socialmente online. Essa din\u00e2mica pode levar a uma reconfigura\u00e7\u00e3o da percep\u00e7\u00e3o de si, onde o 'eu' \u00e9 moldado mais pelo 'olhar do outro' do que por uma reflex\u00e3o interna e aut\u00eantica. Consequentemente, a autonomia na constru\u00e7\u00e3o da identidade pessoal pode ser afetada, pois o sujeito passa a depender da valida\u00e7\u00e3o externa para definir quem ele \u00e9, diminuindo sua capacidade de estabelecer valores e caracter\u00edsticas pr\u00f3prias independentemente das expectativas alheias.",
+      "keywords": [
+        "subjetividade",
+        "sociedade contempor\u00e2nea",
+        "visibilidade digital",
+        "autonomia",
+        "identidade"
+      ],
+      "difficulty": 500,
+      "topic": "Subjetividade na Sociedade Contempor\u00e2nea - Filosofia",
+      "type": "discursive",
+      "difficulty_level": 500,
+      "ai_model": "gemini-2.5-flash",
+      "grade": 100,
+      "education_level": 30,
+      "categoryName": "Subjetividade na Sociedade Contempor\u00e2nea",
+      "categoryId": "",
+      "disciplineName": "Filosofia",
+      "disciplineId": "",
+      "request_context": {
+        "grade": 100,
+        "locale": "pt_BR",
+        "difficulty": 300,
+        "category": "Subjetividade na Sociedade Contempor\u00e2nea",
+        "discipline": "Filosofia"
+      }
+    },
+    {
+      "question_statement": "In the context of philosophical ideas about democracy, what primary role does active citizenship play?",
+      "question_solution": "Active citizenship ensures that the government remains accountable to the people and reflects their collective will through direct participation in civic life and decision-making processes, upholding the principles of popular sovereignty.",
+      "keywords": [
+        "democracy",
+        "citizenship",
+        "accountability",
+        "participation",
+        "philosophy"
+      ],
+      "difficulty": 300,
+      "topic": "The Role of Active Citizenship in Democratic Philosophy",
+      "type": "multiple_choice",
+      "answer": "Active citizenship guarantees that the government stays answerable to its constituents by involving them directly in public affairs.",
+      "incorrect_alternatives": [
+        "Active citizenship solely focuses on individual rights without emphasizing community responsibilities.",
+        "Active citizenship primarily serves to maintain order and stability by deferring to governmental authority.",
+        "Active citizenship is mainly about supporting economic growth through passive adherence to policy directives.",
+        "Active citizenship promotes the election of leaders who make all decisions without public input."
+      ],
+      "difficulty_level": 300,
+      "ai_model": "gemini-2.5-flash",
+      "grade": 100,
+      "education_level": 30,
+      "categoryName": "Democracy and Citizenship",
+      "categoryId": "",
+      "disciplineName": "Philosophy",
+      "disciplineId": "",
+      "request_context": {
+        "grade": 100,
+        "locale": "en_US",
+        "difficulty": 300,
+        "category": "Democracy and Citizenship",
+        "discipline": "Philosophy"
+      }
+    },
+    {
+      "question_statement": "From a philosophical perspective concerning democracy and citizenship, identify one practical outcome when citizens consistently exercise their civic duty to hold leaders accountable.",
+      "question_solution": "When citizens consistently exercise their civic duty to hold leaders accountable within a democratic framework, a practical outcome is the strengthening of governmental transparency. This ongoing scrutiny encourages public officials to operate with greater openness, make decisions based on public interest rather than personal gain, and provide clear justifications for their actions. This process reduces corruption and increases trust between the populace and their representatives.",
+      "keywords": [
+        "democracy",
+        "citizenship",
+        "accountability",
+        "governance",
+        "philosophy"
+      ],
+      "difficulty": 500,
+      "topic": "Practical Outcomes of Citizen Accountability in Democratic Philosophy",
+      "type": "discursive",
+      "difficulty_level": 500,
+      "ai_model": "gemini-2.5-flash",
+      "grade": 100,
+      "education_level": 30,
+      "categoryName": "Democracy and Citizenship",
+      "categoryId": "",
+      "disciplineName": "Philosophy",
+      "disciplineId": "",
+      "request_context": {
+        "grade": 100,
+        "locale": "en_US",
+        "difficulty": 300,
+        "category": "Democracy and Citizenship",
+        "discipline": "Philosophy"
+      }
+    },
+    {
+      "question_statement": "In the context of ethics in philosophy, what does 'free will' primarily imply about an individual's actions?",
+      "question_solution": "Free will in ethics suggests that individuals possess the ability to make choices independently, meaning their actions are not solely determined by external forces or predetermined factors. This capacity for independent decision-making is fundamental to assigning moral responsibility, as one can only be held accountable for actions they genuinely chose to perform. Without free will, the concepts of blame, praise, and moral duty lose their conventional meaning.",
+      "keywords": [
+        "free will",
+        "ethics",
+        "philosophy",
+        "moral responsibility",
+        "choice"
+      ],
+      "difficulty": 300,
+      "topic": "Free Will in Ethics - Philosophy",
+      "type": "multiple_choice",
+      "answer": "The capacity to make choices without being entirely determined by external factors.",
+      "incorrect_alternatives": [
+        "The ability to act impulsively without considering consequences.",
+        "The freedom to always achieve one's desired outcomes.",
+        "The complete absence of any societal or personal constraints.",
+        "The philosophical idea that all actions are predetermined by fate."
+      ],
+      "difficulty_level": 300,
+      "ai_model": "gemini-2.5-flash",
+      "grade": 120,
+      "education_level": 30,
+      "categoryName": "Ethics and Will",
+      "categoryId": "",
+      "disciplineName": "Philosophy",
+      "disciplineId": "",
+      "request_context": {
+        "grade": 120,
+        "locale": "en_US",
+        "difficulty": 300,
+        "category": "Ethics and Will",
+        "discipline": "Philosophy"
+      }
+    },
+    {
+      "question_statement": "Identify a basic connection between an individual's will and their ethical decisions in philosophy.",
+      "question_solution": "In philosophy, an individual's will is fundamentally connected to ethical decisions because it represents their capacity to choose between different courses of action. Ethical decisions require a conscious act of choosing what is considered right or wrong, good or bad. Without the will to make such a choice, an individual cannot be held morally responsible for their actions.",
+      "keywords": [
+        "will",
+        "ethical decisions",
+        "choice",
+        "moral responsibility",
+        "philosophy"
+      ],
+      "difficulty": 100,
+      "topic": "The Will and Ethical Decision-Making - Philosophy",
+      "type": "discursive",
+      "difficulty_level": 100,
+      "ai_model": "gemini-2.5-flash",
+      "grade": 120,
+      "education_level": 30,
+      "categoryName": "Ethics and Will",
+      "categoryId": "",
+      "disciplineName": "Philosophy",
+      "disciplineId": "",
+      "request_context": {
+        "grade": 120,
+        "locale": "en_US",
+        "difficulty": 300,
+        "category": "Ethics and Will",
+        "discipline": "Philosophy"
+      }
+    },
+    {
+      "question_statement": "Qual das seguintes op\u00e7\u00f5es melhor representa um fator social que tem influenciado as transforma\u00e7\u00f5es nos esportes na Educa\u00e7\u00e3o F\u00edsica contempor\u00e2nea?",
+      "question_solution": "A crescente valoriza\u00e7\u00e3o da inclus\u00e3o de pessoas com diferentes habilidades e necessidades, levando \u00e0 adapta\u00e7\u00e3o de regras e equipamentos esportivos para permitir a participa\u00e7\u00e3o de todos.",
+      "keywords": [
+        "esporte",
+        "transforma\u00e7\u00f5es",
+        "Educa\u00e7\u00e3o F\u00edsica",
+        "fator social",
+        "inclus\u00e3o"
+      ],
+      "difficulty": 300,
+      "topic": "Transforma\u00e7\u00f5es nos Esportes na Educa\u00e7\u00e3o F\u00edsica",
+      "type": "multiple_choice",
+      "answer": "A crescente valoriza\u00e7\u00e3o da inclus\u00e3o de pessoas com diferentes habilidades e necessidades, levando \u00e0 adapta\u00e7\u00e3o de regras e equipamentos esportivos para permitir a participa\u00e7\u00e3o de todos.",
+      "incorrect_alternatives": [
+        "O aumento do n\u00famero de modalidades esportivas ol\u00edmpicas, exigindo que os atletas se especializem em apenas uma disciplina desde cedo.",
+        "A diminui\u00e7\u00e3o da import\u00e2ncia da pr\u00e1tica esportiva para a sa\u00fade, com o foco maior sendo direcionado apenas para o alto rendimento competitivo.",
+        "A padroniza\u00e7\u00e3o das t\u00e9cnicas de ensino em todas as escolas, eliminando as adapta\u00e7\u00f5es regionais e culturais nas aulas de Educa\u00e7\u00e3o F\u00edsica."
+      ],
+      "difficulty_level": 300,
+      "ai_model": "gemini-2.5-flash",
+      "grade": 80,
+      "education_level": 20,
+      "categoryName": "Transforma\u00e7\u00f5es nos Esportes",
+      "categoryId": "",
+      "disciplineName": "Educa\u00e7\u00e3o F\u00edsica",
+      "disciplineId": "",
+      "request_context": {
+        "grade": 80,
+        "locale": "pt_BR",
+        "difficulty": 300,
+        "category": "Transforma\u00e7\u00f5es nos Esportes",
+        "discipline": "Educa\u00e7\u00e3o F\u00edsica"
+      }
+    },
+    {
+      "question_statement": "A pr\u00e1tica de esportes tem se modificado ao longo do tempo, e a Educa\u00e7\u00e3o F\u00edsica reflete essas mudan\u00e7as. Apresente um exemplo de como a tecnologia impactou as transforma\u00e7\u00f5es esportivas, considerando aspectos positivos e negativos.",
+      "question_solution": "A tecnologia impactou as transforma\u00e7\u00f5es esportivas de diversas formas. Positivamente, permitiu o desenvolvimento de equipamentos mais seguros e eficazes (ex: t\u00eanis com amortecimento avan\u00e7ado, capacetes de prote\u00e7\u00e3o), al\u00e9m de ferramentas para an\u00e1lise de desempenho de atletas (ex: sensores de movimento, softwares de estat\u00edsticas) e transmiss\u00e3o de eventos (ex: realidade virtual, c\u00e2meras de alta defini\u00e7\u00e3o), tornando os esportes mais acess\u00edveis e compreendidos. Negativamente, pode levar a uma excessiva depend\u00eancia de recursos tecnol\u00f3gicos em detrimento das habilidades f\u00edsicas naturais, aumentar a 'mercantiliza\u00e7\u00e3o' do esporte com foco no consumo de produtos de alta tecnologia e, em alguns casos, levantar quest\u00f5es sobre a equidade e o 'doping tecnol\u00f3gico' se o acesso a essas inova\u00e7\u00f5es n\u00e3o for universal.",
+      "keywords": [
+        "esporte",
+        "tecnologia",
+        "Educa\u00e7\u00e3o F\u00edsica",
+        "impacto",
+        "transforma\u00e7\u00f5es"
+      ],
+      "difficulty": 500,
+      "topic": "Transforma\u00e7\u00f5es nos Esportes - Impacto da Tecnologia",
+      "type": "discursive",
+      "difficulty_level": 500,
+      "ai_model": "gemini-2.5-flash",
+      "grade": 80,
+      "education_level": 20,
+      "categoryName": "Transforma\u00e7\u00f5es nos Esportes",
+      "categoryId": "",
+      "disciplineName": "Educa\u00e7\u00e3o F\u00edsica",
+      "disciplineId": "",
+      "request_context": {
+        "grade": 80,
+        "locale": "pt_BR",
+        "difficulty": 300,
+        "category": "Transforma\u00e7\u00f5es nos Esportes",
+        "discipline": "Educa\u00e7\u00e3o F\u00edsica"
+      }
+    },
+    {
+      "question_statement": "No futsal, esporte de Educa\u00e7\u00e3o F\u00edsica bastante difundido nas escolas brasileiras, uma regra fundamental que o diferencia do futebol de campo \u00e9 a forma como a bola \u00e9 reposta em jogo quando ultrapassa as linhas laterais da quadra. Considerando essa regra, qual a a\u00e7\u00e3o correta para reiniciar a partida?",
+      "question_solution": "A reposi\u00e7\u00e3o da bola em jogo pelas laterais no futsal \u00e9 feita com os p\u00e9s, caracterizando o 'tiro lateral' ou 'arremesso lateral com os p\u00e9s'. Essa \u00e9 uma regra espec\u00edfica do futsal, que exige que o jogador posicione a bola na linha lateral e a chute para um companheiro de equipe, sem que nenhum advers\u00e1rio esteja a uma dist\u00e2ncia m\u00ednima estabelecida. Se a reposi\u00e7\u00e3o for feita de forma incorreta ou com as m\u00e3os, a posse de bola \u00e9 revertida para o time advers\u00e1rio.",
+      "keywords": [
+        "Futsal",
+        "Regras",
+        "Tiro lateral",
+        "Educa\u00e7\u00e3o F\u00edsica",
+        "Rein\u00edcio de jogo"
+      ],
+      "difficulty": 300,
+      "topic": "Regras de rein\u00edcio de jogo no Futsal",
+      "type": "multiple_choice",
+      "answer": "A bola deve ser colocada na linha e chutada com os p\u00e9s, sem toque pr\u00e9vio nas m\u00e3os.",
+      "incorrect_alternatives": [
+        "A bola \u00e9 lan\u00e7ada com as m\u00e3os por sobre a cabe\u00e7a, como no futebol de campo.",
+        "O goleiro pode arremessar a bola com as m\u00e3os para qualquer parte da quadra.",
+        "A bola \u00e9 apenas rolada com uma das m\u00e3os, como um boliche, para um companheiro.",
+        "O jogador pode driblar a bola diretamente da linha lateral para o campo de jogo."
+      ],
+      "difficulty_level": 300,
+      "ai_model": "gemini-2.5-flash",
+      "grade": 90,
+      "education_level": 30,
+      "categoryName": "Futsal",
+      "categoryId": "",
+      "disciplineName": "Educa\u00e7\u00e3o F\u00edsica",
+      "disciplineId": "",
+      "request_context": {
+        "grade": 90,
+        "locale": "pt_BR",
+        "difficulty": 300,
+        "category": "Futsal",
+        "discipline": "Educa\u00e7\u00e3o F\u00edsica"
+      }
+    },
+    {
+      "question_statement": "Dentro da pr\u00e1tica da Educa\u00e7\u00e3o F\u00edsica, o futsal \u00e9 um esporte que exige dos atletas n\u00e3o apenas habilidades t\u00e9cnicas individuais, mas tamb\u00e9m uma capacidade de adapta\u00e7\u00e3o e trabalho em equipe devido \u00e0s caracter\u00edsticas do jogo em quadra reduzida. Considerando a din\u00e2mica r\u00e1pida e a necessidade de espa\u00e7os curtos, cite e descreva brevemente dois elementos t\u00e1ticos fundamentais que uma equipe de futsal bem-sucedida deve dominar para controlar o jogo e criar oportunidades de gol.",
+      "question_solution": "Dois elementos t\u00e1ticos fundamentais no futsal s\u00e3o:\n\n1.  **Marca\u00e7\u00e3o sob press\u00e3o (Pressing):** Consiste em uma a\u00e7\u00e3o defensiva coletiva onde os jogadores buscam encurtar os espa\u00e7os do advers\u00e1rio com a posse de bola, dificultando a progress\u00e3o e for\u00e7ando erros ou roubadas de bola em zonas avan\u00e7adas da quadra. Isso exige sincronia e intensidade de toda a equipe.\n2.  **Movimenta\u00e7\u00e3o sem bola:** Refere-se \u00e0 capacidade dos jogadores de se deslocarem constantemente pela quadra quando n\u00e3o est\u00e3o com a posse de bola, criando linhas de passe, abrindo espa\u00e7os para companheiros ou atraindo a marca\u00e7\u00e3o advers\u00e1ria. Essa t\u00e1tica \u00e9 crucial para quebrar defesas e construir jogadas ofensivas eficazes.",
+      "keywords": [
+        "Futsal",
+        "T\u00e1tica",
+        "Movimenta\u00e7\u00e3o",
+        "Marca\u00e7\u00e3o",
+        "Educa\u00e7\u00e3o F\u00edsica"
+      ],
+      "difficulty": 500,
+      "topic": "Elementos t\u00e1ticos fundamentais no Futsal",
+      "type": "discursive",
+      "difficulty_level": 500,
+      "ai_model": "gemini-2.5-flash",
+      "grade": 90,
+      "education_level": 30,
+      "categoryName": "Futsal",
+      "categoryId": "",
+      "disciplineName": "Educa\u00e7\u00e3o F\u00edsica",
+      "disciplineId": "",
+      "request_context": {
+        "grade": 90,
+        "locale": "pt_BR",
+        "difficulty": 300,
+        "category": "Futsal",
+        "discipline": "Educa\u00e7\u00e3o F\u00edsica"
+      }
+    },
+    {
+      "question_statement": "No contexto da Educa\u00e7\u00e3o F\u00edsica, os esportes de combate, como o Jud\u00f4 ou o Taekwondo, promovem o desenvolvimento de diversas capacidades f\u00edsicas e mentais. Dentre as op\u00e7\u00f5es abaixo, qual representa uma caracter\u00edstica fundamental desses esportes que se relaciona diretamente com a autodefesa e o respeito ao advers\u00e1rio?",
+      "question_solution": "Os esportes de combate enfatizam a disciplina e o respeito \u00e0s regras, al\u00e9m de desenvolverem a capacidade de autodefesa. O controle emocional \u00e9 crucial para a pr\u00e1tica \u00e9tica e segura dessas modalidades, garantindo que o praticante utilize suas habilidades de forma respons\u00e1vel e respeitosa, tanto em situa\u00e7\u00f5es de combate quanto na vida cotidiana.",
+      "keywords": [
+        "Esportes de Combate",
+        "Autodefesa",
+        "Respeito",
+        "Educa\u00e7\u00e3o F\u00edsica",
+        "Disciplina"
+      ],
+      "difficulty": 300,
+      "topic": "Aspectos formativos dos Esportes de Combate na Educa\u00e7\u00e3o F\u00edsica",
+      "type": "multiple_choice",
+      "answer": "A capacidade de controlar as emo\u00e7\u00f5es e a aplica\u00e7\u00e3o consciente das t\u00e9cnicas para autodefesa, com respeito \u00e0s regras.",
+      "incorrect_alternatives": [
+        "Aprimorar apenas a for\u00e7a muscular para vencer qualquer advers\u00e1rio, sem considerar os limites f\u00edsicos.",
+        "Estimular a agressividade irrestrita durante o confronto f\u00edsico, visando \u00e0 intimida\u00e7\u00e3o do oponente.",
+        "Priorizar a exibi\u00e7\u00e3o de movimentos acrob\u00e1ticos complexos para impressionar o p\u00fablico e os jurados.",
+        "Desenvolver a resist\u00eancia cardiovascular em detrimento de qualquer outra habilidade t\u00e9cnica ou t\u00e1tica."
+      ],
+      "difficulty_level": 300,
+      "ai_model": "gemini-2.5-flash",
+      "grade": 120,
+      "education_level": 30,
+      "categoryName": "Esportes de Combate",
+      "categoryId": "",
+      "disciplineName": "Educa\u00e7\u00e3o F\u00edsica",
+      "disciplineId": "",
+      "request_context": {
+        "grade": 120,
+        "locale": "pt_BR",
+        "difficulty": 300,
+        "category": "Esportes de Combate",
+        "discipline": "Educa\u00e7\u00e3o F\u00edsica"
+      }
+    },
+    {
+      "question_statement": "Na disciplina de Educa\u00e7\u00e3o F\u00edsica, a inclus\u00e3o dos esportes de combate visa a mais do que apenas o desenvolvimento f\u00edsico. Considerando essa perspectiva, identifique uma habilidade socioemocional importante que \u00e9 cultivada atrav\u00e9s da pr\u00e1tica regular de um esporte de combate e explique como essa habilidade se manifesta no dia a dia do aluno.",
+      "question_solution": "Uma habilidade socioemocional importante cultivada nos esportes de combate \u00e9 o controle da agressividade/impulsividade, que se manifesta como disciplina e respeito. No dia a dia, essa habilidade permite ao aluno gerenciar conflitos de forma mais pac\u00edfica, tomar decis\u00f5es ponderadas sob press\u00e3o, respeitar a opini\u00e3o alheia e manter a calma em situa\u00e7\u00f5es desafiadoras, aplicando a \u00e9tica do esporte nas intera\u00e7\u00f5es sociais.",
+      "keywords": [
+        "Esportes de Combate",
+        "Habilidades Socioemocionais",
+        "Disciplina",
+        "Respeito",
+        "Educa\u00e7\u00e3o F\u00edsica"
+      ],
+      "difficulty": 300,
+      "topic": "Habilidades socioemocionais em Esportes de Combate na Educa\u00e7\u00e3o F\u00edsica",
+      "type": "discursive",
+      "difficulty_level": 300,
+      "ai_model": "gemini-2.5-flash",
+      "grade": 120,
+      "education_level": 30,
+      "categoryName": "Esportes de Combate",
+      "categoryId": "",
+      "disciplineName": "Educa\u00e7\u00e3o F\u00edsica",
+      "disciplineId": "",
+      "request_context": {
+        "grade": 120,
+        "locale": "pt_BR",
+        "difficulty": 300,
+        "category": "Esportes de Combate",
+        "discipline": "Educa\u00e7\u00e3o F\u00edsica"
+      }
+    },
+    {
+      "question_statement": "In the early 20th century, physical education in the United States shifted its focus from purely military preparedness to a broader objective. What was a primary reason for this change, specifically in the context of urban populations and industrialization?",
+      "question_solution": "The early 20th century saw rapid industrialization and urbanization, leading to concerns about public health and the physical well-being of the population, particularly among children in crowded cities. Physical education adapted to address these societal issues by promoting health, recreation, and community integration, moving beyond its previous emphasis solely on military training. This change reflected a recognition that physical activity could play a crucial role in overall societal development and well-being, not just combat readiness.",
+      "keywords": [
+        "Physical Education",
+        "Early 20th Century",
+        "Industrialization",
+        "Urbanization",
+        "Health"
+      ],
+      "difficulty": 300,
+      "topic": "Shift in Physical Education Focus in Early 20th Century US",
+      "type": "multiple_choice",
+      "answer": "Addressing public health concerns and promoting recreational activities in growing urban centers.",
+      "incorrect_alternatives": [
+        "Strictly preparing young men for mandatory military conscription during wartime.",
+        "Developing elite professional sports leagues for national entertainment and economic growth.",
+        "Implementing advanced scientific training methods for Olympic athletes and international competition.",
+        "Establishing exclusive physical fitness programs for affluent individuals and private schools."
+      ],
+      "difficulty_level": 300,
+      "ai_model": "gemini-2.5-flash",
+      "grade": 100,
+      "education_level": 30,
+      "categoryName": "History of Sports",
+      "categoryId": "",
+      "disciplineName": "Physical Education",
+      "disciplineId": "",
+      "request_context": {
+        "grade": 100,
+        "locale": "en_US",
+        "difficulty": 300,
+        "category": "History of Sports",
+        "discipline": "Physical Education"
+      }
+    },
+    {
+      "question_statement": "Consider the impact of the ancient Olympic Games on social structures within Greece. Identify one way the Games reinforced or challenged existing societal norms, beyond merely athletic competition.",
+      "question_solution": "The ancient Olympic Games reinforced societal norms by limiting participation and spectating to freeborn Greek men, thereby excluding women, slaves, and non-Greeks from central roles. This exclusion solidified existing hierarchies based on gender, social status, and ethnicity within the Greek city-states. While promoting unity among Greek city-states, the Games simultaneously underscored internal social distinctions through their highly regulated access.",
+      "keywords": [
+        "Ancient Olympics",
+        "Social Structures",
+        "Societal Norms",
+        "Greek History",
+        "Inclusion/Exclusion"
+      ],
+      "difficulty": 500,
+      "topic": "Social Impact of Ancient Olympic Games on Greek Society",
+      "type": "discursive",
+      "difficulty_level": 500,
+      "ai_model": "gemini-2.5-flash",
+      "grade": 100,
+      "education_level": 30,
+      "categoryName": "History of Sports",
+      "categoryId": "",
+      "disciplineName": "Physical Education",
+      "disciplineId": "",
+      "request_context": {
+        "grade": 100,
+        "locale": "en_US",
+        "difficulty": 300,
+        "category": "History of Sports",
+        "discipline": "Physical Education"
+      }
+    },
+    {
+      "question_statement": "Considerando a disciplina de Educa\u00e7\u00e3o F\u00edsica e a rela\u00e7\u00e3o entre Sa\u00fade e Esportes, a pr\u00e1tica regular de atividades f\u00edsicas contribui significativamente para o bem-estar geral. Qual \u00e9 um dos principais benef\u00edcios que a atividade f\u00edsica constante oferece para o sistema cardiovascular?",
+      "question_solution": "A pr\u00e1tica regular de atividades f\u00edsicas, um pilar da Sa\u00fade e Esportes estudado na Educa\u00e7\u00e3o F\u00edsica, fortalece o m\u00fasculo card\u00edaco e otimiza a circula\u00e7\u00e3o sangu\u00ednea, resultando em um cora\u00e7\u00e3o mais eficiente e uma melhor distribui\u00e7\u00e3o de oxig\u00eanio e nutrientes pelo corpo. Isso diminui o risco de doen\u00e7as card\u00edacas e melhora a resist\u00eancia f\u00edsica.",
+      "keywords": [
+        "Educa\u00e7\u00e3o F\u00edsica",
+        "Sa\u00fade",
+        "Esportes",
+        "Sistema Cardiovascular",
+        "Benef\u00edcios"
+      ],
+      "difficulty": 300,
+      "topic": "Benef\u00edcios da atividade f\u00edsica para o sistema cardiovascular na Educa\u00e7\u00e3o F\u00edsica",
+      "type": "multiple_choice",
+      "answer": "Melhora a efici\u00eancia do bombeamento sangu\u00edneo e reduz a press\u00e3o arterial.",
+      "incorrect_alternatives": [
+        "Aumenta a capacidade pulmonar, mas n\u00e3o afeta diretamente a for\u00e7a card\u00edaca.",
+        "Promove o ac\u00famulo de gordura corporal para reserva energ\u00e9tica.",
+        "Diminui a oxigena\u00e7\u00e3o dos tecidos devido ao maior gasto energ\u00e9tico.",
+        "Causa o enrijecimento das art\u00e9rias, tornando-as mais resistentes ao fluxo."
+      ],
+      "difficulty_level": 300,
+      "ai_model": "gemini-2.5-flash",
+      "grade": 100,
+      "education_level": 30,
+      "categoryName": "Sa\u00fade e Esportes",
+      "categoryId": "",
+      "disciplineName": "Educa\u00e7\u00e3o F\u00edsica",
+      "disciplineId": "",
+      "request_context": {
+        "grade": 100,
+        "locale": "pt_BR",
+        "difficulty": 300,
+        "category": "Sa\u00fade e Esportes",
+        "discipline": "Educa\u00e7\u00e3o F\u00edsica"
+      }
+    },
+    {
+      "question_statement": "Dentro do contexto de Sa\u00fade e Esportes, a Educa\u00e7\u00e3o F\u00edsica enfatiza a import\u00e2ncia da alimenta\u00e7\u00e3o balanceada como complemento \u00e0 pr\u00e1tica de exerc\u00edcios. Aponte dois efeitos negativos que uma dieta rica em a\u00e7\u00facares e gorduras saturadas pode ter sobre o desempenho esportivo e a sa\u00fade geral de um estudante.",
+      "question_solution": "Uma dieta rica em a\u00e7\u00facares e gorduras saturadas, desconsiderando os princ\u00edpios da Educa\u00e7\u00e3o F\u00edsica para a Sa\u00fade e Esportes, pode causar a redu\u00e7\u00e3o da energia dispon\u00edvel para o exerc\u00edcio, levando \u00e0 fadiga precoce e diminui\u00e7\u00e3o do desempenho. Al\u00e9m disso, pode resultar no aumento do peso corporal, elevando o risco de doen\u00e7as cr\u00f4nicas como diabetes tipo 2 e problemas cardiovasculares, impactando negativamente a sa\u00fade geral e a capacidade de praticar atividades f\u00edsicas de forma eficaz.",
+      "keywords": [
+        "Educa\u00e7\u00e3o F\u00edsica",
+        "Sa\u00fade",
+        "Esportes",
+        "Alimenta\u00e7\u00e3o",
+        "Desempenho"
+      ],
+      "difficulty": 500,
+      "topic": "Impacto da alimenta\u00e7\u00e3o na sa\u00fade e desempenho esportivo em Educa\u00e7\u00e3o F\u00edsica",
+      "type": "discursive",
+      "difficulty_level": 500,
+      "ai_model": "gemini-2.5-flash",
+      "grade": 100,
+      "education_level": 30,
+      "categoryName": "Sa\u00fade e Esportes",
+      "categoryId": "",
+      "disciplineName": "Educa\u00e7\u00e3o F\u00edsica",
+      "disciplineId": "",
+      "request_context": {
+        "grade": 100,
+        "locale": "pt_BR",
+        "difficulty": 300,
+        "category": "Sa\u00fade e Esportes",
+        "discipline": "Educa\u00e7\u00e3o F\u00edsica"
+      }
+    },
+    {
+      "question_statement": "A student uses an electric heater to raise the temperature of 2.0 kg of water from 20.0 \u00b0C to 80.0 \u00b0C in 10.0 minutes. Assuming no heat loss to the surroundings and given the specific heat capacity of water is {{MATH}} 4.18 \\, J/(g \\cdot \\text{\u00b0C}) {{/MATH}}, what is the thermal power supplied by the heater?",
+      "question_solution": "First, calculate the heat energy (Q) absorbed by the water using the formula {{MATH}} Q = mc\\Delta T {{/MATH}}:\n\n{{MATHBLOCK}} Q = (2.0 \\, \\text{kg}) \\times (4.18 \\, J/(g \\cdot \\text{\u00b0C})) \\times (80.0 \\, \\text{\u00b0C} - 20.0 \\, \\text{\u00b0C}}){{/MATHBLOCK}}\n\nConvert mass to grams: {{MATH}} 2.0 \\, \\text{kg} = 2000 \\, \\text{g} {{/MATH}}\n\n{{MATHBLOCK}} Q = (2000 \\, \\text{g}) \\times (4.18 \\, J/(g \\cdot \\text{\u00b0C})) \\times (60.0 \\, \\text{\u00b0C}}){{/MATHBLOCK}}\n\n{{MATH}} Q = 501,600 \\, J {{/MATH}}\nNext, calculate the time (t) in seconds:\n{{MATH}} t = 10.0 \\, \\text{minutes} \\times 60 \\, \\text{s/minute} = 600 \\, \\text{s} {{/MATH}}\nFinally, calculate the thermal power (P) using the formula {{MATH}} P = Q/t {{/MATH}}:\n\n{{MATHBLOCK}} P = \\frac{501,600 \\, J}{600 \\, s}{{/MATHBLOCK}}\n\n{{MATH}} P = 836 \\, W {{/MATH}}\nThe thermal power supplied by the heater is 836 W.",
+      "keywords": [
+        "Calorimetry",
+        "Thermal Power",
+        "Heat Transfer",
+        "Specific Heat",
+        "Energy"
+      ],
+      "difficulty": 500,
+      "topic": "Calorimetry: Calculating Thermal Power in Water Heating - Physics",
+      "type": "multiple_choice",
+      "answer": "836 W",
+      "incorrect_alternatives": [
+        "418 W",
+        "1254 W",
+        "5016 W",
+        "2508 W"
+      ],
+      "difficulty_level": 500,
+      "ai_model": "gemini-2.5-flash",
+      "grade": 110,
+      "education_level": 30,
+      "categoryName": "Calorimetry: Thermal Power",
+      "categoryId": "",
+      "disciplineName": "Physics",
+      "disciplineId": "",
+      "request_context": {
+        "grade": 110,
+        "locale": "en_US",
+        "difficulty": 500,
+        "category": "Calorimetry: Thermal Power",
+        "discipline": "Physics"
+      }
+    },
+    {
+      "question_statement": "A continuous flow water heater provides hot water at a rate of {{MATH}} 0.5 \\, L/min {{/MATH}}. If the water enters the heater at {{MATH}} 15.0 \\, \\text{\u00b0C} {{/MATH}} and exits at {{MATH}} 45.0 \\, \\text{\u00b0C} {{/MATH}}, determine the minimum thermal power the heater must supply. Assume the density of water is {{MATH}} 1.0 \\, g/mL {{/MATH}} and its specific heat capacity is {{MATH}} 4.18 \\, J/(g \\cdot \\text{\u00b0C}) {{/MATH}}.",
+      "question_solution": "To determine the minimum thermal power, we need to calculate the heat energy transferred per unit time.\n\n1.  **Convert the flow rate to mass per second:**\n    Flow rate = {{MATH}} 0.5 \\, L/min {{/MATH}}\n    Convert to mL/s: {{MATH}} 0.5 \\, L/min \\times (1000 \\, mL/L) \\times (1/60 \\, min/s) = 8.333 \\, mL/s {{/MATH}}\n    Mass flow rate = Density \\times Volume flow rate\n    Mass flow rate = {{MATH}} 1.0 \\, g/mL \\times 8.333 \\, mL/s = 8.333 \\, g/s {{/MATH}}\n\n2.  **Calculate the temperature change:**\n    {{MATH}} \\Delta T = T_{\\text{final}} - T_{\\text{initial}} = 45.0 \\, \\text{\u00b0C} - 15.0 \\, \\text{\u00b0C} = 30.0 \\, \\text{\u00b0C} {{/MATH}}\n\n3.  **Calculate the heat energy (Q) required per gram of water:**\n    {{MATH}} Q/m = c\\Delta T = 4.18 \\, J/(g \\cdot \\text{\u00b0C}) \\times 30.0 \\, \\text{\u00b0C} = 125.4 \\, J/g {{/MATH}}\n\n4.  **Calculate the thermal power (P):**\n    Thermal Power (P) is the rate of heat energy transfer, which is (Heat energy per gram) \\times (Mass flow rate).\n    \n\n{{MATHBLOCK}} P = (125.4 \\, J/g) \\times (8.333 \\, g/s){{/MATHBLOCK}}\n\n    {{MATH}} P \\approx 1045 \\, J/s = 1045 \\, W {{/MATH}}\n\nThe minimum thermal power the heater must supply is approximately {{MATH}} 1045 \\, W {{/MATH}}.",
+      "keywords": [
+        "Calorimetry",
+        "Thermal Power",
+        "Flow Rate",
+        "Specific Heat",
+        "Density"
+      ],
+      "difficulty": 500,
+      "topic": "Calorimetry: Thermal Power Calculation for a Continuous Flow Heater - Physics",
+      "type": "discursive",
+      "difficulty_level": 500,
+      "ai_model": "gemini-2.5-flash",
+      "grade": 110,
+      "education_level": 30,
+      "categoryName": "Calorimetry: Thermal Power",
+      "categoryId": "",
+      "disciplineName": "Physics",
+      "disciplineId": "",
+      "request_context": {
+        "grade": 110,
+        "locale": "en_US",
+        "difficulty": 500,
+        "category": "Calorimetry: Thermal Power",
+        "discipline": "Physics"
+      }
+    },
+    {
+      "question_statement": "A square coil with 200 turns, each side measuring 0.05 m, is placed in a uniform magnetic field of 0.4 T. Initially, the plane of the coil is perpendicular to the magnetic field. If the coil is rotated uniformly in 0.25 seconds so that its plane becomes parallel to the magnetic field, what is the magnitude of the average electromotive force (EMF) induced in the coil?",
+      "question_solution": "The initial magnetic flux through the coil is when the plane is perpendicular to the magnetic field, meaning the area vector is parallel to the magnetic field. \n{{MATH}}\\Phi_{initial} = N \\cdot B \\cdot A \\cdot \\cos(\\theta_{initial}){{/MATH}}\nWhere N = 200 turns, B = 0.4 T, A = (0.05 m)^2 = 0.0025 m^2, and {{MATH}}\\theta_{initial} = 0^{\\circ}{{/MATH}}.\n{{MATH}}\\Phi_{initial} = 200 \\cdot 0.4 \\cdot 0.0025 \\cdot \\cos(0^{\\circ}) = 200 \\cdot 0.4 \\cdot 0.0025 \\cdot 1 = 0.2 \\text{ Wb}{{/MATH}}\nThe final magnetic flux through the coil is when the plane is parallel to the magnetic field, meaning the area vector is perpendicular to the magnetic field. \n{{MATH}}\\Phi_{final} = N \\cdot B \\cdot A \\cdot \\cos(\\theta_{final}){{/MATH}}\nWhere {{MATH}}\\theta_{final} = 90^{\\circ}{{/MATH}}.\n{{MATH}}\\Phi_{final} = 200 \\cdot 0.4 \\cdot 0.0025 \\cdot \\cos(90^{\\circ}) = 200 \\cdot 0.4 \\cdot 0.0025 \\cdot 0 = 0 \\text{ Wb}{{/MATH}}\nThe change in magnetic flux is {{MATH}}\\Delta\\Phi = \\Phi_{final} - \\Phi_{initial} = 0 - 0.2 = -0.2 \\text{ Wb}{{/MATH}}.\nThe time taken for the rotation is {{MATH}}\\Delta t = 0.25 \\text{ s}{{/MATH}}.\nAccording to Faraday's Law of Induction, the average induced EMF is:\n{{MATH}}\\varepsilon_{avg} = - \\frac{\\Delta\\Phi}{\\Delta t}{{/MATH}}\n{{MATH}}\\varepsilon_{avg} = - \\frac{-0.2 \\text{ Wb}}{0.25 \\text{ s}} = 0.8 \\text{ V}{{/MATH}}\nThe magnitude of the average EMF is 0.8 V.",
+      "keywords": [
+        "Magnetic Flux",
+        "Faraday's Law",
+        "Induced EMF",
+        "Magnetic Field",
+        "Coil Rotation"
+      ],
+      "difficulty": 700,
+      "topic": "Electromagnetic Induction: Magnetic Flux in a Rotating Coil - Physics",
+      "type": "multiple_choice",
+      "answer": "0.8 V",
+      "incorrect_alternatives": [
+        "0.4 V",
+        "1.6 V",
+        "0.2 V",
+        "1.0 V"
+      ],
+      "difficulty_level": 700,
+      "ai_model": "gemini-2.5-flash",
+      "grade": 110,
+      "education_level": 30,
+      "categoryName": "Magnetism: Magnetic Flux",
+      "categoryId": "",
+      "disciplineName": "Physics",
+      "disciplineId": "",
+      "request_context": {
+        "grade": 110,
+        "locale": "en_US",
+        "difficulty": 700,
+        "category": "Magnetism: Magnetic Flux",
+        "discipline": "Physics"
+      }
+    },
+    {
+      "question_statement": "A circular loop of wire with a radius of 0.15 m is placed in a uniform magnetic field that changes uniformly from 0.8 T to 0.2 T over a period of 0.5 s. The magnetic field is initially perpendicular to the plane of the loop. Determine the magnitude of the average induced current in the loop if its total resistance is 2.5 ohms.",
+      "question_solution": "First, calculate the area of the circular loop:\n{{MATH}}A = \\pi r^2 = \\pi (0.15 \\text{ m})^2 \\approx 0.070685 \\text{ m}^2{{/MATH}}\nNext, calculate the initial magnetic flux. Since the field is perpendicular to the loop's plane, the angle between the area vector and the magnetic field is {{MATH}}0^{\\circ}{{/MATH}}, so {{MATH}}\\cos(0^{\\circ}) = 1{{/MATH}}.\n{{MATH}}\\Phi_{initial} = B_{initial} \\cdot A \\cdot \\cos(0^{\\circ}) = 0.8 \\text{ T} \\cdot 0.070685 \\text{ m}^2 = 0.056548 \\text{ Wb}{{/MATH}}\nThen, calculate the final magnetic flux:\n{{MATH}}\\Phi_{final} = B_{final} \\cdot A \\cdot \\cos(0^{\\circ}) = 0.2 \\text{ T} \\cdot 0.070685 \\text{ m}^2 = 0.014137 \\text{ Wb}{{/MATH}}\nThe change in magnetic flux is:\n{{MATH}}\\Delta\\Phi = \\Phi_{final} - \\Phi_{initial} = 0.014137 \\text{ Wb} - 0.056548 \\text{ Wb} = -0.042411 \\text{ Wb}{{/MATH}}\nThe time duration for this change is {{MATH}}\\Delta t = 0.5 \\text{ s}{{/MATH}}.\nAccording to Faraday's Law of Induction, the average induced EMF is:\n{{MATH}}\\varepsilon_{avg} = - \\frac{\\Delta\\Phi}{\\Delta t} = - \\frac{-0.042411 \\text{ Wb}}{0.5 \\text{ s}} = 0.084822 \\text{ V}{{/MATH}}\nFinally, using Ohm's Law, the magnitude of the average induced current is:\n{{MATH}}I_{avg} = \\frac{\\varepsilon_{avg}}{R} = \\frac{0.084822 \\text{ V}}{2.5 \\text{ \\Omega}} \\approx 0.0339 \\text{ A}{{/MATH}}\nRounding to two significant figures, the magnitude of the average induced current is approximately 0.034 A.",
+      "keywords": [
+        "Magnetic Flux",
+        "Faraday's Law",
+        "Induced Current",
+        "Ohm's Law",
+        "Magnetic Field Change"
+      ],
+      "difficulty": 500,
+      "topic": "Electromagnetic Induction: Induced Current from Changing Magnetic Flux - Physics",
+      "type": "discursive",
+      "difficulty_level": 500,
+      "ai_model": "gemini-2.5-flash",
+      "grade": 110,
+      "education_level": 30,
+      "categoryName": "Magnetism: Magnetic Flux",
+      "categoryId": "",
+      "disciplineName": "Physics",
+      "disciplineId": "",
+      "request_context": {
+        "grade": 110,
+        "locale": "en_US",
+        "difficulty": 700,
+        "category": "Magnetism: Magnetic Flux",
+        "discipline": "Physics"
+      }
+    },
+    {
+      "question_statement": "A circular coil with a radius of {{MATH}} 0.05 \\text{ m} {{/MATH}} and 50 turns is placed in a uniform magnetic field oriented perpendicular to the coil's plane. The magnetic field strength increases uniformly from {{MATH}} 0.2 \\text{ T} {{/MATH}} to {{MATH}} 0.8 \\text{ T} {{/MATH}} over a period of {{MATH}} 0.5 \\text{ s} {{/MATH}}. Determine the magnitude of the average induced electromotive force (EMF) in the coil during this time interval.",
+      "question_solution": "The induced EMF is given by Faraday's Law: {{MATH}} \\mathcal{E} = -N \\frac{\\Delta \\Phi_B}{\\Delta t} {{/MATH}}, where {{MATH}} N {{/MATH}} is the number of turns, {{MATH}} \\Delta \\Phi_B {{/MATH}} is the change in magnetic flux, and {{MATH}} \\Delta t {{/MATH}} is the time interval. \\n The magnetic flux is {{MATH}} \\Phi_B = B A \\cos \\theta {{/MATH}}. Since the field is perpendicular to the coil's plane, {{MATH}} \\theta = 0^{\\circ} {{/MATH}}, so {{MATH}} \\cos \\theta = 1 {{/MATH}}. \\n The area of the coil is {{MATH}} A = \\pi r^2 = \\pi (0.05 \\text{ m})^2 = \\pi (0.0025 \\text{ m}^2) {{/MATH}}. \\n The change in magnetic flux is {{MATH}} \\Delta \\Phi_B = (B_f - B_i) A = (0.8 \\text{ T} - 0.2 \\text{ T}) \\times \\pi (0.0025 \\text{ m}^2) = 0.6 \\text{ T} \\times \\pi (0.0025 \\text{ m}^2) = 0.0015\\pi \\text{ Wb} {{/MATH}}. \\n The time interval is {{MATH}} \\Delta t = 0.5 \\text{ s} {{/MATH}}. \\n Substituting these values into Faraday's Law: \\n \n\n{{MATHBLOCK}}\\mathcal{E} = -50 \\times \\frac{0.0015\\pi \\text{ Wb}}{0.5 \\text{ s}} \\\\ \\mathcal{E} = -50 \\times 0.003\\pi \\text{ V} \\\\ \\mathcal{E} = -0.15\\pi \\text{ V}{{/MATHBLOCK}}\n\n \\n The magnitude of the induced EMF is {{MATH}} |\\mathcal{E}| = 0.15\\pi \\text{ V} \\approx 0.471 \\text{ V} {{/MATH}}.",
+      "keywords": [
+        "Faraday's Law",
+        "EMF",
+        "magnetic flux",
+        "induction",
+        "coil"
+      ],
+      "difficulty": 700,
+      "topic": "Magnetism: Faraday's Law of Induction and Induced EMF",
+      "type": "multiple_choice",
+      "answer": "0.15{{MATH}}\\pi{{/MATH}} V",
+      "incorrect_alternatives": [
+        "0.075{{MATH}}\\pi{{/MATH}} V",
+        "0.30{{MATH}}\\pi{{/MATH}} V",
+        "0.0075{{MATH}}\\pi{{/MATH}} V",
+        "0.60{{MATH}}\\pi{{/MATH}} V"
+      ],
+      "difficulty_level": 700,
+      "ai_model": "gemini-2.5-flash",
+      "grade": 110,
+      "education_level": 30,
+      "categoryName": "Magnetism: Faraday's Law",
+      "categoryId": "",
+      "disciplineName": "Physics",
+      "disciplineId": "",
+      "request_context": {
+        "grade": 110,
+        "locale": "en_US",
+        "difficulty": 700,
+        "category": "Magnetism: Faraday's Law",
+        "discipline": "Physics"
+      }
+    },
+    {
+      "question_statement": "A straight conducting rod of length {{MATH}} L {{/MATH}} moves with a constant velocity {{MATH}} \\vec{v} {{/MATH}} perpendicular to both its length and a uniform magnetic field {{MATH}} \\vec{B} {{/MATH}}. If the rod's motion results in an induced electromotive force (EMF), identify what changes within the conducting rod to create a potential difference across its ends, according to the principles of Magnetism and Faraday's Law.",
+      "question_solution": "When a conducting rod moves through a uniform magnetic field perpendicular to its velocity and length, the free charges (electrons) within the rod experience a magnetic force. This magnetic force, given by {{MATH}} \\vec{F}_B = q(\\vec{v} \\times \\vec{B}) {{/MATH}}, pushes the charges to one end of the rod, creating an accumulation of positive charges at one end and negative charges at the other. This charge separation establishes an electric field within the rod. This charge separation continues until the electric force on the charges, {{MATH}} \\vec{F}_E = q\\vec{E} {{/MATH}}, balances the magnetic force. The resulting electric field produces a potential difference (EMF) across the ends of the rod. This phenomenon is a direct consequence of motional EMF, which is a specific application of Faraday's Law where the change in magnetic flux is due to the changing area enclosed by the moving conductor in a circuit.",
+      "keywords": [
+        "Motional EMF",
+        "Magnetic Force",
+        "Charge Separation",
+        "Faraday's Law",
+        "Potential Difference"
+      ],
+      "difficulty": 500,
+      "topic": "Magnetism: Motional Electromotive Force (EMF) from Faraday's Law",
+      "type": "discursive",
+      "difficulty_level": 500,
+      "ai_model": "gemini-2.5-flash",
+      "grade": 110,
+      "education_level": 30,
+      "categoryName": "Magnetism: Faraday's Law",
+      "categoryId": "",
+      "disciplineName": "Physics",
+      "disciplineId": "",
+      "request_context": {
+        "grade": 110,
+        "locale": "en_US",
+        "difficulty": 700,
+        "category": "Magnetism: Faraday's Law",
+        "discipline": "Physics"
+      }
+    },
+    {
+      "question_statement": "A car travels along a circular track with a radius of {{MATH}} 50 \\text{ m} {{/MATH}}. Its speed is increasing at a constant rate of {{MATH}} 2.0 \\text{ m/s}^2 {{/MATH}}. At a specific instant, the car's speed is {{MATH}} 10 \\text{ m/s} {{/MATH}}. Determine the magnitude of the total acceleration of the car at this instant in this Kinematics scenario.",
+      "question_solution": "In a uniformly varied circular motion, the total acceleration {{MATH}} a {{/MATH}} is the vector sum of the tangential acceleration {{MATH}} a_t {{/MATH}} and the centripetal (or radial) acceleration {{MATH}} a_c {{/MATH}}. \\n\\nThe tangential acceleration {{MATH}} a_t {{/MATH}} is given by the rate of change of speed, which is {{MATH}} 2.0 \\text{ m/s}^2 {{/MATH}}.\\n\\nThe centripetal acceleration {{MATH}} a_c {{/MATH}} is calculated using the formula {{MATH}} a_c = \\frac{v^2}{r} {{/MATH}}, where {{MATH}} v {{/MATH}} is the instantaneous speed and {{MATH}} r {{/MATH}} is the radius of the circular path.\\n\\nGiven: \\n{{MATH}} v = 10 \\text{ m/s} {{/MATH}}\\n{{MATH}} r = 50 \\text{ m} {{/MATH}}\\n{{MATH}} a_t = 2.0 \\text{ m/s}^2 {{/MATH}}\\n\\nCalculate the centripetal acceleration: \\n{{MATH}} a_c = \\frac{(10 \\text{ m/s})^2}{50 \\text{ m}} = \\frac{100 \\text{ m}^2/s^2}{50 \\text{ m}} = 2.0 \\text{ m/s}^2 {{/MATH}}\\n\\nSince {{MATH}} a_t {{/MATH}} and {{MATH}} a_c {{/MATH}} are perpendicular to each other, the magnitude of the total acceleration {{MATH}} a {{/MATH}} is found using the Pythagorean theorem:\\n{{MATH}} a = \\sqrt{a_t^2 + a_c^2} {{/MATH}}\\n{{MATH}} a = \\sqrt{(2.0 \\text{ m/s}^2)^2 + (2.0 \\text{ m/s}^2)^2} {{/MATH}}\\n{{MATH}} a = \\sqrt{4.0 \\text{ m}^2/s^4 + 4.0 \\text{ m}^2/s^4} {{/MATH}}\\n{{MATH}} a = \\sqrt{8.0 \\text{ m}^2/s^4} {{/MATH}}\\n{{MATH}} a \\approx 2.83 \\text{ m/s}^2 {{/MATH}}\\n\\nThus, the magnitude of the total acceleration is approximately {{MATH}} 2.83 \\text{ m/s}^2 {{/MATH}}.",
+      "keywords": [
+        "Kinematics",
+        "Acceleration",
+        "Circular Motion",
+        "Centripetal Acceleration",
+        "Tangential Acceleration"
+      ],
+      "difficulty": 300,
+      "topic": "Kinematics: Acceleration of Uniformly Varied Circular Motion - Physics",
+      "type": "multiple_choice",
+      "answer": "{{MATH}} 2.83 \\text{ m/s}^2 {{/MATH}}",
+      "incorrect_alternatives": [
+        "{{MATH}} 4.00 \\text{ m/s}^2 {{/MATH}}",
+        "{{MATH}} 2.00 \\text{ m/s}^2 {{/MATH}}",
+        "{{MATH}} 2.24 \\text{ m/s}^2 {{/MATH}}",
+        "{{MATH}} 1.41 \\text{ m/s}^2 {{/MATH}}"
+      ],
+      "difficulty_level": 300,
+      "ai_model": "gemini-2.5-flash",
+      "grade": 100,
+      "education_level": 30,
+      "categoryName": "Kinematics: Acceleration of Uniformly Varied Circular Motion",
+      "categoryId": "",
+      "disciplineName": "Physics",
+      "disciplineId": "",
+      "request_context": {
+        "grade": 100,
+        "locale": "en_US",
+        "difficulty": 300,
+        "category": "Kinematics: Acceleration of Uniformly Varied Circular Motion",
+        "discipline": "Physics"
+      }
+    },
+    {
+      "question_statement": "A satellite moves in a circular orbit around a planet. The speed of the satellite is gradually decreasing due to atmospheric drag. Identify the two distinct components of the satellite's acceleration in this specific Kinematics scenario and state the direction of each component relative to the satellite's velocity vector.",
+      "question_solution": "In this Kinematics scenario, the satellite is undergoing uniformly varied circular motion because its speed is changing while it moves in a circular path. Therefore, it possesses two components of acceleration: \\n\\n1.  **Tangential Acceleration ({{MATH}} a_t {{/MATH}}):** This component is responsible for the change in the *magnitude* of the satellite's velocity (its speed). Since the speed is decreasing, the tangential acceleration acts in the direction opposite to the satellite's instantaneous velocity vector.\\n\\n2.  **Centripetal Acceleration ({{MATH}} a_c {{/MATH}}):** This component is responsible for the change in the *direction* of the satellite's velocity, keeping it in a circular path. The centripetal acceleration always points radially inward, directly towards the center of the circular orbit, perpendicular to the satellite's instantaneous velocity vector.",
+      "keywords": [
+        "Kinematics",
+        "Acceleration",
+        "Circular Motion",
+        "Tangential",
+        "Centripetal"
+      ],
+      "difficulty": 500,
+      "topic": "Kinematics: Acceleration of Uniformly Varied Circular Motion - Physics",
+      "type": "discursive",
+      "difficulty_level": 500,
+      "ai_model": "gemini-2.5-flash",
+      "grade": 100,
+      "education_level": 30,
+      "categoryName": "Kinematics: Acceleration of Uniformly Varied Circular Motion",
+      "categoryId": "",
+      "disciplineName": "Physics",
+      "disciplineId": "",
+      "request_context": {
+        "grade": 100,
+        "locale": "en_US",
+        "difficulty": 300,
+        "category": "Kinematics: Acceleration of Uniformly Varied Circular Motion",
+        "discipline": "Physics"
+      }
+    }
+  ]
+}
