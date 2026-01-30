@@ -1,19 +1,4 @@
-// Global state
-let allQuestionLists = []; // Array of question lists from JSON
-let filteredQuestionLists = []; // Filtered lists based on selection
-let listKeys = []; // Array of list keys in order
-let currentListIndex = 0; // Index in listKeys array
-let currentListKey = null;
-let currentQuestionList = [];
-let currentListData = null; // The full list object with list_id and request_context
-let listContext = {};
-let evaluation = null;
-let listId = null;
-let userName = null;
-let selectedSubject = null;
-let selectedLanguage = null;
-
-// Discipline name mapping (Portuguese -> English) for normalization
+// Discipline name mapping (Portuguese -> English) for subject dropdown: one subject in English
 const DISCIPLINE_TRANSLATIONS_REVERSE = {
     "Matemática": "Mathematics",
     "Ciências": "Science",
@@ -29,111 +14,163 @@ const DISCIPLINE_TRANSLATIONS_REVERSE = {
     "Espanhol": "Spanish"
 };
 
-// Criteria definitions (same as before)
+// Global state: data from list_of_questions_to_test_v3.json
+let allQuestionLists = []; // Raw list objects from JSON
+let listsBySubject = {}; // normalized (English) discipline -> array of normalized list objects
+let selectedSubject = null;
+let selectedLanguage = null; // 'English' | 'Portuguese' | 'BOTH'
+let listsForCurrentSubject = []; // Lists for selected subject + language filter
+let listKeys = [];
+let currentListIndex = 0;
+let currentList = null;
+let currentQuestionList = [];
+let listContext = {};
+let evaluation = null;
+let listId = null;
+
+// Rubric criteria for info modal (keys must match list-evaluator.html data-criterion attributes)
 const criteria = {
-    gradeLevel: {
-        title: "Grade-Level Appropriateness",
-        category: "Pedagogical Fundamentals",
-        question: "Is the entire list consistently appropriate for the target grade level in vocabulary, complexity, and cognitive expectations?",
+    teacherInputCompliance: {
+        title: "1. Teacher Input Compliance (0–3)",
+        category: "Category 1: Teacher Input Alignment",
+        question: "Does the list meet the teacher's explicit technical specifications?",
+        subItems: [
+            "Correct language (1 point): Questions are in the language specified by the teacher",
+            "Correct total number of questions (1 point): Total number of questions matches the teacher's request",
+            "Correct question type distribution (1 point): Question types match teacher's selection — MCQ only → all multiple choice; Open-ended only → all open-ended; Both → at least one MCQ AND at least one open-ended"
+        ],
+        scoreNote: "Score: 0–3 (sum of checks passed)"
+    },
+    topicMaterialsAlignment: {
+        title: "2. Topic & Materials Alignment (0–2)",
+        category: "Category 1: Teacher Input Alignment",
+        question: "Does the list address the topic requested by the teacher and appropriately incorporate any uploaded materials?",
         scores: {
-            0: "Multiple questions have vocabulary or complexity clearly too advanced or too simple; language is not grade-appropriate",
-            1: "Mostly appropriate with some issues (occasional vocabulary or concepts slightly off-level)",
-            2: "Uniformly appropriate vocabulary, sentence complexity, and cognitive expectations for the target grade; language is accessible and suitable"
+            0: "The list is about a substantially different topic than requested, OR uploaded materials are ignored entirely.",
+            1: "The list addresses the general topic area but may drift into tangential content, OR uploaded materials are only partially reflected.",
+            2: "The list stays focused on the requested topic throughout and appropriately incorporates all uploaded materials where relevant."
         }
     },
-    teacherInput: {
-        title: "Teacher Input Alignment",
-        category: "Pedagogical Fundamentals",
-        question: "Does the list accurately reflect what the teacher requested and any provided materials?",
+    gradeLevelDifficulty: {
+        title: "3. Grade-Level & Difficulty Alignment (0–2)",
+        category: "Category 1: Teacher Input Alignment",
+        question: "Is the exercise list consistently appropriate for the target grade level and specified difficulty level in vocabulary, complexity, and cognitive expectations?",
         scores: {
-            0: "Ignores teacher specifications (topic, grade, difficulty preferences, or uploaded materials not reflected)",
-            1: "Partially follows teacher input but misses some key specifications or materials",
-            2: "Fully aligned with all teacher inputs: topic, grade, difficulty preferences, uploaded materials, and specified constraints"
-        }
-    },
-    difficultyProgression: {
-        title: "Difficulty Progression",
-        category: "Pedagogical Fundamentals",
-        question: "Does the list progress from easier questions at the beginning to harder questions at the end?",
-        scores: {
-            0: "No progression; difficult questions at start with easy at end, or difficulty jumps erratically throughout",
-            1: "Some progression visible but inconsistent (rough ordering with some difficulty jumps)",
-            2: "Clear easier-to-harder progression throughout the assessment; students build confidence as they work"
+            0: "The list does not match the specified grade and difficulty level. Multiple questions have vocabulary, language complexity and/or expected reasoning that are too advanced or too simple for the requested grade-difficulty combination.",
+            1: "The list mostly matches the specified grade and difficulty level, but there are some issues with vocabulary, language complexity and/or expected reasoning being off-level for the requested combination.",
+            2: "The list is uniformly appropriate for the specified grade level and difficulty level. Vocabulary and language are accessible, and the cognitive expectations consistently match the requested grade-difficulty combination throughout."
         }
     },
     uniqueness: {
-        title: "Uniqueness & Diversity",
-        category: "Content Quality",
-        question: "Are all questions distinct, non-repetitive, and varied in their approach?",
+        title: "4. Uniqueness & Diversity of Questions (0–2)",
+        category: "Category 2: Pedagogical Fundamentals",
+        question: "Does the exercise list avoid unintended redundancy and show meaningful variation in how the target skill(s) are assessed?",
         scores: {
-            0: "Duplicate or near-identical questions exist (same concept tested multiple times with only superficial changes)",
-            1: "All questions are unique but some feel similar or lack variety in approach",
-            2: "All questions assess distinct knowledge/skills with no redundancy; questions feel fresh and varied"
+            0: "The list includes clear duplication or near-identical questions, indicating unintended redundancy (the same concept tested repeatedly with only superficial changes).",
+            1: "The list avoids direct duplication, but shows limited variation in approach (similar formats, contexts, or problem structures used repeatedly).",
+            2: "The list shows meaningful variation in how the target skill(s) are assessed, avoiding unintended redundancy while allowing purposeful repetition when relevant."
         }
     },
     topicCoverage: {
-        title: "Topic Coverage",
-        category: "Content Quality",
-        question: "Does the list comprehensively cover the relevant content domain as specified by the teacher?",
+        title: "5. Topic Coverage (0–2)",
+        category: "Category 2: Pedagogical Fundamentals",
+        question: "Does the exercise list provide appropriate coverage of the content domain within the scope defined by the teacher?",
         scores: {
-            0: "Narrow focus with major subtopics or concepts missing entirely; doesn't reflect the teacher's input",
-            1: "Partial coverage with some gaps; key areas present but some important subtopics underrepresented",
-            2: "Comprehensive representation of all key subtopics appropriate for the grade level, subject, and teacher specifications"
+            0: "The list shows major coverage gaps within the requested scope (key subtopics or concepts are missing or severely underrepresented).",
+            1: "The list covers the main content area, but includes noticeable gaps, with some important subtopics underrepresented relative to the intended scope.",
+            2: "The list covers all major key subtopics appropriate for the grade level, subject, and teacher specifications."
         }
     },
     cognitiveDiversity: {
-        title: "Cognitive Level Diversity",
-        category: "Content Quality",
+        title: "6. Cognitive Level Diversity (0–2)",
+        category: "Category 2: Pedagogical Fundamentals",
         question: "Does the list include appropriate variety across different thinking levels?",
         scores: {
-            0: "Only recall/recognition questions with no higher-order thinking",
-            1: "Some higher-order thinking questions but predominantly lower-level cognitive demand",
-            2: "Balanced distribution across thinking levels (Remember/Understand/Apply/Analyze/Evaluate/Create) appropriate for the grade and assessment purpose"
+            0: "The list is limited to a single low-level cognitive demand, with no higher-order thinking where it would be expected.",
+            1: "The list shows some variation in cognitive demand, but the range or distribution is not clearly aligned with the assessment purpose.",
+            2: "The list includes a purposeful range of cognitive demands (Remember/Understand/Apply/Analyze/Evaluate/Create) aligned with the grade level and assessment purpose."
         }
     },
-    questionTypeBalance: {
-        title: "Question Type Balance",
-        category: "Assessment Design",
-        question: "Is the mix of question types appropriate for the assessment goals?",
+    difficultyProgression: {
+        title: "7. Difficulty Progression (0–2)",
+        category: "Category 2: Pedagogical Fundamentals",
+        question: "Is the exercise list ordered in a way that avoids unnecessary difficulty spikes and supports a coherent progression for students?",
         scores: {
-            0: "All same type when variety needed, OR types don't match assessment purpose",
-            1: "Reasonable mix but suboptimal (some variety but ratios could be better aligned with goals)",
-            2: "Optimal mix of multiple-choice and discursive questions for the stated assessment goals and cognitive levels being measured"
+            0: "The list has no clear progression and includes abrupt or confusing difficulty jumps that make the assessment hard to follow.",
+            1: "Some progression is visible, but the ordering is inconsistent, with occasional difficulty jumps or uneven transitions.",
+            2: "The list shows a clear and intentional progression or distribution of difficulty that supports smooth navigation through the assessment."
         }
     },
     answerLeakage: {
-        title: "Answer Leakage Prevention",
-        category: "Assessment Design",
+        title: "8. Answer Leakage Prevention (0–2)",
+        category: "Category 3: Assessment Design",
         question: "Does the list avoid questions that inadvertently reveal answers to other questions?",
         scores: {
-            0: "Clear answer leakage exists (later questions or answer choices reveal correct answers to earlier questions)",
-            1: "Minor leakage risks present (some questions provide hints but don't fully reveal answers)",
-            2: "No cross-question answer hints; each question can be answered independently"
+            0: "Clear answer leakage exists (later questions or answer choices reveal correct answers to earlier questions).",
+            1: "Minor leakage risks present (some questions provide hints but don't fully reveal answers).",
+            2: "No cross-question answer hints; each question can be answered independently."
         }
     }
 };
 
+// List-evaluator form fields (must match list-evaluator.html data-field attributes)
+const LIST_EVALUATOR_COMPLIANCE_FIELDS = ['teacherInputCompliance_language', 'teacherInputCompliance_count', 'teacherInputCompliance_type'];
+const LIST_EVALUATOR_CRITERIA_FIELDS = ['topicMaterialsAlignment', 'gradeLevelDifficulty', 'uniqueness', 'topicCoverage', 'cognitiveDiversity', 'difficultyProgression', 'answerLeakage'];
+const LIST_EVALUATOR_ALL_FIELDS = [...LIST_EVALUATOR_COMPLIANCE_FIELDS, ...LIST_EVALUATOR_CRITERIA_FIELDS];
+const LIST_EVALUATOR_MAX_SCORE = 3 + (LIST_EVALUATOR_CRITERIA_FIELDS.length * 2); // 3 + 14 = 17
+// Human-readable names for "missing criteria" warning (one label per criterion; compliance = 1 criterion with 3 sub-fields)
+const LIST_EVALUATOR_FIELD_LABELS = {
+    teacherInputCompliance_language: 'Teacher Input Compliance',
+    teacherInputCompliance_count: 'Teacher Input Compliance',
+    teacherInputCompliance_type: 'Teacher Input Compliance',
+    topicMaterialsAlignment: 'Topic & Materials Alignment',
+    gradeLevelDifficulty: 'Grade-Level & Difficulty Alignment',
+    uniqueness: 'Uniqueness & Diversity',
+    topicCoverage: 'Topic Coverage',
+    cognitiveDiversity: 'Cognitive Level Diversity',
+    difficultyProgression: 'Difficulty Progression',
+    answerLeakage: 'Answer Leakage Prevention'
+};
+
+const LIST_EVALUATOR_STATE_KEY = 'listEvaluatorState';
+
 // Initialize
 document.addEventListener('DOMContentLoaded', () => {
-    loadFromLocalStorage();
     setupEventListeners();
-    updateExportButton();
     loadJsonFile();
 });
 
 function setupEventListeners() {
-    // Selection page listeners
-    document.getElementById('userNameInput').addEventListener('input', validateSelection);
-    document.getElementById('subjectSelect').addEventListener('change', validateSelection);
-    document.getElementById('languageSelect').addEventListener('change', validateSelection);
-    document.getElementById('startEvaluatorBtn').addEventListener('click', startEvaluator);
-    
-    // Evaluator page listeners
-    document.getElementById('backToSelectionBtn').addEventListener('click', backToSelection);
-    document.getElementById('listSelector').addEventListener('change', onListSelect);
-    document.getElementById('exportYamlBtn').addEventListener('click', exportToYaml);
-    document.getElementById('toggleCriteriaBtn').addEventListener('click', toggleCriteria);
-    document.getElementById('closeCriteriaBtn').addEventListener('click', toggleCriteria);
+    // Selection page
+    const subjectSelect = document.getElementById('subjectSelect');
+    const userNameInput = document.getElementById('userNameInput');
+    const languageSelect = document.getElementById('languageSelect');
+    if (subjectSelect) {
+        subjectSelect.addEventListener('change', validateSelection);
+    }
+    if (userNameInput) {
+        userNameInput.addEventListener('input', validateSelection);
+    }
+    if (languageSelect) {
+        languageSelect.addEventListener('change', validateSelection);
+    }
+    const startEvaluatorBtn = document.getElementById('startEvaluatorBtn');
+    if (startEvaluatorBtn) {
+        startEvaluatorBtn.addEventListener('click', startEvaluator);
+    }
+    const backToSelectionBtn = document.getElementById('backToSelectionBtn');
+    if (backToSelectionBtn) {
+        backToSelectionBtn.addEventListener('click', backToSelection);
+    }
+    // Export and evaluation
+    const exportCsvBtn = document.getElementById('exportCsvBtn');
+    if (exportCsvBtn) {
+        exportCsvBtn.addEventListener('click', exportToYaml);
+    }
+    const toggleCriteriaBtn = document.getElementById('toggleCriteriaBtn');
+    const closeCriteriaBtn = document.getElementById('closeCriteriaBtn');
+    if (toggleCriteriaBtn) toggleCriteriaBtn.addEventListener('click', toggleCriteria);
+    if (closeCriteriaBtn) closeCriteriaBtn.addEventListener('click', toggleCriteria);
     document.getElementById('saveEvaluationBtn').addEventListener('click', saveEvaluation);
     document.getElementById('prevBtn').addEventListener('click', () => navigateQuestion(-1));
     document.getElementById('nextBtn').addEventListener('click', () => navigateQuestion(1));
@@ -175,102 +212,8 @@ function setupEventListeners() {
     // Keyboard shortcuts for scoring
     document.addEventListener('keydown', handleKeyboardInput);
     
-    loadCriteriaContent();
-}
-
-function loadJsonFile() {
-    const urlParams = new URLSearchParams(window.location.search);
-    const jsonFile = urlParams.get('json') || 'list_of_questions_to_test_v3.json';
-    
-    fetch(jsonFile)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Could not load JSON file');
-            }
-            return response.json();
-        })
-        .then(jsonData => {
-            // Load question_lists from the JSON
-            allQuestionLists = (jsonData.question_lists || []).filter(list => 
-                list.questions && Array.isArray(list.questions) && list.questions.length > 0
-            );
-            
-            if (allQuestionLists.length === 0) {
-                document.getElementById('selectionPage').innerHTML = '<p style="color: #e74c3c;">No valid question lists found in JSON file.</p>';
-                return;
-            }
-            
-            // Populate subject dropdown
-            populateSelectionDropdowns();
-            
-            // Try to restore evaluator state after JSON loads
-            tryRestoreEvaluatorState();
-        })
-        .catch(error => {
-            document.getElementById('loadingMessage').innerHTML = '<p style="color: #e74c3c;">Error loading JSON file: ' + error.message + '</p>';
-        });
-}
-
-function transformQuestion(q, index) {
-    // Get original discipline name
-    const originalDiscipline = q.disciplineName || q.request_context?.discipline || '';
-    // Normalize to English discipline name
-    const normalizedDiscipline = DISCIPLINE_TRANSLATIONS_REVERSE[originalDiscipline] || originalDiscipline;
-    
-    // Map JSON fields to expected format
-    const mappedQuestion = {
-        question_id: `q_${index + 1}`, // Generate question_id if not present
-        question_statement: q.question_statement || '',
-        question_solution: q.question_solution || '',
-        discipline: normalizedDiscipline, // Use normalized English name
-        discipline_original: originalDiscipline, // Keep original for display if needed
-        category: q.categoryName || q.request_context?.category || '',
-        grade: q.grade || q.request_context?.grade || '',
-        difficulty: q.difficulty || q.difficulty_level || '',
-        type: q.type === 'multiple_choice' ? 'MCQ' : (q.type || 'discursive'),
-        locale: q.request_context?.locale || '',
-        language: q.request_context?.locale === 'pt_BR' ? 'Portuguese' : (q.request_context?.locale === 'en_US' ? 'English' : ''),
-        // Handle answer and alternatives
-        correct_answer: q.answer || '',
-        incorrect_alternative_1: q.incorrect_alternatives && q.incorrect_alternatives[0] ? q.incorrect_alternatives[0] : '',
-        incorrect_alternative_2: q.incorrect_alternatives && q.incorrect_alternatives[1] ? q.incorrect_alternatives[1] : '',
-        incorrect_alternative_3: q.incorrect_alternatives && q.incorrect_alternatives[2] ? q.incorrect_alternatives[2] : '',
-        incorrect_alternative_4: q.incorrect_alternatives && q.incorrect_alternatives[3] ? q.incorrect_alternatives[3] : ''
-    };
-    return mappedQuestion;
-}
-
-function populateSelectionDropdowns() {
-    // Get unique subjects from all question lists
-    const subjects = new Set();
-    
-    allQuestionLists.forEach(list => {
-        const reqCtx = list.request_context || {};
-        const discipline = reqCtx.discipline || '';
-        if (discipline && discipline.trim() !== '') {
-            // Normalize to English discipline name
-            const normalizedDiscipline = DISCIPLINE_TRANSLATIONS_REVERSE[discipline.trim()] || discipline.trim();
-            subjects.add(normalizedDiscipline);
-        }
-    });
-    
-    // Populate subject dropdown
-    const subjectSelect = document.getElementById('subjectSelect');
-    const sortedSubjects = Array.from(subjects).sort();
-    
-    // Add "All Subjects" option first
-    const allOption = document.createElement('option');
-    allOption.value = 'ALL';
-    allOption.textContent = 'All Subjects';
-    subjectSelect.appendChild(allOption);
-    
-    // Add individual subjects
-    sortedSubjects.forEach(subject => {
-        const option = document.createElement('option');
-        option.value = subject;
-        option.textContent = subject;
-        subjectSelect.appendChild(option);
-    });
+    const criteriaContent = document.getElementById('criteriaContent');
+    if (criteriaContent) loadCriteriaContent();
 }
 
 function validateSelection() {
@@ -278,8 +221,8 @@ function validateSelection() {
     const subjectSelect = document.getElementById('subjectSelect');
     const languageSelect = document.getElementById('languageSelect');
     const startBtn = document.getElementById('startEvaluatorBtn');
-    
-    if (userNameInput.value.trim() && subjectSelect.value && languageSelect.value) {
+    if (!userNameInput || !subjectSelect || !startBtn) return;
+    if (userNameInput.value.trim() && subjectSelect.value && (!languageSelect || languageSelect.value)) {
         startBtn.disabled = false;
     } else {
         startBtn.disabled = true;
@@ -287,156 +230,240 @@ function validateSelection() {
 }
 
 function startEvaluator() {
-    userName = document.getElementById('userNameInput').value.trim();
-    selectedSubject = document.getElementById('subjectSelect').value;
-    selectedLanguage = document.getElementById('languageSelect').value;
-    
-    if (!userName) {
-        alert('Please enter your name.');
+    const subjectSelect = document.getElementById('subjectSelect');
+    const languageSelect = document.getElementById('languageSelect');
+    const userNameInput = document.getElementById('userNameInput');
+    const subject = subjectSelect ? subjectSelect.value : '';
+    const language = languageSelect ? languageSelect.value : 'BOTH';
+    const userName = userNameInput ? userNameInput.value.trim() : '';
+    if (!subject || !listsBySubject[subject] || listsBySubject[subject].length === 0) {
+        alert('Please select a subject.');
         return;
     }
-    
-    if (!selectedSubject) {
-        alert('Please select a subject or "All Subjects".');
-        return;
-    }
-    
-    if (!selectedLanguage) {
-        alert('Please select a language.');
-        return;
-    }
-    
-    // Filter lists based on subject
-    if (selectedSubject === 'ALL') {
-        filteredQuestionLists = allQuestionLists;
+    selectedSubject = subject;
+    selectedLanguage = language;
+    const allForSubject = listsBySubject[subject];
+    if (language === 'BOTH') {
+        listsForCurrentSubject = allForSubject;
     } else {
-        filteredQuestionLists = allQuestionLists.filter(list => {
-            const reqCtx = list.request_context || {};
-            const discipline = reqCtx.discipline || '';
-            const normalizedDiscipline = DISCIPLINE_TRANSLATIONS_REVERSE[discipline.trim()] || discipline.trim();
-            return normalizedDiscipline === selectedSubject;
+        const localeFilter = language === 'English' ? 'en_US' : 'pt_BR';
+        listsForCurrentSubject = allForSubject.filter(list => {
+            const locale = (list.request_context.locale || '').trim();
+            return locale === localeFilter;
         });
     }
-    
-    // Filter by language (locale)
-    if (selectedLanguage !== 'BOTH') {
-        filteredQuestionLists = filteredQuestionLists.filter(list => {
-            const reqCtx = list.request_context || {};
-            const locale = (reqCtx.locale || '').trim();
-            if (selectedLanguage === 'English') {
-                return locale === 'en_US';
-            } else if (selectedLanguage === 'Portuguese') {
-                return locale === 'pt_BR';
-            }
-            return false;
-        });
-    }
-    
-    if (filteredQuestionLists.length === 0) {
-        alert('No question lists found matching your selection. Please try different criteria.');
+    listKeys = listsForCurrentSubject.map((_, i) => i);
+    currentListIndex = 0;
+
+    if (listsForCurrentSubject.length === 0) {
+        alert(`No lists found for ${subject} in ${language === 'BOTH' ? 'both languages' : language}.`);
         return;
     }
-    
-    // Save selection to localStorage
-    saveToLocalStorage();
-    
-    // Hide selection page and show evaluator page
+
+    saveListEvaluatorState();
     document.getElementById('selectionPage').style.display = 'none';
     document.getElementById('evaluatorPage').style.display = 'block';
-    
-    // Update display
-    document.getElementById('selectedSubjectDisplay').textContent = selectedSubject === 'ALL' ? 'All Subjects' : selectedSubject;
-    document.getElementById('selectedLanguageDisplay').textContent = selectedLanguage;
-    
-    // Populate list selector with filtered lists
-    populateListSelector();
-    
+    loadListByIndex(0);
+
+    const selectedSubjectDisplay = document.getElementById('selectedSubjectDisplay');
+    const selectedLanguageDisplay = document.getElementById('selectedLanguageDisplay');
+    if (selectedSubjectDisplay) selectedSubjectDisplay.textContent = subject;
+    if (selectedLanguageDisplay && languageSelect) {
+        selectedLanguageDisplay.textContent = languageSelect.options[languageSelect.selectedIndex].text;
+    }
     document.getElementById('loadingMessage').style.display = 'none';
     document.getElementById('evaluatorInterface').style.display = 'block';
 }
 
 function backToSelection() {
-    // Clear the saved selection state
-    clearSelectionState();
-    
-    // Show selection page and hide evaluator page
-    document.getElementById('selectionPage').style.display = 'block';
+    saveListEvaluatorState({ page: 'selection' });
     document.getElementById('evaluatorPage').style.display = 'none';
-    
-    // Reset form
-    const userNameInput = document.getElementById('userNameInput');
-    if (userNameInput) userNameInput.value = userName || '';
+    document.getElementById('selectionPage').style.display = 'flex';
+}
+
+function saveListEvaluatorState(overrides) {
+    try {
+        const userNameInput = document.getElementById('userNameInput');
+        const subjectSelect = document.getElementById('subjectSelect');
+        const languageSelect = document.getElementById('languageSelect');
+        const onEvaluatorPage = document.getElementById('evaluatorPage').style.display !== 'none';
+        const state = {
+            page: (overrides && overrides.page) || (onEvaluatorPage ? 'evaluator' : 'selection'),
+            userName: userNameInput ? userNameInput.value.trim() : '',
+            subject: selectedSubject || (subjectSelect ? subjectSelect.value : ''),
+            language: selectedLanguage || (languageSelect ? languageSelect.value : 'BOTH'),
+            currentListIndex: currentListIndex
+        };
+        if (overrides) Object.assign(state, overrides);
+        localStorage.setItem(LIST_EVALUATOR_STATE_KEY, JSON.stringify(state));
+    } catch (e) {
+        console.warn('Could not save list evaluator state:', e);
+    }
+}
+
+function tryRestoreListEvaluatorState() {
+    try {
+        const saved = localStorage.getItem(LIST_EVALUATOR_STATE_KEY);
+        if (!saved) return;
+        const state = JSON.parse(saved);
+        if (!state.subject || !listsBySubject[state.subject]) return;
+
+        const userNameInput = document.getElementById('userNameInput');
+        const subjectSelect = document.getElementById('subjectSelect');
+        const languageSelect = document.getElementById('languageSelect');
+        if (userNameInput && state.userName) userNameInput.value = state.userName;
+        if (subjectSelect) subjectSelect.value = state.subject;
+        if (languageSelect && state.language) languageSelect.value = state.language;
+
+        selectedSubject = state.subject;
+        selectedLanguage = state.language || 'BOTH';
+        const allForSubject = listsBySubject[selectedSubject];
+        if (selectedLanguage === 'BOTH') {
+            listsForCurrentSubject = allForSubject;
+        } else {
+            const localeFilter = selectedLanguage === 'English' ? 'en_US' : 'pt_BR';
+            listsForCurrentSubject = allForSubject.filter(list => {
+                const locale = (list.request_context.locale || '').trim();
+                return locale === localeFilter;
+            });
+        }
+        listKeys = listsForCurrentSubject.map((_, i) => i);
+        currentListIndex = Math.min(state.currentListIndex || 0, Math.max(0, listsForCurrentSubject.length - 1));
+
+        if (state.page === 'evaluator' && listsForCurrentSubject.length > 0) {
+            document.getElementById('selectionPage').style.display = 'none';
+            document.getElementById('evaluatorPage').style.display = 'block';
+            const selectedSubjectDisplay = document.getElementById('selectedSubjectDisplay');
+            const selectedLanguageDisplay = document.getElementById('selectedLanguageDisplay');
+            if (selectedSubjectDisplay) selectedSubjectDisplay.textContent = selectedSubject;
+            if (selectedLanguageDisplay && languageSelect) {
+                selectedLanguageDisplay.textContent = languageSelect.options[languageSelect.selectedIndex].text;
+            }
+            document.getElementById('loadingMessage').style.display = 'none';
+            document.getElementById('evaluatorInterface').style.display = 'block';
+            loadListByIndex(currentListIndex);
+        } else {
+            validateSelection();
+        }
+    } catch (e) {
+        console.warn('Could not restore list evaluator state:', e);
+    }
+}
+
+function loadJsonFile() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const jsonFile = urlParams.get('json') || 'list_of_questions_to_test_v3.json';
+
+    fetch(jsonFile)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Could not load JSON file');
+            }
+            return response.json();
+        })
+        .then(data => {
+            const rawLists = data.question_lists || [];
+            if (rawLists.length === 0) {
+                showSelectionError('No question lists found in JSON file.');
+                return;
+            }
+            allQuestionLists = rawLists;
+            buildListsBySubject();
+            populateSubjectSelector();
+            updateExportButton();
+            tryRestoreListEvaluatorState();
+        })
+        .catch(error => {
+            showSelectionError('Error loading JSON file: ' + error.message);
+        });
+}
+
+function showSelectionError(message) {
+    const selectionCard = document.querySelector('.selection-card');
+    if (selectionCard) {
+        const err = document.createElement('p');
+        err.style.color = '#e74c3c';
+        err.style.marginTop = '10px';
+        err.textContent = message;
+        selectionCard.appendChild(err);
+    }
+}
+
+function normalizeQuestion(q) {
+    const type = (q.type === 'multiple_choice' || q.type === 'MCQ') ? 'MCQ' : 'discursive';
+    const alts = q.incorrect_alternatives || [];
+    return {
+        question_statement: q.question_statement || '',
+        question_solution: q.question_solution || '',
+        type: type,
+        correct_answer: q.answer || q.correct_answer || '',
+        incorrect_alternative_1: alts[0] || '',
+        incorrect_alternative_2: alts[1] || '',
+        incorrect_alternative_3: alts[2] || '',
+        incorrect_alternative_4: alts[3] || '',
+        difficulty: q.difficulty_level != null ? q.difficulty_level : (q.difficulty != null ? q.difficulty : null)
+    };
+}
+
+function normalizeDiscipline(discipline) {
+    if (!discipline || !discipline.trim()) return 'Unknown';
+    const trimmed = discipline.trim();
+    return DISCIPLINE_TRANSLATIONS_REVERSE[trimmed] || trimmed;
+}
+
+function buildListsBySubject() {
+    listsBySubject = {};
+    allQuestionLists.forEach(listObj => {
+        const rc = listObj.request_context || {};
+        const rawDiscipline = (rc.discipline || 'Unknown').trim();
+        if (!rawDiscipline) return;
+        const discipline = normalizeDiscipline(rawDiscipline);
+        const questions = (listObj.questions || []).map(normalizeQuestion);
+        const normalized = {
+            list_id: listObj.list_id,
+            request_context: rc,
+            questions: questions
+        };
+        if (!listsBySubject[discipline]) {
+            listsBySubject[discipline] = [];
+        }
+        listsBySubject[discipline].push(normalized);
+    });
+}
+
+function populateSubjectSelector() {
     const subjectSelect = document.getElementById('subjectSelect');
-    if (subjectSelect && selectedSubject) {
-        subjectSelect.value = selectedSubject;
-    }
-    const languageSelect = document.getElementById('languageSelect');
-    if (languageSelect && selectedLanguage) {
-        languageSelect.value = selectedLanguage;
-    }
-    
-    // Validate selection
+    if (!subjectSelect) return;
+    subjectSelect.innerHTML = '<option value="">-- Select Subject --</option>';
+
+    const subjects = Object.keys(listsBySubject).sort();
+    subjects.forEach(discipline => {
+        const option = document.createElement('option');
+        option.value = discipline;
+        option.textContent = discipline;
+        subjectSelect.appendChild(option);
+    });
+
+    updateListNavigation();
     validateSelection();
 }
 
-function populateListSelector() {
-    const selector = document.getElementById('listSelector');
-    selector.innerHTML = '<option value="">Select a list...</option>';
-    
-    // Store list indices in array for navigation
-    listKeys = filteredQuestionLists.map((list, index) => index);
-    
-    filteredQuestionLists.forEach((list, index) => {
-        const reqCtx = list.request_context || {};
-        const discipline = DISCIPLINE_TRANSLATIONS_REVERSE[reqCtx.discipline] || reqCtx.discipline || 'Unknown';
-        const grade = formatGrade(reqCtx.grade || '');
-        const category = reqCtx.category || 'No category';
-        const numQuestions = list.questions ? list.questions.length : 0;
-        
-        const option = document.createElement('option');
-        option.value = index.toString();
-        option.textContent = `List ${list.list_id || index + 1}: ${discipline} - ${grade} - ${category} (${numQuestions} questions)`;
-        selector.appendChild(option);
-    });
-    
-    // Update navigation display
-    updateListNavigation();
-}
-
-function onListSelect() {
-    const selector = document.getElementById('listSelector');
-    const selectedIndex = parseInt(selector.value);
-    
-    if (isNaN(selectedIndex) || selectedIndex < 0 || selectedIndex >= filteredQuestionLists.length) {
-        currentListKey = null;
-        currentListIndex = -1;
+function loadListByIndex(index) {
+    if (index < 0 || index >= listsForCurrentSubject.length) {
+        currentList = null;
         currentQuestionList = [];
-        currentListData = null;
         return;
     }
-    
-    // Get the selected list from filtered lists
-    currentListIndex = selectedIndex;
-    currentListKey = selectedIndex.toString();
-    currentListData = filteredQuestionLists[selectedIndex];
-    
-    // Transform questions to match expected format
-    currentQuestionList = (currentListData.questions || []).map((q, qIndex) => transformQuestion(q, qIndex))
-        .filter(q => q.question_statement && q.question_statement.trim() !== '')
-        .sort((a, b) => {
-            // Sort by difficulty if available
-            const diffA = parseInt(a.difficulty) || 0;
-            const diffB = parseInt(b.difficulty) || 0;
-            return diffA - diffB;
-        });
-    
-    // Extract list context from request_context
+    currentListIndex = index;
+    currentList = listsForCurrentSubject[index];
+    currentQuestionList = currentList.questions;
+
     extractListContext();
-    
-    // Generate list ID
     listId = generateListId();
-    
-    // Load existing evaluation
+
+    const listHeadingEl = document.getElementById('listHeading');
+    if (listHeadingEl) listHeadingEl.textContent = 'List ' + (listId || '—');
+
     try {
         const saved = localStorage.getItem(`listEvaluation_${listId}`);
         if (saved) {
@@ -448,44 +475,85 @@ function onListSelect() {
         console.warn('Could not load evaluation from localStorage:', e);
         evaluation = null;
     }
-    
-    // Update UI
+
     updateListSummary();
+    updateRequestDisplay();
     displayQuestionsList();
     updateListNavigation();
     loadEvaluation();
+    saveListEvaluatorState();
+}
+
+function loadListByKey(selectedKey) {
+    const index = typeof selectedKey === 'number' ? selectedKey : listKeys.indexOf(selectedKey);
+    if (index >= 0 && index < listsForCurrentSubject.length) {
+        loadListByIndex(index);
+    }
 }
 
 function extractListContext() {
-    if (!currentListData || !currentListData.request_context) return;
-    
-    const reqCtx = currentListData.request_context;
+    if (!currentList || !currentList.request_context) return;
+    const rc = currentList.request_context;
+    const numMcq = currentQuestionList.filter(q => q.type === 'MCQ').length;
+    const numDisc = currentQuestionList.filter(q => q.type !== 'MCQ').length;
     listContext = {
-        grade: reqCtx.grade || 'Not specified',
-        locale: reqCtx.locale || 'Not specified',
-        category: reqCtx.category || 'Not specified',
-        discipline: DISCIPLINE_TRANSLATIONS_REVERSE[reqCtx.discipline] || reqCtx.discipline || 'Not specified',
-        difficulty: reqCtx.difficulty || 'Not specified',
-        numMultipleChoice: reqCtx.num_mcq_requested || currentQuestionList.filter(q => q.type === 'MCQ').length,
-        numDiscursive: reqCtx.num_discursive_requested || currentQuestionList.filter(q => q.type !== 'MCQ').length,
-        list_id: currentListData.list_id || null,
-        teacherInput: null, // Not in this data structure
-        uploadedFiles: [] // Not in this data structure
+        grade: rc.grade != null ? rc.grade : 'Not specified',
+        locale: rc.locale || 'Not specified',
+        category: rc.category || 'Not specified',
+        discipline: rc.discipline || 'Not specified',
+        difficulty: rc.difficulty != null ? rc.difficulty : 'Not specified',
+        num_mcq_requested: rc.num_mcq_requested != null ? rc.num_mcq_requested : 0,
+        num_discursive_requested: rc.num_discursive_requested != null ? rc.num_discursive_requested : 0,
+        numMultipleChoice: numMcq,
+        numDiscursive: numDisc,
+        teacherInput: rc.teacher_input || null,
+        uploadedFiles: rc.uploaded_files ? (typeof rc.uploaded_files === 'string' ? rc.uploaded_files.split(',').map(f => f.trim()) : []) : []
     };
 }
 
 function generateListId() {
-    if (!currentListData) return null;
-    const listIdNum = currentListData.list_id || currentListIndex;
-    const hash = `list_${listIdNum}_${currentQuestionList.length}`;
-    return 'list_' + btoa(hash).replace(/[^a-zA-Z0-9]/g, '').substring(0, 16);
+    if (!currentList || currentList.list_id == null) return null;
+    return 'list_' + currentList.list_id;
+}
+
+function formatLocale(locale) {
+    if (!locale) return '—';
+    if (locale === 'en_US') return 'English (US)';
+    if (locale === 'pt_BR') return 'Portuguese (BR)';
+    return locale;
+}
+
+function formatRequestedTypes(rc) {
+    if (!rc) return '—';
+    const mcq = rc.num_mcq_requested != null ? rc.num_mcq_requested : 0;
+    const disc = rc.num_discursive_requested != null ? rc.num_discursive_requested : 0;
+    if (mcq > 0 && disc > 0) return `${mcq} MCQ, ${disc} Open-ended`;
+    if (mcq > 0) return `${mcq} MCQ only`;
+    if (disc > 0) return `${disc} Open-ended only`;
+    return '—';
 }
 
 function updateListSummary() {
-    document.getElementById('listTotalQuestions').textContent = currentQuestionList.length;
-    // Calculate total points (assuming 1 point per question, or use difficulty)
-    const totalPoints = currentQuestionList.length; // You can adjust this based on actual point values
-    document.getElementById('listTotalPoints').textContent = totalPoints;
+    // Summary stats removed from UI
+}
+
+function updateRequestDisplay() {
+    if (!currentList || !currentList.request_context) return;
+    const rc = currentList.request_context;
+    const totalRequested = (rc.num_mcq_requested != null ? rc.num_mcq_requested : 0) + (rc.num_discursive_requested != null ? rc.num_discursive_requested : 0);
+    const typesStr = formatRequestedTypes(rc);
+    const summary = totalRequested > 0 ? (typesStr !== '—' ? `${totalRequested} questions (${typesStr})` : `${totalRequested} questions`) : '—';
+    setEl('listRequestSummary', summary);
+    setEl('listRequestLocale', formatLocale(rc.locale));
+    setEl('listDiscipline', normalizeDiscipline(rc.discipline) || '—');
+    setEl('listCategory', rc.category || '—');
+    setEl('listGrade', rc.grade != null ? formatGrade(String(rc.grade)) : '—');
+    setEl('listDifficulty', rc.difficulty != null ? String(rc.difficulty) : '—');
+}
+
+function setEl(id, text) {
+    const el = document.getElementById(id);
+    if (el) el.textContent = text;
 }
 
 function displayQuestionsList() {
@@ -526,16 +594,18 @@ function displayQuestionsList() {
 }
 
 function getDifficultyLabel(difficulty) {
-    if (!difficulty) return 'N/A';
-    const diff = parseInt(difficulty);
+    if (difficulty == null || difficulty === '') return 'N/A';
+    const diff = parseInt(difficulty, 10);
+    if (isNaN(diff)) return 'N/A';
     if (diff <= 300) return 'Easy';
     if (diff <= 600) return 'Medium';
     return 'Hard';
 }
 
 function getDifficultyClass(difficulty) {
-    if (!difficulty) return '';
-    const diff = parseInt(difficulty);
+    if (difficulty == null || difficulty === '') return '';
+    const diff = parseInt(difficulty, 10);
+    if (isNaN(diff)) return '';
     if (diff <= 300) return 'easy';
     if (diff <= 600) return 'medium';
     return 'hard';
@@ -582,20 +652,21 @@ function getMCQDetail(question) {
 }
 
 function updateListNavigation() {
-    if (filteredQuestionLists.length === 0) {
-        document.getElementById('questionCounter').textContent = 'No lists available';
-        document.getElementById('prevBtn').disabled = true;
-        document.getElementById('nextBtn').disabled = true;
+    const questionCounter = document.getElementById('questionCounter');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    if (!questionCounter || !prevBtn || !nextBtn) return;
+    const total = listsForCurrentSubject.length;
+    if (total === 0) {
+        questionCounter.textContent = 'No lists available';
+        prevBtn.disabled = true;
+        nextBtn.disabled = true;
         return;
     }
-    
-    // Update counter to show list number
-    const listIdNum = currentListData ? (currentListData.list_id || currentListIndex + 1) : currentListIndex + 1;
-    document.getElementById('questionCounter').textContent = `List ${listIdNum} of ${filteredQuestionLists.length}`;
-    
-    // Update navigation buttons
-    document.getElementById('prevBtn').disabled = currentListIndex === 0;
-    document.getElementById('nextBtn').disabled = currentListIndex === filteredQuestionLists.length - 1;
+    const idx = Math.max(0, Math.min(currentListIndex, total - 1));
+    questionCounter.textContent = `List ${idx + 1} of ${total}`;
+    prevBtn.disabled = currentListIndex <= 0;
+    nextBtn.disabled = currentListIndex >= total - 1;
 }
 
 function selectQuestion(index) {
@@ -612,27 +683,22 @@ function selectQuestion(index) {
 
 function navigateQuestion(direction) {
     const newListIndex = currentListIndex + direction;
-    if (newListIndex >= 0 && newListIndex < filteredQuestionLists.length) {
-        // Update selector to the new list
-        document.getElementById('listSelector').value = newListIndex.toString();
-        // Trigger the list selection
-        onListSelect();
+    if (newListIndex >= 0 && newListIndex < listsForCurrentSubject.length) {
+        loadListByIndex(newListIndex);
     }
 }
 
 function convertMathTags(text) {
     if (!text) return '';
-    
-    // Convert {{MATHBLOCK}}...{{/MATHBLOCK}} to block math (handle multiline with [\s\S])
-    text = text.replace(/\{\{MATHBLOCK\}\}([\s\S]*?)\{\{\/MATHBLOCK\}\}/g, (match, content) => {
-        return `\\[${content.trim()}\\]`;
-    });
-    
-    // Convert {{MATH}}...{{/MATH}} to inline math
-    text = text.replace(/\{\{MATH\}\}(.*?)\{\{\/MATH\}\}/g, (match, content) => {
+    // LaTeX blocks first (so ** inside LaTeX is not converted to bold)
+    text = text.replace(/\{\{MATH\}\}(.*?)\{\{\/MATH\}\}/gs, (match, content) => {
         return `\\(${content.trim()}\\)`;
     });
-    
+    text = text.replace(/\{\{MATHBLOCK\}\}(.*?)\{\{\/MATHBLOCK\}\}/gs, (match, content) => {
+        return `\\[${content.trim()}\\]`;
+    });
+    // Markdown-style bold: ** ... ** -> <strong>...</strong>
+    text = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
     text = text.replace(/\n/g, '<br>');
     return text;
 }
@@ -667,44 +733,21 @@ function formatGrade(grade) {
 
 function loadEvaluation() {
     if (!listId || !evaluation) {
-        // Clear all scores
-        Object.keys(criteria).forEach(criterion => {
-            clearButtonState(criterion);
-        });
+        // Clear all scores using actual form field names
+        LIST_EVALUATOR_ALL_FIELDS.forEach(field => clearButtonState(field));
         document.getElementById('summary').value = '';
         updateScore();
         return;
     }
     
-    // Load scores - try both old format (direct properties) and new format (criterion_scores array)
-    Object.keys(criteria).forEach(criterion => {
-        let score = null;
-        
-        // Try old format first (direct property on evaluation)
-        if (evaluation[criterion] !== undefined && evaluation[criterion] !== null) {
-            score = evaluation[criterion];
-        } else if (evaluation.criterion_scores && Array.isArray(evaluation.criterion_scores)) {
-            // Try new format (criterion_scores array)
-            const keyMap = {
-                'gradeLevel': 'Grade-Level Appropriateness',
-                'teacherInput': 'Teacher Input Alignment',
-                'difficultyProgression': 'Difficulty Progression',
-                'uniqueness': 'Uniqueness & Diversity',
-                'topicCoverage': 'Topic Coverage',
-                'cognitiveDiversity': 'Cognitive Level Diversity',
-                'questionTypeBalance': 'Question Type Balance',
-                'answerLeakage': 'Answer Leakage Prevention'
-            };
-            const criterionData = evaluation.criterion_scores.find(c => c.criterion === keyMap[criterion]);
-            if (criterionData && criterionData.score !== undefined) {
-                score = criterionData.score;
-            }
-        }
-        
-        if (score !== null && score !== undefined) {
-            setButtonState(criterion, score.toString());
+    // Load from evaluation.scores (field -> value) or legacy criterion_scores
+    const scores = evaluation.scores || {};
+    LIST_EVALUATOR_ALL_FIELDS.forEach(field => {
+        const value = scores[field];
+        if (value !== undefined && value !== null && value !== '') {
+            setButtonState(field, String(value));
         } else {
-            clearButtonState(criterion);
+            clearButtonState(field);
         }
     });
     
@@ -739,22 +782,24 @@ function getButtonValue(field) {
 
 function updateScore() {
     let totalScore = 0;
-    const criterionScores = {};
-    
-    Object.keys(criteria).forEach(criterion => {
-        const value = getButtonValue(criterion);
-        const score = value !== '' ? parseInt(value) : null;
-        criterionScores[criterion] = score;
-        if (score !== null) {
-            totalScore += score;
-        }
+
+    // Teacher Input Compliance sub-scores (0-1 each, total 0-3)
+    const complianceLang = getButtonValue('teacherInputCompliance_language');
+    const complianceCount = getButtonValue('teacherInputCompliance_count');
+    const complianceType = getButtonValue('teacherInputCompliance_type');
+    const complianceTotal = [complianceLang, complianceCount, complianceType].reduce((sum, v) => sum + (v !== '' ? parseInt(v, 10) : 0), 0);
+    totalScore += complianceTotal;
+
+    LIST_EVALUATOR_CRITERIA_FIELDS.forEach(field => {
+        const value = getButtonValue(field);
+        if (value !== '') totalScore += parseInt(value, 10);
     });
-    
+
     document.getElementById('totalScore').textContent = totalScore;
-    const percentage = ((totalScore / 16) * 100).toFixed(1);
+    const percentage = ((totalScore / LIST_EVALUATOR_MAX_SCORE) * 100).toFixed(1);
     document.getElementById('percentageScore').textContent = percentage;
-    
-    const allScored = Object.values(criterionScores).every(score => score !== null);
+
+    const allScored = getMissingCriteriaWithinList().length === 0;
     const statusEl = document.getElementById('statusDisplay');
     if (allScored) {
         statusEl.className = 'status-display pass';
@@ -765,51 +810,85 @@ function updateScore() {
     }
 }
 
+/** Returns human-readable names of criteria that are not yet scored (for warning when saving with skips). */
+function getMissingCriteriaWithinList() {
+    const missing = [];
+    const seenLabels = new Set();
+    LIST_EVALUATOR_COMPLIANCE_FIELDS.forEach(field => {
+        if (getButtonValue(field) === '') {
+            const label = LIST_EVALUATOR_FIELD_LABELS[field];
+            if (!seenLabels.has(label)) {
+                seenLabels.add(label);
+                missing.push(label);
+            }
+        }
+    });
+    LIST_EVALUATOR_CRITERIA_FIELDS.forEach(field => {
+        if (getButtonValue(field) === '') {
+            missing.push(LIST_EVALUATOR_FIELD_LABELS[field]);
+        }
+    });
+    return missing;
+}
+
 function saveEvaluation() {
     if (!listId) {
         alert('No list selected');
         return;
     }
     
-    const criterionScores = {};
-    let allScored = true;
-    
-    Object.keys(criteria).forEach(criterion => {
-        const value = getButtonValue(criterion);
-        const score = value !== '' ? parseInt(value) : null;
-        criterionScores[criterion] = score;
-        if (score === null) {
-            allScored = false;
-        }
-    });
-    
-    if (!allScored) {
-        alert('Please score all 8 criteria before saving.');
+    const missing = getMissingCriteriaWithinList();
+    if (missing.length > 0) {
+        alert('Please complete the following fields before continuing:\n\n' + missing.join('\n'));
         return;
     }
     
-    const summary = document.getElementById('summary').value;
-    const totalScore = Object.values(criterionScores).reduce((sum, score) => sum + score, 0);
-    const percentage = (totalScore / 16) * 100;
+    const scores = {};
+    LIST_EVALUATOR_ALL_FIELDS.forEach(field => {
+        const value = getButtonValue(field);
+        scores[field] = value !== '' ? value : null;
+    });
     
-    const criterionScoresArray = Object.keys(criteria).map(key => ({
-        category: criteria[key].category,
-        criterion: criteria[key].title,
-        score: criterionScores[key],
+    let totalScore = 0;
+    LIST_EVALUATOR_COMPLIANCE_FIELDS.forEach(f => {
+        const v = scores[f];
+        if (v !== null) totalScore += parseInt(v, 10);
+    });
+    LIST_EVALUATOR_CRITERIA_FIELDS.forEach(f => {
+        const v = scores[f];
+        if (v !== null) totalScore += parseInt(v, 10);
+    });
+    
+    const summary = document.getElementById('summary').value;
+    const percentage = (totalScore / LIST_EVALUATOR_MAX_SCORE) * 100;
+    
+    const criterionLabels = [
+        { field: 'teacherInputCompliance', label: 'Teacher Input Compliance', score: [scores.teacherInputCompliance_language, scores.teacherInputCompliance_count, scores.teacherInputCompliance_type].reduce((s, v) => s + (v != null ? parseInt(v, 10) : 0), 0), maxScore: 3 },
+        { field: 'topicMaterialsAlignment', label: 'Topic & Materials Alignment', score: scores.topicMaterialsAlignment != null ? parseInt(scores.topicMaterialsAlignment, 10) : null, maxScore: 2 },
+        { field: 'gradeLevelDifficulty', label: 'Grade-Level & Difficulty Alignment', score: scores.gradeLevelDifficulty != null ? parseInt(scores.gradeLevelDifficulty, 10) : null, maxScore: 2 },
+        { field: 'uniqueness', label: 'Uniqueness & Diversity', score: scores.uniqueness != null ? parseInt(scores.uniqueness, 10) : null, maxScore: 2 },
+        { field: 'topicCoverage', label: 'Topic Coverage', score: scores.topicCoverage != null ? parseInt(scores.topicCoverage, 10) : null, maxScore: 2 },
+        { field: 'cognitiveDiversity', label: 'Cognitive Level Diversity', score: scores.cognitiveDiversity != null ? parseInt(scores.cognitiveDiversity, 10) : null, maxScore: 2 },
+        { field: 'difficultyProgression', label: 'Difficulty Progression', score: scores.difficultyProgression != null ? parseInt(scores.difficultyProgression, 10) : null, maxScore: 2 },
+        { field: 'answerLeakage', label: 'Answer Leakage Prevention', score: scores.answerLeakage != null ? parseInt(scores.answerLeakage, 10) : null, maxScore: 2 }
+    ];
+    const criterionScoresArray = criterionLabels.map(({ label, score, maxScore }) => ({
+        criterion: label,
+        score: score,
         justification: '',
-        maxScore: 2
+        maxScore
     }));
     
     evaluation = {
         list_id: listId,
         list_context: listContext,
+        scores,
         criterion_scores: criterionScoresArray,
         total_score: totalScore,
-        max_possible_score: 16,
+        max_possible_score: LIST_EVALUATOR_MAX_SCORE,
         percentage: percentage,
         summary: summary || null,
-        evaluated_at: new Date().toISOString(),
-        evaluator_name: userName || null
+        evaluated_at: new Date().toISOString()
     };
     
     saveToLocalStorage();
@@ -822,27 +901,98 @@ function saveEvaluation() {
     setTimeout(() => {
         btn.textContent = originalText;
         btn.style.background = '';
-    }, 2000);
+        if (currentListIndex < listsForCurrentSubject.length - 1) {
+            navigateQuestion(1);
+        }
+    }, 800);
+}
+
+/** Collect all list evaluations from localStorage (across all subjects). */
+function getAllListEvaluations() {
+    const out = [];
+    try {
+        for (let i = 0; i < localStorage.length; i++) {
+            const key = localStorage.key(i);
+            if (!key || key === LIST_EVALUATOR_STATE_KEY || !key.startsWith('listEvaluation_')) continue;
+            const raw = localStorage.getItem(key);
+            if (!raw) continue;
+            try {
+                const ev = JSON.parse(raw);
+                if (ev && typeof ev === 'object') {
+                    if (ev.list_id == null) ev.list_id = key.replace('listEvaluation_', '');
+                    out.push(ev);
+                }
+            } catch (_) {}
+        }
+    } catch (e) {
+        console.warn('Could not read list evaluations from localStorage:', e);
+    }
+    return out.sort((a, b) => {
+        const aId = a.list_id != null ? String(a.list_id) : '';
+        const bId = b.list_id != null ? String(b.list_id) : '';
+        return aId < bId ? -1 : aId > bId ? 1 : 0;
+    });
 }
 
 function exportToYaml() {
-    if (!evaluation) {
-        alert('No evaluation to export.');
+    const all = getAllListEvaluations();
+    if (all.length === 0) {
+        alert('No evaluations to export.');
         return;
     }
     
-    const yamlData = { evaluation: evaluation };
-    const yamlString = jsyaml.dump(yamlData, {
-        indent: 2,
-        lineWidth: -1,
-        noRefs: true
+    const escapeCsv = (v) => {
+        if (v == null) return '';
+        const s = String(v);
+        if (/[",\n\r]/.test(s)) return '"' + s.replace(/"/g, '""') + '"';
+        return s;
+    };
+    const rc = (ev) => (ev.list_context || {});
+    const scores = (ev) => ev.scores || {};
+    const headers = [
+        'list_id', 'discipline', 'grade', 'difficulty', 'total_score', 'max_possible_score', 'percentage',
+        'compliance_correct_language', 'compliance_correct_count', 'compliance_correct_type',
+        'Teacher Input Compliance (0-3)', 'Topic & Materials Alignment', 'Grade-Level & Difficulty Alignment',
+        'Uniqueness & Diversity', 'Topic Coverage', 'Cognitive Level Diversity', 'Difficulty Progression', 'Answer Leakage Prevention',
+        'summary', 'evaluated_at'
+    ];
+    const criterionTitles = [
+        'Teacher Input Compliance', 'Topic & Materials Alignment', 'Grade-Level & Difficulty Alignment',
+        'Uniqueness & Diversity', 'Topic Coverage', 'Cognitive Level Diversity', 'Difficulty Progression', 'Answer Leakage Prevention'
+    ];
+    const rows = [headers.join(',')];
+    all.forEach(ev => {
+        const ctx = rc(ev);
+        const s = scores(ev);
+        const scoresByCriterion = {};
+        (ev.criterion_scores || []).forEach(c => { scoresByCriterion[c.criterion] = c.score; });
+        const complianceLang = s.teacherInputCompliance_language != null ? String(s.teacherInputCompliance_language) : '';
+        const complianceCount = s.teacherInputCompliance_count != null ? String(s.teacherInputCompliance_count) : '';
+        const complianceType = s.teacherInputCompliance_type != null ? String(s.teacherInputCompliance_type) : '';
+        const row = [
+            escapeCsv(ev.list_id),
+            escapeCsv(ctx.discipline),
+            escapeCsv(ctx.grade),
+            escapeCsv(ctx.difficulty),
+            ev.total_score != null ? ev.total_score : '',
+            ev.max_possible_score != null ? ev.max_possible_score : '',
+            ev.percentage != null ? ev.percentage : '',
+            complianceLang === '' ? '' : (complianceLang === '1' ? '1' : '0'),
+            complianceCount === '' ? '' : (complianceCount === '1' ? '1' : '0'),
+            complianceType === '' ? '' : (complianceType === '1' ? '1' : '0'),
+            scoresByCriterion['Teacher Input Compliance'] != null ? scoresByCriterion['Teacher Input Compliance'] : '',
+            ...criterionTitles.slice(1).map(t => escapeCsv(scoresByCriterion[t])),
+            escapeCsv(ev.summary),
+            escapeCsv(ev.evaluated_at)
+        ];
+        rows.push(row.join(','));
     });
-    
-    const blob = new Blob([yamlString], { type: 'text/yaml' });
+    const csvString = rows.join('\n');
+    const blob = new Blob([csvString], { type: 'text/csv;charset=utf-8;' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `list_evaluation_${new Date().toISOString().split('T')[0]}.yaml`;
+    a.download = `list_evaluations_${new Date().toISOString().split('T')[0]}.csv`;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
@@ -854,98 +1004,15 @@ function saveToLocalStorage() {
         if (listId && evaluation) {
             localStorage.setItem(`listEvaluation_${listId}`, JSON.stringify(evaluation));
         }
-        // Save selection state
-        saveSelectionState();
     } catch (e) {
         console.warn('Could not save to localStorage:', e);
-    }
-}
-
-function loadFromLocalStorage() {
-    try {
-        const savedUserName = localStorage.getItem('listEvaluatorUserName');
-        if (savedUserName) {
-            userName = savedUserName;
-            const userNameInput = document.getElementById('userNameInput');
-            if (userNameInput) {
-                userNameInput.value = savedUserName;
-            }
-        }
-    } catch (e) {
-        console.warn('Could not load from localStorage:', e);
-    }
-}
-
-function saveSelectionState() {
-    try {
-        const selectionState = {
-            userName: userName,
-            subject: selectedSubject,
-            language: selectedLanguage,
-            currentListIndex: currentListIndex
-        };
-        localStorage.setItem('listEvaluatorSelectionState', JSON.stringify(selectionState));
-        if (userName) {
-            localStorage.setItem('listEvaluatorUserName', userName);
-        }
-    } catch (e) {
-        console.warn('Could not save selection state to localStorage:', e);
-    }
-}
-
-function clearSelectionState() {
-    try {
-        localStorage.removeItem('listEvaluatorSelectionState');
-    } catch (e) {
-        console.warn('Could not clear selection state from localStorage:', e);
-    }
-}
-
-function tryRestoreEvaluatorState() {
-    try {
-        const savedState = localStorage.getItem('listEvaluatorSelectionState');
-        if (!savedState) {
-            return; // No saved state, show selection page
-        }
-        
-        const selectionState = JSON.parse(savedState);
-        if (!selectionState.userName || !selectionState.subject || !selectionState.language) {
-            return; // Invalid state, show selection page
-        }
-        
-        // Restore the state
-        userName = selectionState.userName;
-        selectedSubject = selectionState.subject;
-        selectedLanguage = selectionState.language;
-        currentListIndex = selectionState.currentListIndex || 0;
-        
-        // Restore form values
-        const userNameInput = document.getElementById('userNameInput');
-        const subjectSelect = document.getElementById('subjectSelect');
-        const languageSelect = document.getElementById('languageSelect');
-        
-        if (userNameInput) userNameInput.value = userName;
-        if (subjectSelect) subjectSelect.value = selectedSubject;
-        if (languageSelect) languageSelect.value = selectedLanguage;
-        
-        // Validate and enable start button
-        validateSelection();
-        
-        // Auto-start evaluator if all fields are valid
-        if (userName && selectedSubject && selectedLanguage) {
-            // Use setTimeout to ensure DOM is ready
-            setTimeout(() => {
-                startEvaluator();
-            }, 100);
-        }
-    } catch (e) {
-        console.warn('Could not restore evaluator state:', e);
     }
 }
 
 function toggleCriteria() {
     const panel = document.getElementById('criteriaPanel');
     const btn = document.getElementById('toggleCriteriaBtn');
+    if (!panel || !btn) return;
     const isVisible = panel.style.display !== 'none';
     
     if (isVisible) {
@@ -959,6 +1026,7 @@ function toggleCriteria() {
 
 function loadCriteriaContent() {
     const criteriaContent = document.getElementById('criteriaContent');
+    if (!criteriaContent) return;
     
     fetch('__list eval original_new.md')
         .then(response => {
@@ -1010,79 +1078,83 @@ function showCriterionInfo(criterionKey) {
     
     let html = `<p><strong>Category:</strong> ${criterion.category}</p>`;
     html += `<p><strong>Question:</strong> ${criterion.question}</p>`;
-    html += `<h4>Scoring Guide:</h4><ul>`;
-    Object.keys(criterion.scores).sort().forEach(score => {
-        html += `<li><strong>${score}:</strong> ${criterion.scores[score]}</li>`;
-    });
-    html += `</ul>`;
+    
+    if (criterion.subItems) {
+        html += `<h4>Evaluate each requirement independently (1 point each):</h4><ul>`;
+        criterion.subItems.forEach(item => {
+            html += `<li>${item}</li>`;
+        });
+        html += `</ul><p><strong>${criterion.scoreNote}</strong></p>`;
+    } else if (criterion.scores) {
+        html += `<h4>Scoring guide:</h4><ul>`;
+        Object.keys(criterion.scores).sort().forEach(score => {
+            html += `<li><strong>${score}:</strong> ${criterion.scores[score]}</li>`;
+        });
+        html += `</ul>`;
+    }
     
     body.innerHTML = html;
     modal.style.display = 'flex';
 }
 
 function updateExportButton() {
-    const hasEvaluation = evaluation !== null;
-    document.getElementById('exportYamlBtn').disabled = !hasEvaluation;
+    const hasAnyEvaluation = getAllListEvaluations().length > 0;
+    const btn = document.getElementById('exportCsvBtn');
+    if (btn) btn.disabled = !hasAnyEvaluation;
 }
 
 function handleKeyboardInput(e) {
-    // Only handle if evaluator interface is visible
+    // Only handle if evaluator page is visible (same as evaluator.js)
+    const evaluatorPage = document.getElementById('evaluatorPage');
+    if (!evaluatorPage || evaluatorPage.style.display === 'none') {
+        return;
+    }
+    
     const evaluatorInterface = document.getElementById('evaluatorInterface');
     if (!evaluatorInterface || evaluatorInterface.style.display === 'none') {
         return;
     }
     
-    // Don't handle if user is typing in an input field
+    // Don't handle if user is typing in an input field (same as evaluator.js)
     const activeElement = document.activeElement;
-    if (activeElement && (activeElement.tagName === 'INPUT' || activeElement.tagName === 'TEXTAREA' || activeElement.tagName === 'SELECT')) {
+    if (activeElement && (activeElement.tagName === 'INPUT' || activeElement.tagName === 'TEXTAREA')) {
         return;
     }
     
-    // Only handle 0, 1, 2 keys
     const key = e.key;
     if (key !== '0' && key !== '1' && key !== '2') {
         return;
     }
     
-    // Prevent default behavior
     e.preventDefault();
     
-    // Determine which field to set based on what's missing (in order of criteria)
-    const gradeLevel = getButtonValue('gradeLevel');
-    const teacherInput = getButtonValue('teacherInput');
-    const difficultyProgression = getButtonValue('difficultyProgression');
-    const uniqueness = getButtonValue('uniqueness');
-    const topicCoverage = getButtonValue('topicCoverage');
-    const cognitiveDiversity = getButtonValue('cognitiveDiversity');
-    const questionTypeBalance = getButtonValue('questionTypeBalance');
-    const answerLeakage = getButtonValue('answerLeakage');
+    // Find first missing field in form order (compliance = Yes/No: 0 or 1 only; criteria = 0–2)
+    const complianceFields = LIST_EVALUATOR_COMPLIANCE_FIELDS;
+    const criteriaFields = LIST_EVALUATOR_CRITERIA_FIELDS;
     
-    // Determine target field and value
     let targetField = null;
-    let targetValue = key; // All criteria use 0-2 scale
+    let targetValue = null;
     
-    if (!gradeLevel) {
-        targetField = 'gradeLevel';
-    } else if (!teacherInput) {
-        targetField = 'teacherInput';
-    } else if (!difficultyProgression) {
-        targetField = 'difficultyProgression';
-    } else if (!uniqueness) {
-        targetField = 'uniqueness';
-    } else if (!topicCoverage) {
-        targetField = 'topicCoverage';
-    } else if (!cognitiveDiversity) {
-        targetField = 'cognitiveDiversity';
-    } else if (!questionTypeBalance) {
-        targetField = 'questionTypeBalance';
-    } else if (!answerLeakage) {
-        targetField = 'answerLeakage';
-    } else {
-        // All fields filled, don't do anything
-        return;
+    for (const field of complianceFields) {
+        if (getButtonValue(field) === '') {
+            targetField = field;
+            if (key === '0') targetValue = '0';
+            else if (key === '1') targetValue = '1';
+            else return;
+            break;
+        }
     }
     
-    // Set the button state
+    if (!targetField) {
+        for (const field of criteriaFields) {
+            if (getButtonValue(field) === '') {
+                targetField = field;
+                targetValue = key;
+                break;
+            }
+        }
+    }
+    
     if (targetField && targetValue !== null) {
         setButtonState(targetField, targetValue);
         updateScore();

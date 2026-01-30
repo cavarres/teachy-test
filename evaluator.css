@@ -129,6 +129,26 @@ header h1 {
     overflow-y: auto;
 }
 
+/* List evaluator: single scroll (no scroll inside evaluation panel) */
+.list-evaluator-page .evaluator-interface {
+    height: auto;
+    min-height: 600px;
+}
+.list-evaluator-page .main-content {
+    flex: 0 1 auto;
+    overflow: visible;
+    align-items: start;
+}
+.list-evaluator-page .evaluation-panel {
+    position: static;
+    align-self: stretch;
+    max-height: none;
+    overflow: visible;
+}
+.list-evaluator-page .question-panel {
+    overflow: visible;
+}
+
 .question-panel h2, .evaluation-panel h2 {
     font-family: 'Quicksand', sans-serif;
     font-size: 14px;
@@ -332,6 +352,21 @@ header h1 {
     color: #666;
     line-height: 1.5;
     font-style: normal;
+}
+
+/* Teacher input compliance: smaller labels and rows so they don't dominate */
+.teacher-input-compliance-group .compliance-sub-row {
+    font-size: 13px;
+    margin-bottom: 6px;
+}
+.teacher-input-compliance-group .compliance-label {
+    font-size: 13px;
+    font-weight: normal;
+    line-height: 1.4;
+}
+.teacher-input-compliance-group .score-button-group-yesno .btn-score {
+    font-size: 13px;
+    padding: 4px 10px;
 }
 
 textarea.form-control {
